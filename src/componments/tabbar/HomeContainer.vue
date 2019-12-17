@@ -67,10 +67,10 @@
         methods: {
             getBanner() {
                 //获取轮播图数据的方法
-                this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/message.json").then(result => {
-                    console.log(result);
+                this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json").then(result => {
+                    // console.log(result);
                     if (result.status === 200) {
-                        console.log(result.body);
+                        // console.log(result.body);
                         //成功了
                         this.bannerList = result.body;
                     }else {
