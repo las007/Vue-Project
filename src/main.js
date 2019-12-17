@@ -29,6 +29,14 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource);
 
 
+//导入格式化时间的插件
+import moment from 'moment'
+//定义全局过滤器
+Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+    return moment(dataStr).format(pattern);
+});
+
+
 var vm = new Vue({
     el: '#app',
     render: c => c(app),

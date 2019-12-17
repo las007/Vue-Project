@@ -12,16 +12,16 @@
 <!--        九宫格样式布局-->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/newslist">
                     <img src="../../images/menu1.png" alt="404error..">
                     <div class="mui-media-body">新闻咨询</div>
-                </a>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/photoslist">
                     <img src="../../images/menu2.png" alt="404error..">
                     <div class="mui-media-body">图片分享</div>
-                </a>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
