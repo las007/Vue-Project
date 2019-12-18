@@ -53,6 +53,7 @@
 
 <script>
 
+    import $ from 'jquery'
     import { Toast } from 'mint-ui'
 
     export default {
@@ -67,6 +68,19 @@
         methods: {
             getBanner() {
                 //获取轮播图数据的方法
+
+                // $.ajax({
+                //     url: 'http://las007.gitee.io/vue-project/src/message.json',
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     }
+                // });
+
+                // header('Access-Control-Allow-Origin:*');//允许所有来源访问
+                // header('Access-Control-Allow-Method:POST,GET');//允许访问的方式
+
                 this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json").then(result => {
                     // console.log(result);
                     if (result.status === 200) {
