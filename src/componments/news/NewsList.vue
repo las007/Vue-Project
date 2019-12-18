@@ -19,6 +19,14 @@
             </li>
 
         </ul>
+
+
+        <router-link to="/home/newslist/content">
+            <mt-button type="primary" size="large">
+                发布文章
+            </mt-button>
+        </router-link>
+
     </div>
 
 </template>
@@ -48,6 +56,19 @@
                         //获取失败
                         Toast('获取数据失败..');
                     }
+                });
+            },
+            postContent() {
+                this.$http
+                    .post("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
+                    .then(result => {
+                        if (result.status === 200) {
+                            var com = {
+                                user_name: "匿名用户",
+                                add_time: Date.now(),
+                                content: this.msg
+                            };
+                        }
                 });
             }
         }
