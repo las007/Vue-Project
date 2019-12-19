@@ -6,7 +6,7 @@
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <a :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']" v-for="item in cates" :key="item.id">
+                    <a :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']" v-for="item in cates" :key="item.id" @tap="getPhotoListByCateId(item.id)">
                         {{ item.title }}
                     </a>
 
@@ -47,7 +47,7 @@
         created() {
             this.getAllCategory();
             //默认进入页面，就主动请求 所有图片列表的数据
-            this.getPhotoListByCateId();
+            this.getPhotoListByCateId(0);
         },
         mounted() {
             // 当 组件中的DOM结构被渲染好并放到页面中后，会执行这个 钩子函数
@@ -72,13 +72,16 @@
                     }
                 });
             },
-            getPhotoListByCateId() {
+            getPhotoListByCateId(cateId) {
                 //根据分类 Id，获取图片列表
                 this.$http
                     .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/images.json")
                     .then(result => {
+                        console.log(result);
+                        console.log(cateId);
                         if (result.status === 200) {
-                            this.list = result.body.message;
+                            this.list = result.body.message[cateId];
+                            console.log(this.list);
                         }
                 });
             }
