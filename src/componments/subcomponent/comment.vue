@@ -6,7 +6,7 @@
         <hr>
         <textarea placeholder="请输入要评论的内容..（最多允许120字）" maxlength="120" v-model="msg"></textarea>
 
-        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
+        <mt-button type="primary" size="large">发表评论</mt-button>
 
         <div class="cmt-list">
             <div class="cmt-item" v-for="(item, i) in commentList" :key="item.content ">
@@ -37,12 +37,12 @@
         },
         created() {
             this.getComment();
-            this.postComment();
+            // this.postComment();
         },
         methods: {
             getComment() {      //获取评论信息
                 this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comment.json").then(result => {
-                    console.log(result);
+                    // console.log(result);
                     if (result.status === 200) {
                         //获取成功
                         // this.commentList = result.body[this.id];
@@ -61,10 +61,12 @@
                 this.artid++;
                 this.getComment();
             },
-            postComment() {
+
+        /*
+             postComment() {
                 // 校验是否为空内容
                 if (this.msg.length === 0) {
-                    return Toast('评论内容不能为空！');
+                    // return Toast('评论内容不能为空！');
                 }
 
                 //发表评论
@@ -88,6 +90,7 @@
                         }
                 });
             }
+            */
         },
         props: ["id"]
     };

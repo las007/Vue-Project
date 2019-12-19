@@ -7,12 +7,16 @@ import Vue from 'vue';
 import app from './App.vue';
 
 //按需导入 Mint-UI 中的组件
-import { Header, Swipe, SwipeItem, Toast, Button } from 'mint-ui';
-Vue.component(Header.name, Header);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Toast.name, Toast);
-Vue.component(Button.name, Button);
+// import { Header, Swipe, SwipeItem, Toast, Button, Lazyload  } from 'mint-ui';
+// Vue.component(Header.name, Header);
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Toast.name, Toast);
+// Vue.component(Button.name, Button);
+// Vue.use(Lazyload);
+import MintUI from 'mint-ui'
+Vue.use(MintUI);
+import 'mint-ui/lib/style.css'
 
 //导入 MUI 样式
 import './lib/mui/css/mui.min.css'
@@ -36,6 +40,22 @@ import moment from 'moment'
 //定义全局过滤器
 Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
     return moment(dataStr).format(pattern);
+});
+
+//安装 图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview);
+// with parameters install
+import preview from 'vue-preview'
+Vue.use(preview, {
+    mainClass: 'pswp--minimal--dark',
+    barsSize: {top: 0, bottom: 0},
+    captionEl: false,
+    fullscreenEl: false,
+    shareEl: false,
+    bgOpacity: 0.85,
+    tapToClose: true,
+    tapToToggleControls: false
 });
 
 
