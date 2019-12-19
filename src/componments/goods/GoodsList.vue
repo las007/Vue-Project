@@ -2,48 +2,42 @@
 
     <div class="goods-container">
 
-        <div class="good-item">
-            <img src="https://raw.githubusercontent.com/las007/Vue-Project/master/src/images/4.jpg" alt="">
-            <h1 class="title">小米（Mi）小米Note 16G双网通版</h1>
+        <!--<router-link class="good-item" v-for="item in goodsList" :key="item.id" :to="'/home/goodsinfo/' + item.id" tag="div">
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{ item.title }}</h1>
             <div class="good-info">
                 <p class="price">
-                    <span class="now">￥2199</span>
-                    <span class="old">￥2399</span>
+                    <span class="now">￥{{ item.sell_price }}</span>
+                    <span class="old">￥{{ item.market_price }}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>剩69件</span>
+                    <span>剩{{ item.stock_quantity }}件</span>
                 </p>
             </div>
-        </div>
-        <div class="good-item">
-            <img src="https://raw.githubusercontent.com/las007/Vue-Project/master/src/images/4.jpg" alt="">
-            <h1 class="title">尼康(Nikon)D3300套机（18-55mm f/3.5-5.6G VRII）（黑色）</h1>
+        </router-link>-->
+
+        <!-- 在网页中，有两种跳转方式： -->
+        <!-- 方式1： 使用 a 标签 的形式叫做 标签跳转  -->
+        <!-- 方式2： 使用 window.location.href 的形式，叫做 编程式导航 -->
+
+        <div class="good-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{ item.title }}</h1>
             <div class="good-info">
                 <p class="price">
-                    <span class="now">￥2199</span>
-                    <span class="old">￥2399</span>
+                    <span class="now">￥{{ item.sell_price }}</span>
+                    <span class="old">￥{{ item.market_price }}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>剩69件</span>
+                    <span>剩{{ item.stock_quantity }}件</span>
                 </p>
             </div>
         </div>
-        <div class="good-item">
-            <img src="https://raw.githubusercontent.com/las007/Vue-Project/master/src/images/6.jpg" alt="">
-            <h1 class="title">小米（Mi）小米Note 16G双网通版</h1>
-            <div class="good-info">
-                <p class="price">
-                    <span class="now">￥2199</span>
-                    <span class="old">￥2399</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩69件</span>
-                </p>
-            </div>
-        </div>
+
+        <mt-button type="danger" size="large" @click="getMore">加载更多..</mt-button>
+
     </div>
 
 </template>
@@ -53,8 +47,9 @@
     export default {
         data() {
             return {
-                id: this.$route.params.id,          //从路由获取到图片的 id
                 goodsList: [],       //图片列表的数据
+                // artId: 0,             //分页的页数
+                pageIndex: 0
             }
         },
         created() {
@@ -65,16 +60,39 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
+                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/goodsImg.json")
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
                         if (result.status === 200) {
-                            this.goodsList = result.body.message;
+                            // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
+
+                            this.goodsList = this.goodsList.concat(result.body[this.pageIndex][this.pageIndex + 1]);
+                            // console.log(this.goodsList);
                         }
                     });
             },
+            getMore() {
+                this.pageIndex++;
+                this.getGoodsList();
+                // console.log('ok');
+            },
+            goDetail(id) {
+                // 使用JS的形式进行路由导航
+
+                // 注意： 一定要区分 this.$route 和 this.$router 这两个对象，
+                // 其中： this.$route 是路由【参数对象】，所有路由中的参数， params, query 都属于它
+                // 其中： this.$router 是一个路由【导航对象】，用它 可以方便的 使用 JS 代码，实现路由的 前进、后退、 跳转到新的 URL 地址
+
+                // 1. 最简单的
+                // this.$router.push("/home/goodsinfo/" + id);
+                // 2. 传递对象
+                // this.$router.push({ path: "/home/goodsinfo/" + id });
+                // 3. 传递命名的路由
+                this.$router.push({ name: "goodsinfo", params: { id } });
+            }
 
         },
+
         components: {
             //评论子组件
 

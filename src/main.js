@@ -34,6 +34,9 @@ import VueResource from 'vue-resource'
 //2.2 安装 vue-resource
 Vue.use(VueResource);
 
+//没有添加被动事件监听器来阻止'touchstart'事件，请考虑添加事件管理者'passive'，以使页面更加流畅
+import 'default-passive-events'
+
 
 //导入格式化时间的插件
 import moment from 'moment'

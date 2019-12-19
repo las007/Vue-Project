@@ -77,11 +77,11 @@
                 this.$http
                     .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
                     .then(result => {
-                        console.log(result);
-                        console.log(cateId);
+                        // console.log(result);
+                        // console.log(cateId);
                         if (result.status === 200) {
                             this.list = result.body.message;
-                            console.log(this.list);
+                            // console.log(this.list);
                         }
                 });
             }

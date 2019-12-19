@@ -6,7 +6,7 @@
 
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in newList" :key="item.img">
-                    <router-link :to="'/home/newsinfo/' + item.id">          <!--//此处路径 = 字符串 + 表达式-->
+                <router-link :to="'/home/newsinfo/' + item.id">          <!--//此处路径 = 字符串 + 表达式-->
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         <h1>{{ item.title }}</h1>

@@ -1,11 +1,7 @@
 <template>
     <div>
 <!--        轮播图区域-->
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in bannerList" v-bind:key="item.url">
-                <img :src="item.img" alt="error404...">
-            </mt-swipe-item>
-        </mt-swipe>
+        <swiper :bannerList="bannerList" :isfull="true"></swiper>
 
         <h3>HomeContainer</h3>
 
@@ -53,8 +49,8 @@
 
 <script>
 
-    import $ from 'jquery'
     import { Toast } from 'mint-ui'
+    import swiper from '../subcomponent/swiper.vue'
 
     export default {
         data() {
@@ -93,31 +89,14 @@
                     }
                 });
             }
+        },
+        components: {
+            swiper
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .mint-swipe{
-        height: 200px;
-
-        .mint-swipe-item {
-            &:nth-child(1) {
-                background-color: red;
-            }
-            &:nth-child(2) {
-                background-color: deepskyblue;
-            }
-            &:nth-child(3) {
-                background-color: yellowgreen;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
 
     .mui-grid-view.mui-grid-9 {
         background-color: #fff;
