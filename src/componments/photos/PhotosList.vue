@@ -75,12 +75,12 @@
             getPhotoListByCateId(cateId) {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/images.json")
+                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
                     .then(result => {
                         console.log(result);
                         console.log(cateId);
                         if (result.status === 200) {
-                            this.list = result.body.message[cateId];
+                            this.list = result.body.message;
                             console.log(this.list);
                         }
                 });
