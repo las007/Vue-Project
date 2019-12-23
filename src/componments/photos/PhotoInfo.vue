@@ -53,11 +53,12 @@
             getPhotoInfo() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
+                    // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
+                    .get("http://localhost:3000/getNewsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            this.photoinfo = result.body.message[this.id];
+                            this.photoinfo = result.body.list.message[this.id];
                             // console.log(this.id);
                             // console.log(result.body.message[this.id]);
                         }
@@ -66,7 +67,8 @@
             getThumbs() {
                 // 获取图片的详情
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
+                    // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
+                    .get("http://localhost:3000/getMessages")
                     .then(result => {
                         if (result.status === 200) {
                             // console.log(result);
@@ -76,7 +78,7 @@
                             //     item.w = 600;
                             //     item.h = 400;
                             // }
-                            result.body.forEach(item => {
+                            result.body.list.forEach(item => {
                                 item.w = 380;
                                 item.h = 400;
                                 item.title = 'pics_1';
@@ -84,7 +86,7 @@
                                 item.msrc = item.img;
                             });
                             // 把完整的数据保存到 list 中
-                            this.list = result.body;
+                            this.list = result.body.list;
                         }
                     });
             },

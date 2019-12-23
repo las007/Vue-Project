@@ -2,7 +2,7 @@
     <div class="app-container">
 
         <!--    顶部 Header 区域-->
-        <mt-header fixed title="顶部状态栏"></mt-header>
+<!--        <mt-header fixed title="顶部状态栏"></mt-header>-->
 
         <!--    中间的 路由 router-view 区域-->
         <transition>
@@ -43,6 +43,7 @@
         padding-top: 40px;
         padding-bottom: 50px;
         overflow-x: hidden;
+        margin-top: -40px;
     }
 
     .v-enter {
@@ -87,4 +88,5 @@
         padding-top: 0;
         padding-bottom: 0;
     }
+
 </style>

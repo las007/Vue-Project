@@ -5,13 +5,14 @@ import Vue from 'vue';
 
 //导入 App 根组件
 import app from './App.vue';
+import login from './componments/login/Login.vue'
 
 //按需导入 Mint-UI 中的组件
-// import { Header, Swipe, SwipeItem, Toast, Button, Lazyload  } from 'mint-ui';
+import { Header, Swipe, SwipeItem, Toast, Button, Lazyload  } from 'mint-ui';
 // Vue.component(Header.name, Header);
 // Vue.component(Swipe.name, Swipe);
 // Vue.component(SwipeItem.name, SwipeItem);
-// Vue.component(Toast.name, Toast);
+Vue.component(Toast.name, Toast);
 // Vue.component(Button.name, Button);
 // Vue.use(Lazyload);
 import MintUI from 'mint-ui'
@@ -42,7 +43,7 @@ import 'default-passive-events'
 import moment from 'moment'
 //定义全局过滤器
 Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
-    return moment(dataStr).format(pattern);
+    return moment(dataStr, moment.ISO_8601).format(pattern);
 });
 
 //安装 图片预览插件

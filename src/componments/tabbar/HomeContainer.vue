@@ -1,7 +1,19 @@
 <template>
     <div>
 <!--        轮播图区域-->
-        <swiper :bannerList="bannerList" :isfull="true"></swiper>
+
+<!--            <swiper :bannerList="bannerList" :isfull="true"></swiper>-->
+                <mt-header fixed title="顶部状态栏"></mt-header>
+
+
+        <mt-swipe :auto="4000">
+            <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
+                <router-link :to="'/home/photoinfo/' + i">
+                    <img :src="item.img" alt="error404...">
+                </router-link>
+            </mt-swipe-item>
+        </mt-swipe>
+
 
         <h3>HomeContainer</h3>
 
@@ -44,6 +56,7 @@
                 </a>
             </li>
         </ul>
+
     </div>
 </template>
 
@@ -77,12 +90,15 @@
                 // header('Access-Control-Allow-Origin:*');//允许所有来源访问
                 // header('Access-Control-Allow-Method:POST,GET');//允许访问的方式
 
-                this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json").then(result => {
-                    // console.log(result);
+                this.$http
+                    // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
+                    .get("http://localhost:3000/getMessages")
+                    .then(result => {
+                    console.log(result);
                     if (result.status === 200) {
                         // console.log(result.body);
                         //成功了
-                        this.bannerList = result.body;
+                        this.bannerList = result.body.list;
                     }else {
                         //失败了
                         Toast('加载轮播图失败...');
@@ -97,7 +113,18 @@
 </script>
 
 <style lang="scss" scoped>
+    .mint-swipe{
+        height: 200px;
+        text-align: center;
 
+        .mint-swipe-item {
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
     .mui-grid-view.mui-grid-9 {
         background-color: #fff;
         border: none;

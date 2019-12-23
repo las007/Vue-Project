@@ -6,8 +6,10 @@
         <!-- 此时，lunbotuList 应该是 父组件向子组件传值来设置 -->
 
         <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in bannerList" v-bind:key="item.url">
-                <img :src="item.img" alt="error404..." :class="{ 'full': isfull }">
+            <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
+                <router-link :to="'/home/photoinfo/' + i">
+                    <img :src="item.img" alt="error404..." :class="{ 'full': isfull }">
+                </router-link>
             </mt-swipe-item>
         </mt-swipe>
     </div>

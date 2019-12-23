@@ -63,12 +63,15 @@
         methods: {
             getAllCategory() {
                 //获取新闻列表
-                this.$http.get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/category.json").then(result => {
+                this.$http
+                    // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/category.json")
+                    .get("http://localhost:3000/getCategory")
+                    .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
                         //获取数据成功，获取到的数据应该保存到 data 上
-                        result.body.message.unshift({ title: "全部", id: 0 });
-                        this.cates = result.body.message;
+                        result.body.list.message.unshift({ title: "全部", id: 0 });
+                        this.cates = result.body.list.message;
                     }else {
                         //获取失败
                         Toast('获取数据失败..');
@@ -78,12 +81,13 @@
             getPhotoListByCateId(cateId) {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
+                    // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
+                    .get("http://localhost:3000/getPhotos")
                     .then(result => {
                         // console.log(result);
                         // console.log(cateId);
                         if (result.status === 200) {
-                            this.list = result.body.message;
+                            this.list = result.body.list[cateId];
                             // console.log(this.list);
                         }
                 });
