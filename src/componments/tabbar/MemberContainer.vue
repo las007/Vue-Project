@@ -12,84 +12,196 @@
 
 <!--        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>-->
 
-        <comment-box></comment-box>
+        <header id="header" class="mui-bar mui-bar-nav">
+<!--            <span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left item-back">返回</span>-->
+            <span class="mui-icon mui-icon-left-nav item-back" @click="$router.go(-1)">返回</span>
+        </header>
 
-        <router-link to="/login">
-            <mt-button type="primary">前去登录/注册</mt-button>
+        <div class="more-side">
+            <ul v-if="showname">
+                <li class="userInfo">
+                    <button @click="register()">登录</button>
+                </li>
+                <li class="userInfo">
+                    <button @click="loading()">注册</button>
+                </li>
+            </ul>
+<!--            <span>{{ userInfo.username }}</span>-->
+            <span v-for="item in msg">{{ item.username }}</span>
+        </div>
+
+        <div class="dialog">
+            <form v-if="showname">
+                用户名：<input type="text" v-model="form2.username" v-focus>
+                密  码：<input type="password" v-model="form2.password" @keyup.enter="Login">
+            </form>
+            <mt-button type="primary" size="large" @click="Login">确定</mt-button>
+            <mt-button type="danger" size="large" plain @click="storageCancel">退出登录</mt-button>
+        </div>
+
+        <router-link :to="router">
+            <mt-button type="primary" @click="toLog">前去登录/注册</mt-button>
         </router-link>
+
 
     </div>
 </template>
 
 <script>
-import axios from 'axios'
-import ab from '../../../static/json/first.json'
+    import Vue from 'vue'
 
-import app from '../../App.vue'
-
-import Toast from 'mint-ui'
-import comment from '../subcomponent/comment.vue'
+    Vue.directive('focus', {
+        inserted: function (el){
+            el.focus();
+        }
+    });
 
     export default {
         data() {
             return {
-                memberList: [],
-                msg: ""
+                msg: [],
+                showname: true,
+                userInfo: [],
+
+                form2: {
+                    username: '',
+                    password: ''
+                },
+                router: ''
             }
         },
         created() {
-            // this.getMemberContent();
+            // this.getInfo();
+            //把 ... 赋值给 this.msg
+            this.msg = JSON.parse(localStorage.getItem('cmts') || []);
+
+            console.log(this.msg.length);
+
+            if (this.msg.length === 0) {
+                console.log("=======================");
+            }else {
+                this.showname = !this.msg[0].show;
+                console.log(this.showname);
+            }
+
         },
-        methods: {
-            // getMemberContent() {
-            //     // this.$http.get("../../../static/json/first.json").then(result => {
-            //     this.$http.get("http://localhost:3000/messages").then(result => {
-            //         console.log(result);
-            //         if (result.status === 200) {
-            //             this.memberList = result.body.list;
-            //         }
-            //     });
-            // },
-            // postComment() {
-            //     // 校验是否为空内容
-            //     if (this.msg.trim().length === 0) {
-            //         return this.$toast('输入内容不能为空！');
-            //     }
-            //
-            //     // 发表评论
-            //     // 参数1： 请求的URL地址
-            //     // 参数2： 提交给服务器的数据对象 { content: this.msg }
-            //     // 参数3： 定义提交时候，表单中数据的格式  { emulateJSON:true }
-            //     this.$http
-            //         .post("http://localhost:3000/addMessage", { name: "匿名用户啊", desc: this.msg.trim() }, { emulateJSON:true })
-            //         .then(result => {
-            //             // console.log(result);
-            //             // console.log(result.body.flag);
-            //             if (result.status === 200) {
-            //             // if (result.body.flag === 1) {
-            //                 //1.拼接出一个评论对象
-            //                 var cmt = {
-            //                     name: "匿名用户啊",
-            //                     desc: this.msg.trim()
-            //                 };
-            //                 //2.将数据加到数组中
-            //                 this.memberList.unshift(cmt);
-            //                 //3.清空文本框
-            //                 this.msg = '';
-            //             }
-            //     });
-            //
+        updated() {
+            // console.log(this.msg.length);
+            // if (this.msg.length > 0) {
+            //     this.showname = !this.msg[0].show;
+            //     console.log(this.showname);
             // }
         },
-        components: {
-            "comment-box": comment,
-            app
+        methods: {
+
+            getLoginMsg(info) {
+                this.$http
+                    .get("http://localhosts:3000/getLoginMsg")
+                    .then(result => {
+                    console.log(result);
+
+                    if (result.status === 200) {
+
+                    }
+                });
+            },
+
+            Login() {
+
+                var cmt = {
+                  username: this.form2.username,
+                  password: this.form2.password
+                };
+
+                //判断文本框是否为空
+                if (this.form2.username.length === 0 || this.form2.password.length === 0) {
+                    return this.$toast('用户名或密码不能为空！');
+                }
+
+                this.$http
+                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
+                    .then(result => {
+                    // console.log(result);
+
+                    if (result.status === 200) {
+
+                        if (result.body.flag === 0) {
+                            this.$toast("账号或者密码不对！");
+                        }else if (result.body.flag === 1) {
+
+                            this.router = '/login';
+                            this.$toast("登录成功！");
+
+                            var comment = {
+                                show: this.showname,
+                                username: this.form2.username,
+                                password: this.form2.password
+                            };
+
+                            //把登陆成功的数据存放到localStorage中
+                            var com = [];
+                            com.push(comment);
+
+                            localStorage.setItem('cmts', JSON.stringify(com));
+
+                            this.msg = JSON.parse(localStorage.getItem('cmts') || []);
+
+                            // this.showname = !this.this.msg.show;
+                            this.showname = !this.msg[0].show;
+
+                            this.form2.username = this.form2.password = "";
+                            // console.log(com);
+
+                            // this.getInfo(com);
+                        }
+                    }
+                });
+            },
+
+            // getInfo(info) {
+            //     // console.log(info);
+            //     if (info !== undefined) {
+            //
+            //         // this.showname = true;
+            //         this.form2.username = this.form2.password = "";
+            //         // console.log(this.msg[0].username);
+            //     }else {
+            //         console.log('not ok++++++++++++++++++');
+            //     }
+            //
+            // },
+
+            //用于推出登录，删除 localhostStorage 中的信息
+            storageCancel() {
+                var list = JSON.parse(localStorage.getItem('cmts' || []));
+                list.splice(0, 1);
+                localStorage.setItem('cmts', JSON.stringify(list));
+                console.log(1);
+                this.showname = true;
+                this.msg = [];
+
+                // for (var i = 0; i < list.length; i++) {
+                //     if (i === 2) {
+                //         list.splice(i, 1);
+                //     }
+                // }
+            },
+            toLog() {
+                console.log(11);
+                this.router = '/login';
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
 .member-container {
+    margin-top: 50px;
+
+    .item-back {
+        font-size: 16px;
+        margin-top: 5px;
+    }
     button {
         transform: translateX(-50%);
         margin-left: 50%;
@@ -102,6 +214,19 @@ import comment from '../subcomponent/comment.vue'
         font-size: 14px;
         height: 85px;
         margin: 0;
+    }
+
+    .userInfo {
+        display: inline-block;
+        /*background-color: red;*/
+        /*margin-left: 15%;*/
+    }
+
+    ul {
+        /*padding-left: 0;*/
+        padding: 5px 25%;
+        display: flex;
+        justify-content: space-between;
     }
 }
 </style>

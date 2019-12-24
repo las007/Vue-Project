@@ -27,7 +27,8 @@
 
             <h3 class="title"></h3>
             <p class="subtitle">
-                <span>发表时间：{{ newsInfo.add_time }}</span>
+                <span>发表时间：{{ newsInfo.add_time | dataFormat}}</span>
+                <span>作者：{{ newsInfo.author }}</span>
                 <span>点击：{{ newsInfo.click }}</span>
             </p>
 

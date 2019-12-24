@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 
 //导入对应的路由组件
 import Login from './componments/login/Login.vue'
+import Register from './componments/login/Register.vue'
 import HomeContainer from './componments/tabbar/HomeContainer.vue'
 import MemberContainer from './componments/tabbar/MemberContainer.vue'
 import ShopcarContainer from './componments/tabbar/ShopcarContainer.vue'
@@ -20,8 +21,9 @@ import App from './App.vue'
 // 3. 创建路由对象
 var router = new VueRouter({
   routes: [     //配置路由规则的
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/home' },
     { path: '/login', component: Login },
+    { path: '/register', component: Register },
     // { path: '/app', component: App },
     { path: '/home', component: HomeContainer },
     { path: '/member', component: MemberContainer },

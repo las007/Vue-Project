@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-container">
 <!--        轮播图区域-->
 
 <!--            <swiper :bannerList="bannerList" :isfull="true"></swiper>-->
@@ -94,7 +94,7 @@
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
                     .get("http://localhost:3000/getMessages")
                     .then(result => {
-                    console.log(result);
+                    // console.log(result);
                     if (result.status === 200) {
                         // console.log(result.body);
                         //成功了
@@ -113,6 +113,11 @@
 </script>
 
 <style lang="scss" scoped>
+
+    .home-container {
+        margin-top: 40px;
+    }
+
     .mint-swipe{
         height: 200px;
         text-align: center;

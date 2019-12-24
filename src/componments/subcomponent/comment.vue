@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import Toast from 'mint-ui'
+    import { MessageBox } from 'mint-ui';
     import Vue from 'vue'
 
     Vue.config.keyCodes.ent = 113;
@@ -71,7 +71,7 @@
                         // console.log(this.commentList);
 
                         var bodyLength = result.body.length;
-                        console.log(bodyLength);
+                        // console.log(bodyLength);
                         // console.log(result.body.list[this.id -1]);
 
                         /*if (this.id <= bodyLength) {
@@ -186,12 +186,32 @@
                     return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
                 }
 
-                var cmt = {
-                    id: this.id,
-                    name: "匿名用户啊",
-                    description: this.msg,
-                    add_time: getDate()
-                };
+                var userName = JSON.parse(localStorage.getItem('cmts' || []));
+                // console.log(userName[0].username);
+                // console.log(userName.length);
+
+                if (userName.length !== 0) {
+                    var cmt = {
+                        id: this.id,
+                        name: userName[0].username,
+                        description: this.msg,
+                        add_time: getDate()
+                    };
+                }else {
+                    // MessageBox('提示', '操作成功');
+                    MessageBox.confirm('未登录！请先登录过后再作评论..', '提示').then(action => {
+                        // ...
+                        // console.log(action);
+                        if (action === "confirm") {
+                            // console.log(123);
+                            this.$router.push("/member");
+                        }else {
+                            this.msg = "";
+                        }
+                    });
+
+                }
+
 
                 // 发表评论
                 // 参数1： 请求的URL地址
