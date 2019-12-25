@@ -11,6 +11,13 @@
 <!--        <router-link to="/home/newslist">-->
             <mt-button type="primary" size="large" @click="postContent">发布</mt-button>
 <!--        </router-link>-->
+
+        <div id="time">
+            <span class="select-box-title">选择发送时间：</span>
+            <input class="form-control select-box-input" v-model="time" type="text"
+                   id="messageSendTime">
+        </div>
+
     </div>
 
 </template>
@@ -18,6 +25,7 @@
 <script>
 
     import Toast from 'mint-ui'
+    import $ from 'jquery'
     import { MessageBox } from 'mint-ui'
 
     export default {
@@ -25,17 +33,18 @@
             return {
                 newList: [],     //新闻列表
                 titleMsg: [],     //文章标题内容
-                contentMsg: []     //文章内容
+                contentMsg: [],     //文章内容
+                time: ''
             }
         },
         created() {
             // this.getNewsList();
             var userName = JSON.parse(localStorage.getItem('cmts' || []));
-            if (userName.length === 0) {
+           /* if (userName.length === 0) {
                 // console.log("=====================_");
 
                 // MessageBox('提示', '操作成功');
-                MessageBox.alert('未登录！请先登录过后再作评论..', '提示').then(action => {
+                MessageBox.alert('未登录！请先登录过后再发表文章..', '提示').then(action => {
                     // ...
                     // console.log(action);
                     if (action === "confirm") {
@@ -46,7 +55,10 @@
                     }
 
                 });
-            }
+            }*/
+        },
+        mounted() {
+          this.dateDefind();
         },
         methods: {
             postContent() {
@@ -105,6 +117,34 @@
 
             goDetail() {
                 this.$router.push("/home/newslist");
+            },
+
+            dateDefind () {
+                var d, s;
+                var self = this;
+                d = new Date();
+                s = d.getFullYear() + "-";       //取年份
+                s = s + (d.getMonth() + 1) + "-";//取月份
+                s += d.getDate() + " ";     //取日期
+                s += d.getHours() + ":";    //取小时
+                s += d.getMinutes() + ":";  //取分
+                s += d.getSeconds();     //取秒
+                self.time = s;
+                //初始化
+                $('#messageSendTime').datetimepicker({
+                    startDate: s,
+                    minView: "hour", //选择日期后，不会再跳转去选择时分秒
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd hh:ii:ss',
+                    todayBtn: 1,
+                    autoclose: 1
+                });
+                //当选择器隐藏时，讲选择框只赋值给data里面的time
+                $('#messageSendTime').datetimepicker()
+                    .on('hide', function (ev) {
+                        var value = $("#messageSendTime").val();
+                        self.time = value;
+                    });
             }
         }
     }

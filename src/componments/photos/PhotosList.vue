@@ -2,6 +2,11 @@
 
     <div>
 
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">导航栏</h1>
+        </header>
+
 <!--        顶部滑动区域-->
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
@@ -141,5 +146,9 @@
         }
     }
 }
+
+    .mui-slider {
+        margin-top: 50px;
+    }
 
 </style>

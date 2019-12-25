@@ -7,35 +7,64 @@
         </header>
 
         <div class="mui-content">
-
             <form id='login-form' class="mui-input-group">
                 <div class="mui-input-row">
                     <label>账号：</label>
-                    <input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号" v-model="form_1.username" v-focus>
+                    <input id='account' type="text" class="mui-input-clear mui-input" maxlength="15" placeholder="请输入账号" v-model="form_1.username" v-focus>
                 </div>
                 <div class="mui-input-row">
                     <label>密码：</label>
-                    <input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码" v-model="form_1.password">
+                    <input id='password' type="password" class="mui-input-clear mui-input" maxlength="15" placeholder="请输入密码" v-model="form_1.password" autocomplete="password">
+                </div>
+                <div class="mui-input-row">
+                    <label>密码确认：</label>
+                    <input id='password_2' type="password" class="mui-input-clear mui-input" maxlength="15" placeholder="请输入密码" v-model="form_1.password_2" autocomplete="password">
+                   <!-- autocomplete 用途：此功能主要是记住输入内容，下次提交表单或者浏览器回退后，还能保持表单内容不变-->
                 </div>
                 <div class="mui-input-row">
                     <label>号码：</label>
-                    <input id='number' type="password" class="mui-input-clear mui-input" maxlength="11" placeholder="请输入您的电话号码（选填）" v-model="form_1.number">
+                    <input id='number' type="number" class="mui-input-clear mui-input" maxlength="11" placeholder="您的电话号码（选填）" v-model="form_1.number">
                 </div>
                 <div class="mui-input-row">
                     <label>邮箱：</label>
-                    <input id='e-mail' type="password" class="mui-input-clear mui-input" placeholder="请输入您的邮箱地址（选填..）" v-model="form_1.email">
+                    <input id='e-mail' type="email" class="mui-input-clear mui-input" maxlength="25" placeholder="您的邮箱地址（选填..）" v-model="form_1.email"  @keyup.enter="getRegister">
                 </div>
+
+                <div class="page-datetime">
+                    <div class="male">
+                        <label>选择您的性别：</label>
+                        <select id="sel" v-model="opt" @click="sexSelect">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                        <span class="item">▽</span>
+                    </div>
+                    <div class="page-datetime-wrapper">
+                        <label>选择出生日期：</label>
+                        <mt-button @click.native="open('picker')" size="large" class="btn">
+                            <span v-if="showname">选择时间段..▼</span> <label>{{ timer }}</label>
+                        </mt-button>
+                    </div>
+                    <mt-datetime-picker
+                            ref="picker"
+                            type="date"
+                            v-model="value"
+                            year-format="{value} 年"
+                            month-format="{value} 月"
+                            date-format="{value} 日"
+                            :start-date="startDate"
+                            :end-date="endDate"
+                            @confirm="handleChange">
+                    </mt-datetime-picker>
+                </div>
+
             </form>
 
             <div class="mui-content-padded">
-                <mt-button id='login' type="danger" size="large" plain @click="postComment">
+                <mt-button id='login' type="danger" size="large" plain @click="getRegister">
                     注册
                 </mt-button>
             </div>
-
-
-            <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
-
         </div>
 
     </div>
@@ -46,9 +75,11 @@
 <script>
     import Vue from 'vue'
     import { MessageBox } from 'mint-ui'
-    import { DatetimePicker } from 'mint-ui';
 
-    Vue.component(DatetimePicker.name, DatetimePicker);
+
+    // 引入moment用来格式化时间
+    import moment from "moment";
+    Vue.prototype.$moment = moment;
 
     Vue.directive('focus', {
         inserted: function (el) {
@@ -60,92 +91,137 @@
         data() {
             return {
                 msg: '',
+                timer: '',      //出生年月日选项
+                showname: true,
 
                 form_1: {
                     username: '',
                     password: '',
+                    password_2: '',
                     number: '',
-                    email: ''
+                    email: '',
+                    sex: ''
                 },
+                opt: 1,
                 userInfo: [],
 
+                value: null,
+                visible: false,
 
-                pickerVisible: [],
-
-                slots: [
-                    {
-                        flex: 1,
-                        values: ['2015-01', '2015-02', '2015-03', '2015-04', '2015-05', '2015-06'],
-                        className: 'slot1',
-                        textAlign: 'center'
-                    }
-                ]
-
+                startDate: new Date("1901-01-01"),
+                endDate: new Date()
             };
-
         },
-        created() {
-            this.onValuesChange();
-        },
+        created() {},
         methods: {
-
-            onValuesChange(picker, values) {
-                if (this.slots.values[0] > this.slots.values[1]) {
-                    picker.setSlotValue(1, values[0]);
-                    console.log(this.slots.values[0]);
-                }
-            },
-
             getRegister() {
-                this.$http
-                    .get("http://localhost:3000/postRegisterMsg")
-                    .then(result => {
-                        console.log(result);
-
-                        if (result.status === 200) {
-
-
-                        }
-                    });
-            },
-
-            postComment() {
                 //判断文本框是否为空
                 if (this.form_1.username.length === 0 || this.form_1.password.length === 0) {
                     return this.$toast('用户名或密码不能为空！');
+                }else if (this.form_1.password !== this.form_1.password_2) {
+                    return this.$toast('请确认您两次输入的密码是否一致！');
+                }else if (this.form_1.number.length < 11 || this.form_1.number.length > 11) {
+                    return this.$toast('您的电话号码长度不对，请确认！');
+                }else {
+                    for (var i = 0; i <= this.form_1.email.length; i++) {
+                        if (this.form_1.email.indexOf("@") === -1) {         //如果有 "@" 字符，则返回 0，如果没有就返回-1
+                            return this.$toast("您输入的邮箱格式不正确！应包含字符 '@' 和 '.com' 等");
+                        }
+                    }
                 }
+                console.log(this.form_1.sex);
 
                 var cmt = {
                     username: this.form_1.username,
                     password: this.form_1.password,
                     number: this.form_1.number,
                     email: this.form_1.email,
+                    birthday: this.timer,
+                    sex: this.form_1.sex
                 };
 
+                // console.log(this.timer);
+                // console.log(this.form_1.sex.male.value);
+
+                this.$http
+                    .post("http://localhost:3000/postRegisterMsg_1", cmt, { emulateJSON: true })
+                    .then(result => {
+                        console.log(result);
+
+                        if (result.status === 200) {
+                            if (result.body.flag === 1) {
+                                return MessageBox('提示', '此用户名已存在，请重定义您的名称!');
+                            }
+
+                            this.postComment(cmt);
+                        }
+                    });
+            },
+
+            postComment(cmt) {
                 this.$http
                     .post("http://localhost:3000/postRegisterMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 
                         if (result.status === 200) {
-
                             if (result.body.flag === 0) {
                                 this.$toast("账号或者密码不对！");
-                            }else if (result.body.flag === 1) {
+                            }else if (result.body.flag === 3) {
 
                                 MessageBox.alert('信息录入成功，赶紧去登录吧!').then(action => {
                                     this.$router.push("/login");
                                 });
 
-                                this.form_1.username = this.form_1.password = this.form_1.number = this.form_1.email = "";
-
+                                // this.form_1.username = this.form_1.password = this.form_1.number = this.form_1.email = "";
                             }
                         }
                     });
             },
 
-            handleConfirm() {}
+            open(picker) {
+                this.$refs[picker].open();
+            },
 
+            handleChange(value) {
+                // console.log(value);
+
+                let t = moment(value).format("YYYY-MM-DD");
+                // console.log(t);
+
+                this.$toast({
+                    // message: '已选择 ' + value.toString(),
+                    message: '已选择 ' + t,
+                    position: 'center'
+                });
+
+                this.timer = t;
+                this.showname = false;
+
+            },
+
+            sexSelect() {
+                // console.log(11);
+
+                switch (this.opt) {
+                    case '1':
+                        this.$toast('已选择：男');
+                        this.form_1.sex = '男';
+                        break;
+                    case '2':
+                        this.$toast('已选择：女');
+                        this.form_1.sex = '女';
+                }
+                // if (this.opt === 1) {
+                //     // console.log(this.form_1.sex.male);
+                //     this.$toast('已选择：男');
+                //     this.form_1.sex = '男';
+                // }else if (this.opt === 2) {
+                //     // console.log(this.form_1.sex.female);
+                //     this.$toast('已选择：女');
+                //     this.form_1.sex = '女';
+                // }
+            }
         }
     };
 </script>
@@ -170,6 +246,28 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+
+    .male {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .male label {
+        padding-left: 10px;
+        width: 29%;
+        position: relative;
+    }
+    .male select {
+        /*margin-left: 7px;*/
+        width: 65%;
+        margin-right: 10px;
+    }
+    .male .item {
+        position: absolute;
+        margin-top: 10px;
+        right: 20px;
+        margin-left: -15px;
     }
 
     select {
@@ -200,6 +298,20 @@
         margin: 15% 1px 15% 15%;
     }
 
+    .page-datetime-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .page-datetime-wrapper label {
+        padding-left: 10px;
+        padding-top: 10px;
+    }
+    .btn {
+        width: 65%;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
 
     .area {
         margin: 50px auto 0px auto;
@@ -221,6 +333,11 @@
         margin-top: 25px;
         /*background-color: #fff;*/
         margin-bottom: 10px;
+        border: 1px solid #8f8f94;
+    }
+
+    .mui-input-row[data-v-1e4edd6a] {
+        border-bottom: 1px solid #8f8f94;
     }
 
     .mui-input-group:first-child {
@@ -228,13 +345,15 @@
     }
 
     .mui-input-group label {
-        width: 25%;
+        width: 29%;
+        font-size: 14px;
     }
+
 
     .mui-input-row label~input,
     .mui-input-row label~select,
     .mui-input-row label~textarea {
-        width: 75%;
+        width: 71%;
     }
     .mui-input-row {
         padding-bottom: 25px;

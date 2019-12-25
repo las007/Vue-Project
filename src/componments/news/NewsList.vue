@@ -2,7 +2,11 @@
 
     <div>
 
-        <h3>新闻资讯页面</h3>
+
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">新闻资讯页面</h1>
+        </header>
 
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in newList" :key="item.img">
@@ -33,7 +37,7 @@
 
 <script>
 
-    import { Toast } from 'mint-ui'
+    import { Toast, Indicator } from 'mint-ui'
 
     export default {
         data() {
@@ -54,7 +58,11 @@
                     // console.log(result);
                     if (result.status === 200) {
                         //获取数据成功，获取到的数据应该保存到 data 上
+                        Indicator.open({ spinnerType: 'fading-circle' });
                         this.newList = result.body;
+                        setTimeout(function () {
+                            Indicator.close();
+                        }, 1500);
                     }else {
                         //获取失败
                         Toast('获取数据失败..');
@@ -67,6 +75,7 @@
 
 <style lang="scss" scoped>
     .mui-table-view {
+        margin-top: 55px;
         li {
             h1 {font-size: 14px;}
             .mui-ellipsis {

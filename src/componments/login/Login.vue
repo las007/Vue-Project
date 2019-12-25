@@ -38,7 +38,7 @@
                 </div>
                 <div class="mui-input-row">
                     <label>密码</label>
-                    <input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码" v-model="form_1.password" @keyup.enter="postComment">
+                    <input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码" v-model="form_1.password" @keyup.enter="postComment" autocomplete="password">
                 </div>
             </form>
             <form class="mui-input-group">
@@ -55,16 +55,13 @@
                  <mt-button id='login' type="primary" size="large" @click="postComment">
                      登录
                  </mt-button>
-                <div class="link-area"><a id='reg' @click="toRegister">注册账号</a> <span class="spliter">|</span> <a id='forgetPassword'>忘记密码</a>
+                <div class="link-area"><a id='reg' @click="toRegister">注册账号</a> <span class="spliter">|</span> <a id='forgetPassword' @click="Forget">忘记密码</a>
                 </div>
             </div>
-
         </div>
-
     </div>
 
 </template>
-
 
 <script>
     import Vue from 'vue'
@@ -137,12 +134,9 @@
                                 //把数据从 ... 中取出来，并渲染到页面上...
 
                                 this.form_1.username = this.form_1.password = "";
-
-
                             }
                         }
                     });
-
             },
 
             toLog() {
@@ -159,6 +153,9 @@
             },
             toRegister() {
                 this.$router.push("/register");
+            },
+            Forget() {
+                this.$toast("懒！！！还没开始着手完善此模块");
             }
         }
     };

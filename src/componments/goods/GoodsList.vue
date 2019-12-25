@@ -17,6 +17,11 @@
             </div>
         </router-link>-->
 
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">导航栏</h1>
+        </header>
+
         <!-- 在网页中，有两种跳转方式： -->
         <!-- 方式1： 使用 a 标签 的形式叫做 标签跳转  -->
         <!-- 方式2： 使用 window.location.href 的形式，叫做 编程式导航 -->
@@ -60,13 +65,13 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/goodsImg.json")
+                    .get("http://localhost:3000/getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
                             // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
 
-                            this.goodsList = this.goodsList.concat(result.body[this.pageIndex][this.pageIndex + 1]);
+                            this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
                             // console.log(this.goodsList);
                         }
                     });
@@ -107,13 +112,18 @@
     padding: 8px;
     justify-content: space-between;
 
+    .mint-button--large {
+        margin-top: 50px;
+    }
+
     .good-item {
         width: 49%;
         border: 1px solid #ccc;
         box-shadow: 0 0 8px #ccc;
-        margin: 4px 0;
+        margin-left: 0;
         padding: 2px;
         min-height: 231px;
+        margin-top: 50px;
 
         /*position: relative;*/
         display: flex;
@@ -122,6 +132,7 @@
 
         img {
             width: 100%;
+            height: 115px;
         }
         .title {
             font-size: 14px;

@@ -2,26 +2,41 @@
 
     <div class="photoinfo-container">
 
-        <h3>{{ photoinfo.title }}</h3>
-        <p class="subtitle">
-            <span>发表时间：{{ photoinfo.add_time }}</span>
-            <span>点击：{{ photoinfo.click }}次</span>
-        </p>
 
-        <hr>
+        <header id="header" class="mui-bar mui-bar-nav">
+            <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" to="/home/photoslist">
 
-<!--        缩略图区域-->
-        <div class="thumbs">
+            </router-link>
+            <h1 class="mui-title">{{ photoinfo.title }}</h1>
+        </header>
 
-            <vue-preview :slides="list" @close="handleClose" class="preview"></vue-preview>
-<!--            <img class="preview-img" v-for="(item, index) in list" :src="item.img" :msrc="item.img" height="100" :key="item.src">-->
+<!--        <header id="header" class="mui-bar mui-bar-nav">-->
+<!--            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+<!--            <h3>{{ photoinfo.title }}</h3>-->
+<!--        </header>-->
+
+        <div class="content-item">
+            <p class="subtitle">
+                <span>发表时间：{{ photoinfo.add_time | dataFormat }}</span>
+                <span>点击：{{ photoinfo.click }}次</span>
+            </p>
+
+            <hr>
+
+            <!--        缩略图区域-->
+            <div class="thumbs">
+
+                <vue-preview :slides="list" @close="handleClose" class="preview"></vue-preview>
+                <!--            <img class="preview-img" v-for="(item, index) in list" :src="item.img" :msrc="item.img" height="100" :key="item.src">-->
+            </div>
+
+            <!--        图片内容区域-->
+            <div class="content" v-html="photoinfo.common"></div>
+
+            <!--        评论现成的 子组件-->
+            <cmt-box :id="this.id"></cmt-box>
         </div>
 
-<!--        图片内容区域-->
-        <div class="content" v-html="photoinfo.common"></div>
-
-<!--        评论现成的 子组件-->
-        <cmt-box :id="this.id"></cmt-box>
     </div>
 
 </template>
@@ -58,7 +73,7 @@
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            this.photoinfo = result.body.list.message[this.id];
+                            this.photoinfo = result.body[this.id];
                             // console.log(this.id);
                             // console.log(result.body.message[this.id]);
                         }
@@ -109,9 +124,20 @@
     }
     .photoinfo-container {
         padding: 5px;
+
+
+        .content-item {
+            padding: 0 4px;
+            margin-top: 50px;
+        }
+        .content p {
+            color: #000;
+            font-size: 16px;
+        }
+
         h3 {
             color: #26a2ff;
-            font-size: 15px;
+            font-size: 13px;
             text-align: center;
             margin: 15px 0;
         }

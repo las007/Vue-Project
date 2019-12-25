@@ -33,7 +33,7 @@
         <div class="dialog">
             <form v-if="showname">
                 用户名：<input type="text" v-model="form2.username" v-focus>
-                密  码：<input type="password" v-model="form2.password" @keyup.enter="Login">
+                密  码：<input type="password" v-model="form2.password" @keyup.enter="Login" autocomplete="password">
             </form>
             <mt-button type="primary" size="large" @click="Login">确定</mt-button>
             <mt-button type="danger" size="large" plain @click="storageCancel">退出登录</mt-button>
@@ -75,10 +75,10 @@
             //把 ... 赋值给 this.msg
             this.msg = JSON.parse(localStorage.getItem('cmts') || []);
 
-            console.log(this.msg.length);
+            // console.log(this.msg.length);
 
             if (this.msg.length === 0) {
-                console.log("=======================");
+                // console.log("=======================");
             }else {
                 this.showname = !this.msg[0].show;
                 console.log(this.showname);
