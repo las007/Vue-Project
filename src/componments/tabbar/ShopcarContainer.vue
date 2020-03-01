@@ -107,7 +107,7 @@
 
                 // 获取购物车商品列表
                 this.$http
-                    .get("http://bfbad689.ngrok.io/getShopCar")
+                    .get("http://localhost:3000/getShopCar")
                     .then(result => {
 
                         if (result.status === 200) {
@@ -130,7 +130,7 @@
             },
             btnDelete(deleteId) {
               this.$http
-                  .get("http://bfbad689.ngrok.io/btnDelete/" + deleteId)
+                  .get("http://localhost:3000/btnDelete/" + deleteId)
                   .then(result => {
                       console.log(result);
                       if (result.status === 200) {

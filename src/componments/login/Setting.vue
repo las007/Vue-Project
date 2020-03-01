@@ -26,7 +26,7 @@
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell mui-media">
                                             <router-link class="mui-navigate-right" to="/home/newpage">
-                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://bfbad689.ngrok.io/www/images/4.jpg">
+                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://localhost:3000/www/images/4.jpg">
 
                                                 <div class="mui-media-body" v-if="showname">
                                                     Hello MUI

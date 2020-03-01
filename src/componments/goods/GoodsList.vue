@@ -65,7 +65,7 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://bfbad689.ngrok.io/getGoodsList")
+                    .get("http://localhost:3000/getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -86,7 +86,7 @@
 
                 // console.log(id);
                 this.$http
-                    .get("http://bfbad689.ngrok.io/getGoodsInfo/" + id)
+                    .get("http://localhost:3000/getGoodsInfo/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {

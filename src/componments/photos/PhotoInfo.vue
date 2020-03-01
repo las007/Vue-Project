@@ -69,7 +69,7 @@
                 //根据分类 Id，获取图片列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://bfbad689.ngrok.io/getNewsList")
+                    .get("http://localhost:3000/getNewsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -83,7 +83,7 @@
                 // 获取图片的详情
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("http://bfbad689.ngrok.io/getMessages")
+                    .get("http://localhost:3000/getMessages")
                     .then(result => {
                         if (result.status === 200) {
                             // console.log(result);

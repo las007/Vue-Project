@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
 <!--        轮播图区域-->
-        <img src="http://bfbad689.ngrok.io/www/images/21.jpg" alt="404error.." v-if="!showname" @click="tap">
+        <img src="http://localhost:3000/www/images/21.jpg" alt="404error.." v-if="!showname" @click="tap">
 
 <!--        <div class="box">-->
 <!--            <h2 id="myh2" ref="myMsg">剩余时间：<span class="clock">{{ msg }}</span>秒</h2>-->
@@ -111,7 +111,7 @@
 
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("http://bfbad689.ngrok.io/getMessages")
+                    .get("http://localhost:3000/getMessages")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -166,7 +166,7 @@
 
     .home-container {
         /*margin-top: 50px;*/
-        background-image: url("http://bfbad689.ngrok.io/www/images/21.jpg");
+        background-image: url("http://localhost:3000/www/images/21.jpg");
 
         .item {
             padding-top: 50px;

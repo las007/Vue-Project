@@ -40,7 +40,7 @@
                 };
 
                 this.$http
-                    .post("http://bfbad689.ngrok.io/postSearchMsg", cmt, { emulateJSON: true })
+                    .post("http://localhost:3000/postSearchMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         // console.log(result);
 

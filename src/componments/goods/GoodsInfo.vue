@@ -86,7 +86,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             getGoodsBanner() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://bfbad689.ngrok.io/getMessages")
+                    .get("http://localhost:3000/getMessages")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -100,7 +100,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             getGoodsInfo(id) {
                 //获取商品消息
                 this.$http
-                    .get("http://bfbad689.ngrok.io/getGoodsInfo/" + id)
+                    .get("http://localhost:3000/getGoodsInfo/" + id)
                     .then(result => {
                         console.log(result);
                         if (result.status === 200) {
@@ -149,7 +149,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                     stock_quantity: this.goodsInfo.stock_quantity
                 };
                 this.$http
-                    .post("http://bfbad689.ngrok.io/toShopCar", this.goodsInfo, { emulateJSON: true })
+                    .post("http://localhost:3000/toShopCar", this.goodsInfo, { emulateJSON: true })
                     .then(result => {
                         // console.log(result.data.flag);
 

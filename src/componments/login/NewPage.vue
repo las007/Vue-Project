@@ -21,7 +21,7 @@
         <div class="more-side">
             <ul>
                 <li class="img-item">
-                    <img src="http://bfbad689.ngrok.io/www/images/4.jpg" alt="404error..">
+                    <img src="http://localhost:3000/www/images/4.jpg" alt="404error..">
                 </li>
             </ul>
             <!--            <span>{{ userInfo.username }}</span>-->
@@ -175,7 +175,7 @@
                 }
 
                 this.$http
-                    .post("http://bfbad689.ngrok.io/postLoginMsg", cmt, { emulateJSON: true })
+                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         // console.log(result);
 
@@ -258,7 +258,7 @@
                 };
 
                 this.$http
-                    .post("http://bfbad689.ngrok.io/postLoginMsg", cmt, { emulateJSON: true })
+                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 
