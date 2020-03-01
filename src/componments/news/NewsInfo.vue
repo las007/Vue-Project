@@ -36,6 +36,10 @@
 
             <div class="content" v-html="newsInfo.common"></div>
 
+<!--            <div class="tips"><p>&#45;&#45;此中文章均为复制粘贴！！如有侵权，你咬我丫。</p></div>-->
+            <div class="tips"><p>--此中文章为美丽大方漂亮善良可爱的苏燕霞女士所作，本站仅为转载！如需转载权限，请关注她的微博，至于她的微博账号，我也不知道。</p></div>
+            <hr>
+
             <comment-box :id="this.id"></comment-box>
         </div>
     </div>
@@ -62,7 +66,7 @@
             getNewsInfo() {     //获取新闻详情咨询
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://localhost:3000/getNewsInfo/" + this.id)
+                    .get("http://bfbad689.ngrok.io/getNewsInfo/" + this.id)
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -88,11 +92,13 @@
         width: 100%;
     }
 
-
+    .tips {
+        text-align: right;
+        margin: 25px auto;
+    }
 
     .content-item {
-        padding: 0 4px;
-        margin-top: 50px;
+        padding: 50px 4px;
     }
     .content p {
         color: #000;
@@ -111,6 +117,7 @@
         justify-content: space-between;
     }
     .content {
+
         img {
             width: 100%;
         }

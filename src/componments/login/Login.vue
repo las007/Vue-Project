@@ -1,31 +1,7 @@
 <template>
 
     <div class="content-box">
-<!--        <div class="text-item">-->
-<!--            <p>账号：</p><input type="text">-->
-<!--        </div>-->
-<!--        <div class="text-item">-->
-<!--            <p>密码：</p><input type="text">-->
-<!--        </div>-->
-<!--        <div class="select">-->
-<!--            <form name="form_name">-->
-<!--                <select name="section" id="las007">-->
-<!--                    <option value="1">平台管理员</option>-->
-<!--                    <option value="2">商家</option>-->
-<!--                    <option value="3">用户</option>-->
-<!--                </select><span>▼</span>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--        <div class="btn-item">-->
-<!--            <a href="http://localhost:3001/#/home">-->
-<!--                <input type="button" value="登录">-->
-<!--            </a>-->
-<!--            <router-link to="/home">-->
-<!--                <input type="button" value="注册">-->
-<!--            </router-link>-->
-<!--        </div>-->
 
-        <mt-header fixed title="顶部状态栏"></mt-header>
 
         <header class="mui-bar mui-bar-nav">
             <h1 class="mui-title">登录</h1>
@@ -59,8 +35,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </template>
 
 <script>

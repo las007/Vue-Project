@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
 <!--        轮播图区域-->
-        <img src="http://localhost:3000/www/images/21.jpg" alt="404error.." v-if="!showname" @click="tap">
+        <img src="http://bfbad689.ngrok.io/www/images/21.jpg" alt="404error.." v-if="!showname" @click="tap">
 
 <!--        <div class="box">-->
 <!--            <h2 id="myh2" ref="myMsg">剩余时间：<span class="clock">{{ msg }}</span>秒</h2>-->
@@ -11,9 +11,16 @@
 <!--                    <swiper :bannerList="bannerList" :isfull="true"></swiper>-->
 <!--            <mt-header fixed title="顶部状态栏"></mt-header>-->
             <header id="header" class="mui-bar mui-bar-transparent">
-                <a class="mui-pull-left"></a>
-                <h1 class="mui-title">导航栏</h1>
+<!--                <a class="mui-pull-left"></a>-->
+<!--                <h1 class="mui-title">导航栏</h1>-->
+                <input type="text" class="mintui mintui-search" placeholder="站内搜索.." @click="Click">
+                <span class="mui-icon mui-icon-search" @click="Click"></span>
             </header>
+
+<!--            <header class="mui-bar mui-bar-nav">-->
+<!--                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+<!--                <h1 class="mui-title">侧面选项卡-div模式</h1>-->
+<!--            </header>-->
 
             <mt-swipe :auto="4000">
                 <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
@@ -44,10 +51,10 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/home/loginpage">
                         <img src="../../images/menu4.png" alt="404error..">
                         <div class="mui-media-body">留言反馈</div>
-                    </a>
+                    </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <router-link to="/home/otherpages">
@@ -104,7 +111,7 @@
 
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("http://localhost:3000/getMessages")
+                    .get("http://bfbad689.ngrok.io/getMessages")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -143,6 +150,11 @@
                 this.msg = JSON.parse(localStorage.getItem('timer' || []));
                 console.log(this.msg);
             }*/
+
+            Click() {
+                // console.log(1);
+                this.$router.push('/searchlist');
+            }
         },
         components: {
             swiper
@@ -153,13 +165,23 @@
 <style lang="scss" scoped>
 
     .home-container {
-        margin-top: 40px;
-        background-image: url("http://localhost:3000/www/images/21.jpg");
+        /*margin-top: 50px;*/
+        background-image: url("http://bfbad689.ngrok.io/www/images/21.jpg");
+
+        .item {
+            padding-top: 50px;
+        }
 
         img {
             /*height: 100%;*/
             width: 100%;
         }
+    }
+
+    input[type=text] {
+        margin: 0;
+        width: 89%;
+        border-radius: 5px;
     }
 
     .mint-swipe{

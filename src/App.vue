@@ -25,9 +25,9 @@
 				</span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
-            <router-link class="mui-tab-item-jgz" to="/search">
-                <span class="mui-icon mui-icon-search"></span>
-                <span class="mui-tab-label">搜索</span>
+            <router-link class="mui-tab-item-jgz" to="/setting">
+                <span class="mui-icon mui-icon-gear"></span>
+                <span class="mui-tab-label">我的</span>
             </router-link>
         </nav>
     </div>
@@ -42,10 +42,10 @@
         z-index: 999;
     }
     .app-container {
-        padding-top: 40px;
-        padding-bottom: 50px;
+        /*padding-top: 40px;*/
+        /*padding-bottom: 50px;*/
         overflow-x: hidden;
-        margin-top: -40px;
+        /*margin-top: -40px;*/
     }
 
     .v-enter {

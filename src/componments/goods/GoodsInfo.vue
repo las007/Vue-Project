@@ -2,6 +2,11 @@
 
     <div class="goodsinfo-container">
 
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">导航栏</h1>
+        </header>
+
         <transition @beforeEnter="beforeEnter" @enter="enter" @afterEnter="afterEnter">
             <div class="ball" v-show="ballFalse"></div>
         </transition>
@@ -75,13 +80,13 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
         created() {
             //默认进入页面，就主动请求 所有图片列表的数据
             this.getGoodsBanner();
-            this.getGoodsInfo();
+            this.getGoodsInfo(this.id);
         },
         methods: {
             getGoodsBanner() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getMessages")
+                    .get("http://bfbad689.ngrok.io/getMessages")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -92,15 +97,16 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                         }
                     });
             },
-            getGoodsInfo() {
+            getGoodsInfo(id) {
                 //获取商品消息
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("http://bfbad689.ngrok.io/getGoodsInfo/" + id)
                     .then(result => {
                         console.log(result);
                         if (result.status === 200) {
-                            this.goodsInfo = result.body.list[0][1][this.id];
+                            // this.goodsInfo = result.body.list[0][1][this.id];
                             // console.log(this.goodsInfo);
+                            this.goodsInfo = result.data[0];
                         }
                     });
             },
@@ -124,12 +130,33 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                 var goodsinfo = {
                     id: this.id,
                     count: this.selectedCount,
-                    price: this.goodsinfo.sell_price,
+                    price: this.goodsInfo.sell_price,
                     selected: true
                 };
                 // 调用 store 中的 mutations 来将商品加入购物车
                 this.$store.commit("addToCar", goodsinfo);
 
+
+                let com = {
+                    id: this.goodsInfo.id,
+                    title: this.goodsInfo.title,
+                    add_time: this.goodsInfo.add_time | dataFormat,
+                    zhaiyao: this.goodsInfo.zhaiyao,
+                    click: this.goodsInfo.click,
+                    img_url: this.goodsInfo.img_url,
+                    sell_price: this.goodsInfo.sell_price,
+                    market_price: this.goodsInfo.market_price,
+                    stock_quantity: this.goodsInfo.stock_quantity
+                };
+                this.$http
+                    .post("http://bfbad689.ngrok.io/toShopCar", this.goodsInfo, { emulateJSON: true })
+                    .then(result => {
+                        // console.log(result.data.flag);
+
+                        if (result.data.flag === 1) {
+
+                        }
+                    });
             },
 
             //使用构子函数实现动画效果
@@ -138,9 +165,9 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             },
             enter(el, done) {
                 el.offsetWidth;
-                // el.style.transform = 'translate(116px, 298px)';
-                // el.style.transition = 'all 1s cubic-bezier(.4,-0.3,1,.68)';
-                // done()
+                el.style.transform = 'translate(116px, 298px)';
+                el.style.transition = 'all 1s cubic-bezier(.4,-0.3,1,.68)';
+                done()
 
                 // 小球动画优化思路：
                 // 1. 先分析导致 动画 不准确的 本质原因： 我们把 小球 最终 位移到的 位置，已经局限在了某一分辨率下的 滚动条未滚动的情况下；
@@ -149,7 +176,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                 // 4. 经过分析，得出解题思路： 先得到 徽标的 横纵 坐标，再得到 小球的 横纵坐标，然后 让 y 值 求差， x 值也求 差，得到 的结果，就是横纵坐标要位移的距离
                 // 5. 如何 获取 徽标和小球的 位置？？？   domObject.getBoundingClientRect()
 
-                // 获取小球的 在页面中的位置
+                /*// 获取小球的 在页面中的位置
                 const ballPosition = this.$refs.ball.getBoundingClientRect();
                 // 获取 徽标 在页面中的位置
                 const badgePosition = document
@@ -161,7 +188,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
 
                 el.style.transform = `translate(${xDist}px, ${yDist}px)`;
                 el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
-                done();
+                done();*/
             },
             afterEnter(el) {
                 this.ballFalse = !this.ballFalse;
@@ -186,6 +213,14 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
 .goodsinfo-container {
     background-color: #eee;
     overflow: hidden;
+
+    .mui-card-content {
+        margin-top: 35px;
+    }
+
+    .mui-card-footer {
+        margin-bottom: 35px;
+    }
 
     .now_price {
         color: red;

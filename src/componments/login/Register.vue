@@ -3,6 +3,7 @@
     <div class="content-box">
 
         <header class="mui-bar mui-bar-nav">
+            <span class="mui-icon mui-icon-left-nav item-back" @click="$router.go(-1)">返回</span>
             <h1 class="mui-title">注册详情页</h1>
         </header>
 
@@ -120,7 +121,7 @@
                     return this.$toast('用户名或密码不能为空！');
                 }else if (this.form_1.password !== this.form_1.password_2) {
                     return this.$toast('请确认您两次输入的密码是否一致！');
-                }else if (this.form_1.number.length < 11 || this.form_1.number.length > 11) {
+                }else if (this.form_1.number.length !== 11) {
                     return this.$toast('您的电话号码长度不对，请确认！');
                 }else {
                     for (var i = 0; i <= this.form_1.email.length; i++) {
@@ -144,7 +145,7 @@
                 // console.log(this.form_1.sex.male.value);
 
                 this.$http
-                    .post("http://localhost:3000/postRegisterMsg_1", cmt, { emulateJSON: true })
+                    .post("http://bfbad689.ngrok.io/postRegisterMsg_1", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 
@@ -160,7 +161,7 @@
 
             postComment(cmt) {
                 this.$http
-                    .post("http://localhost:3000/postRegisterMsg", cmt, { emulateJSON: true })
+                    .post("http://bfbad689.ngrok.io/postRegisterMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 
@@ -234,6 +235,11 @@
     }
     .mui-bar-nav[data-v-1e4edd6a] {
         top: 0;
+    }
+
+    .mui-bar-nav.mui-bar .mui-icon {
+        font-size: 16px;
+        margin-top: 5px;
     }
 
     .content-box .text-item {

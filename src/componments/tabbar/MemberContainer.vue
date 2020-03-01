@@ -1,232 +1,476 @@
 <template>
-    <div class="member-container">
-<!--        <div class="member-item" v-for="item in memberList" :key="item.id">-->
-<!--            <h3 class="title">{{ item.name }}</h3>-->
-<!--            <div class="member-info">{{ item.desc }}</div>-->
-<!--            <hr>-->
-<!--        </div>-->
+    <div>
+        <!--        <h3>ShopcarContainer</h3>-->
 
-<!--        <mt-button type="danger" size="large" plain @click="getMore">加载更多..</mt-button>-->
-<!--        添加数据区域-->
-<!--        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120" v-model="msg"></textarea>-->
-
-<!--        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>-->
-
-        <header id="header" class="mui-bar mui-bar-nav">
-<!--            <span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left item-back">返回</span>-->
-            <span class="mui-icon mui-icon-left-nav item-back" @click="$router.go(-1)">返回</span>
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">侧面选项卡-div模式</h1>
         </header>
-
-        <div class="more-side">
-            <ul v-if="showname">
-                <li class="userInfo">
-                    <button @click="register()">登录</button>
-                </li>
-                <li class="userInfo">
-                    <button @click="loading()">注册</button>
-                </li>
-            </ul>
-<!--            <span>{{ userInfo.username }}</span>-->
-            <span v-for="item in msg">{{ item.username }}</span>
+        <div class="mui-content mui-row mui-fullscreen">
+            <div class="mui-col-xs-3">
+                <div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+                    <a class="mui-control-item mui-active" href="#content1">四六级相关..</a>
+                    <a class="mui-control-item" href="#content2">选项2</a>
+                    <a class="mui-control-item" href="#content3">网站推荐</a>
+                    <a class="mui-control-item" href="#content4">选项4</a>
+                    <a class="mui-control-item" href="#content5">选项5</a>
+                    <a class="mui-control-item" href="#content6">选项6</a>
+                    <a class="mui-control-item" href="#content7">选项7</a>
+                    <a class="mui-control-item" href="#content8">选项8</a>
+                    <a class="mui-control-item" href="#content9">选项9</a>
+                    <a class="mui-control-item" href="#content10">选项10</a>
+                    <a class="mui-control-item" href="#content11">选项11</a>
+                    <a class="mui-control-item" href="#content12">选项12</a>
+                    <a class="mui-control-item" href="#content13">选项13</a>
+                    <a class="mui-control-item" href="#content14">选项14</a>
+                    <a class="mui-control-item" href="#content15">选项15</a>
+                </div>
+            </div>
+            <div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+                <div id="content1" class="mui-control-content mui-active">
+                    <h5 style="background-color:#efeff4">四六级相关..</h5>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <a href="#">
+                                <img class="mui-media-object" src="http://bfbad689.ngrok.io/www/images/4.jpg">
+                                <div class="mui-media-body">幸福就是可以一起睡觉</div>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <a href="#">
+                                <img class="mui-media-object" src="http://bfbad689.ngrok.io/www/images/6.jpg">
+                                <div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <a href="#">
+                                <img class="mui-media-object" src="http://bfbad689.ngrok.io/www/images/6.jpg">
+                                <div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="content2" class="mui-control-content">
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <a href="#">
+                                <img class="mui-media-object" src="http://bfbad689.ngrok.io/www/images/8.jpg">
+                                <div class="mui-media-body">Color of SIP CBD</div>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <a href="#">
+                                <img class="mui-media-object" src="http://bfbad689.ngrok.io/www/images/12.jpg">
+                                <div class="mui-media-body">静静看这世界</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="content3" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第3个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第3个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content4" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第4个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第4个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content5" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第5个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第5个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content6" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第6个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第6个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content7" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第7个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第7个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content8" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第8个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第8个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content9" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第9个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第9个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content10" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第10个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第10个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content11" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第11个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第11个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content12" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第12个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第12个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content13" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第13个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第13个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content14" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第14个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第14个选项卡子项-20</li>
+                    </ul>
+                </div>
+                <div id="content15" class="mui-control-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">第15个选项卡子项-1</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-2</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-3</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-4</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-5</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-6</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-7</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-8</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-9</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-10</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-11</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-12</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-13</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-14</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-15</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-16</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-17</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-18</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-19</li>
+                        <li class="mui-table-view-cell">第15个选项卡子项-20</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <div class="dialog">
-            <form v-if="showname">
-                用户名：<input type="text" v-model="form2.username" v-focus>
-                密  码：<input type="password" v-model="form2.password" @keyup.enter="Login" autocomplete="password">
-            </form>
-            <mt-button type="primary" size="large" @click="Login">确定</mt-button>
-            <mt-button type="danger" size="large" plain @click="storageCancel">退出登录</mt-button>
-        </div>
-
-        <router-link :to="router">
-            <mt-button type="primary" @click="toLog">前去登录/注册</mt-button>
-        </router-link>
-
 
     </div>
 </template>
 
 <script>
-    import Vue from 'vue'
 
-    Vue.directive('focus', {
-        inserted: function (el){
-            el.focus();
-        }
-    });
+    import mui from '../../lib/mui/js/mui.min.js'
+
 
     export default {
         data() {
-            return {
-                msg: [],
-                showname: true,
-                userInfo: [],
-
-                form2: {
-                    username: '',
-                    password: ''
-                },
-                router: ''
-            }
+            return {}
         },
         created() {
-            // this.getInfo();
-            //把 ... 赋值给 this.msg
-            this.msg = JSON.parse(localStorage.getItem('cmts') || []);
-
-            // console.log(this.msg.length);
-
-            if (this.msg.length === 0) {
-                // console.log("=======================");
-            }else {
-                this.showname = !this.msg[0].show;
-                console.log(this.showname);
-            }
-
-        },
-        updated() {
-            // console.log(this.msg.length);
-            // if (this.msg.length > 0) {
-            //     this.showname = !this.msg[0].show;
-            //     console.log(this.showname);
-            // }
+            this.getMsg();
         },
         methods: {
-
-            getLoginMsg(info) {
-                this.$http
-                    .get("http://localhosts:3000/getLoginMsg")
-                    .then(result => {
-                    console.log(result);
-
-                    if (result.status === 200) {
-
-                    }
+            getMsg(e) {
+                mui.init({
+                    swipeBack: true //启用右滑关闭功能
                 });
-            },
 
-            Login() {
+                //原生js，操作DOM元素
+                // console.log(document.getElementById('myh1').innerText);
 
-                var cmt = {
-                  username: this.form2.username,
-                  password: this.form2.password
-                };
+                //ref 是英文单词 [reference]     值类型 和 引用类型 referenceError
+                // console.log(this.$refs.myh1.innerText);
 
-                //判断文本框是否为空
-                if (this.form2.username.length === 0 || this.form2.password.length === 0) {
-                    return this.$toast('用户名或密码不能为空！');
+                // var controls = document.getElementById("segmentedControls");
+                var controls = this.$refs.segmentedControls;
+                var contents = this.$refs.segmentedControlContents;
+                // var contents = document.getElementById("segmentedControlContents");
+
+                var html = [];
+                var i = 1,
+                    j = 1,
+                    m = 16, //左侧选项卡数量+1
+                    n = 21; //每个选项卡列表数量+1
+                for (; i < m; i++) {
+                    html.push('<a class="mui-control-item" href="#content' + i + '">选项' + i + '</a>');
                 }
+                this.myHtmlCode = html.join('');
 
-                this.$http
-                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
-                    .then(result => {
-                    // console.log(result);
+                // this.myHtmlCode = e.target.innerHTML;
 
-                    if (result.status === 200) {
-
-                        if (result.body.flag === 0) {
-                            this.$toast("账号或者密码不对！");
-                        }else if (result.body.flag === 1) {
-
-                            this.router = '/login';
-                            this.$toast("登录成功！");
-
-                            var comment = {
-                                show: this.showname,
-                                username: this.form2.username,
-                                password: this.form2.password
-                            };
-
-                            //把登陆成功的数据存放到localStorage中
-                            var com = [];
-                            com.push(comment);
-
-                            localStorage.setItem('cmts', JSON.stringify(com));
-
-                            this.msg = JSON.parse(localStorage.getItem('cmts') || []);
-
-                            // this.showname = !this.this.msg.show;
-                            this.showname = !this.msg[0].show;
-
-                            this.form2.username = this.form2.password = "";
-                            // console.log(com);
-
-                            // this.getInfo(com);
-                        }
+                html = [];
+                for (i = 1; i < m; i++) {
+                    html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view">');
+                    for (j = 1; j < n; j++) {
+                        html.push('<li class="mui-table-view-cell">第' + i + '个选项卡子项-' + j + '</li>');
                     }
-                });
-            },
-
-            // getInfo(info) {
-            //     // console.log(info);
-            //     if (info !== undefined) {
-            //
-            //         // this.showname = true;
-            //         this.form2.username = this.form2.password = "";
-            //         // console.log(this.msg[0].username);
-            //     }else {
-            //         console.log('not ok++++++++++++++++++');
-            //     }
-            //
-            // },
-
-            //用于推出登录，删除 localhostStorage 中的信息
-            storageCancel() {
-                var list = JSON.parse(localStorage.getItem('cmts' || []));
-                list.splice(0, 1);
-                localStorage.setItem('cmts', JSON.stringify(list));
-                console.log(1);
-                this.showname = true;
-                this.msg = [];
-
-                // for (var i = 0; i < list.length; i++) {
-                //     if (i === 2) {
-                //         list.splice(i, 1);
-                //     }
-                // }
-            },
-            toLog() {
-                console.log(11);
-                this.router = '/login';
+                    html.push('</ul></div>');
+                }
+                // contents.innerHTML = html.join('');
+                // this.myHtmlCode = e.target.innerHTML;
+                //默认选中第一个
+                // controls.querySelector('.mui-control-item').classList.add('mui-active');
+                // contents.querySelector('.mui-control-content').classList.add('mui-active');
             }
-        }
+        },
+        components: {}
     }
 </script>
 
 <style lang="scss" scoped>
-.member-container {
-    margin-top: 50px;
-
-    .item-back {
-        font-size: 16px;
-        margin-top: 5px;
-    }
-    button {
-        transform: translateX(-50%);
-        margin-left: 50%;
-        margin-top: 15px;
-    }
     h3 {
-        font-size: 18px;
+        color: red;
     }
-    textarea {
-        font-size: 14px;
-        height: 85px;
-        margin: 0;
+    .mui-row.mui-fullscreen>[class*="mui-col-"] {
+        height: 100%;
     }
-
-    .userInfo {
-        display: inline-block;
-        /*background-color: red;*/
-        /*margin-left: 15%;*/
+    .mui-col-xs-3,
+    .mui-control-content {
+        overflow-y: auto;
+        height: 100%;
     }
 
-    ul {
-        /*padding-left: 0;*/
-        padding: 5px 25%;
-        display: flex;
-        justify-content: space-between;
+    .mui-table-view {
+        margin: 10px auto;
     }
-}
+    .mui-table-view.mui-grid-view {
+        width: 95%;
+    }
+
+    .mui-segmented-control .mui-control-item {
+        line-height: 50px;
+        width: 100%;
+    }
+    .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+        background-color: #fff;
+    }
 </style>

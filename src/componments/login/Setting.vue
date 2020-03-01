@@ -12,7 +12,8 @@
                             <span class="mui-icon mui-icon-left-nav"></span>
                         </button>
                         <h1 class="mui-center mui-title" style="margin-left: -15px;">设置</h1>
-                    </div></div>
+                    </div>
+                </div>
                 <div class="mui-pages">
                     <div id="setting" class="mui-page mui-page-center">
                         <!--页面标题栏开始-->
@@ -24,13 +25,19 @@
                                 <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell mui-media">
-                                            <a class="mui-navigate-right" href="#account">
-                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://localhost:3000/www/images/4.jpg">
-                                                <div class="mui-media-body">
+                                            <router-link class="mui-navigate-right" to="/home/newpage">
+                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://bfbad689.ngrok.io/www/images/4.jpg">
+
+                                                <div class="mui-media-body" v-if="showname">
                                                     Hello MUI
-                                                    <p class="mui-ellipsis">账号:hellomui</p>
+                                                    <p class="mui-ellipsis">账号:hello mui</p>
                                                 </div>
-                                            </a>
+
+                                                <div class="mui-media-body" v-if="!showname">
+                                                    {{ msg[0].username }}
+                                                    <p class="mui-ellipsis">账号:{{ msg[0].username }}</p>
+                                                </div>
+                                            </router-link>
                                         </li>
                                     </ul>
                                     <ul class="mui-table-view mui-table-view-chevron">
@@ -54,19 +61,27 @@
                                             <a href="#about" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V3.1.0</i></a>
                                         </li>
                                     </ul>
-                                    <ul class="mui-table-view">
+                                    <ul class="mui-table-view" v-if="showname">
                                         <li class="mui-table-view-cell" style="text-align: center;">
-                                            <a>退出登录</a>
+                                            <router-link to="/home/newpage">未登录，去登陆</router-link>
+                                        </li>
+                                    </ul>
+                                    <ul class="mui-table-view" v-if="!showname">
+                                        <li class="mui-table-view-cell" style="text-align: center;">
+                                            <a @click="storageCancel">退出登录</a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="mui-scrollbar mui-scrollbar-vertical"><div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: none; height: 617px; transform: translate3d(0px, 0px, 0px) translateZ(0px);"></div></div></div>
                         </div>
                         <!--页面主内容区结束-->
-                    </div></div>
+                    </div>
+                </div>
             </div>
+            <mt-button type="danger" size="large" plain @click="storageCancel" v-if="!showname">退出登录</mt-button>
         </div>
         <!--页面主结构结束-->
+
 
     </div>
 </template>
@@ -76,11 +91,42 @@
     export default {
         data() {
             return {
-
+                msg: [],
+                showname: true
             }
         },
-        created() {},
-        methods: {}
+        created() {
+            // this.getInfo();
+            //把 ... 赋值给 this.msg
+            this.msg = JSON.parse(localStorage.getItem('cmts') || []);
+
+            // console.log(this.msg.length);
+
+            if (this.msg.length === 0) {
+                // console.log("=======================");
+            }else {
+                this.showname = !this.msg[0].show;
+                console.log(this.showname);
+            }
+
+        },
+        methods: {
+            //用于推出登录，删除 localhostStorage 中的信息
+            storageCancel() {
+                var list = JSON.parse(localStorage.getItem('cmts' || []));
+                list.splice(0, 1);
+                localStorage.setItem('cmts', JSON.stringify(list));
+                console.log(1);
+                this.showname = true;
+                this.msg = [];
+
+                // for (var i = 0; i < list.length; i++) {
+                //     if (i === 2) {
+                //         list.splice(i, 1);
+                //     }
+                // }
+            }
+        }
     }
 </script>
 

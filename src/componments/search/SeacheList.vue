@@ -9,12 +9,21 @@
 
         <div class="item">
             <input type="text" class="mintui mintui-search" placeholder="站内搜索.." @keyup.enter="postSearchMsg" v-model="name">
+            <span class="clearBtn" @click="clearBtn">×</span>
             <span class="mui-icon mui-icon-search" @click="postSearchMsg"></span>
-<!--            <input type="button" value="搜索" @click="postSearchMsg">-->
-            <ul>
+            <!--            <input type="button" value="搜索" @click="postSearchMsg">-->
+            <span class="history-item">历史记录..</span>
+            <span class="delete-item" @click="Delete">清除记录</span>
+            <ul class="ul-list">
                 <li v-for="(item, i) in result" :key="item.id">
-                    {{ i + 1}}.&nbsp;{{ item.title }}
+                    <a @click="Tap(item.id)">{{ i + 1}}.&nbsp;{{ item.title }}</a>
                 </li>
+            </ul>
+        </div>
+
+        <div class="history" v-show="this.historyShow">
+            <ul>
+                <span v-for="item in history">{{ item.title }}</span>
             </ul>
         </div>
 
@@ -29,10 +38,14 @@
                 id: this.$route.params.id,          //从路由获取到图片的 id
                 result: [],
                 name: '',
-                info: []
+                info: [],
+                history: [],
+                historyShow: true
             }
         },
-        created() {},
+        created() {
+            this.history = JSON.parse(localStorage.getItem('history') || []);
+        },
         methods: {
             postSearchMsg() {
                 var cmt = {
@@ -48,10 +61,25 @@
                             if (result.body.flag === 0) {
                                 this.$toast("站内还没有这一片文章呢，不如就由你来填写吧！");
                             }else if (result.body.flag === 1) {
-                                console.log(result.body.msg[0]);
+                                // console.log(result.body.msg);
                                 this.result = result.body.msg;
+
                             }
                         }
+
+                        var comment = {
+                            title: this.name
+                        };
+                        //获取
+                        var com = JSON.parse(localStorage.getItem('history') || '[]');
+
+                        com.push(comment);
+
+                        //保存
+                        localStorage.setItem('history', JSON.stringify(com));
+                        // console.log(com);
+                        this.history = com;
+                        this.historyShow = false;
                     });
             },
 
@@ -125,6 +153,18 @@
                 //
                 // console.log(isObj(cmt[0], this.name));
 
+            },
+
+            Tap(artId) {
+                // console.log(id);
+                this.$router.push("/home/newsinfo/" + artId);
+            },
+            Delete() {
+                localStorage.removeItem('history');
+                this.historyShow = false;
+            },
+            clearBtn() {
+                this.name = "";
             }
         }
     }
@@ -136,12 +176,16 @@
         ul {
             list-style-type: none;
             padding: 0;
-            margin: auto 15px;
+            /*margin: 15px 15px;*/
         }
         li {
             /*background-color: aqua;*/
             border-bottom: 1px solid #404060;
             margin-bottom: 10px;
+        }
+        .ul-list {
+            /*background-color: #2ac845;*/
+            margin-top: 48px;
         }
         .mint-search .mint-searchbar {
             margin-top: 256px !important;
@@ -162,14 +206,44 @@
         .item {
             /*height: 44px;*/
             background-color: #d9d9d9;
-            margin-top: 55px;
+            /*margin-top: 55px;*/
+            padding-top: 55px;
+            position: relative;
+        }
+        .clearBtn {
+            position: absolute;
+            right: 50px;
+            top: 70px;
+        }
+        .history-item, .delete-item {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 2px 5px;
+            margin-top: 10px;
+            border: 2px solid #d9d9d9;
+        }
+        .history-item {
+            float: left;
+            margin-left: 10px;
+        }
+        .delete-item {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .history ul span {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px 5px;
+            border: 2px solid #d9d9d9;
         }
 
         .mint-search {
             height: 110px;
         }
-       /deep/ .mint-searchbar-inner {
-             padding: 0;
+        /deep/ .mint-searchbar-inner {
+            padding: 0;
         }
 
         /deep/ .mint-searchbar {
@@ -186,7 +260,7 @@
         }
 
         /deep/ .mint-search-list-warp {
-             margin-top: 50px;
-         }
+            margin-top: 50px;
+        }
     }
 </style>

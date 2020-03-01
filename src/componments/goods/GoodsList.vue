@@ -65,14 +65,15 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("http://bfbad689.ngrok.io/getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
                             // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
 
-                            this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
+                            // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
                             // console.log(this.goodsList);
+                            this.goodsList = result.data;
                         }
                     });
             },
@@ -82,6 +83,16 @@
                 // console.log('ok');
             },
             goDetail(id) {
+
+                // console.log(id);
+                this.$http
+                    .get("http://bfbad689.ngrok.io/getGoodsInfo/" + id)
+                    .then(result => {
+                        // console.log(result);
+                        if (result.status === 200) {
+
+                        }
+                    });
                 // 使用JS的形式进行路由导航
 
                 // 注意： 一定要区分 this.$route 和 this.$router 这两个对象，
@@ -113,7 +124,8 @@
     justify-content: space-between;
 
     .mint-button--large {
-        margin-top: 50px;
+        margin-top: 40px;
+        margin-bottom: 80px;
     }
 
     .good-item {
@@ -123,7 +135,7 @@
         margin-left: 0;
         padding: 2px;
         min-height: 231px;
-        margin-top: 50px;
+        margin-top: 40px;
 
         /*position: relative;*/
         display: flex;

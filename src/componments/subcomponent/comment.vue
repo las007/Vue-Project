@@ -56,7 +56,7 @@
             getComment() {      //获取评论信息
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comment.json")
-                    .get("http://localhost:3000/messages/" + this.id)
+                    .get("http://bfbad689.ngrok.io/messages/" + this.id)
                     // .get("http://las007.xiaomy.net/messages")
                     .then(result => {
                         // console.log(result);
@@ -154,7 +154,7 @@
             //     // 参数2： 提交给服务器的数据对象 { content: this.msg }
             //     // 参数3： 定义提交时候，表单中数据的格式  { emulateJSON:true }
             //     this.$http
-            //         .post("http://localhost:3000/addMessage", { name: "匿名用户啊", desc: this.msg.trim() }, {emulateJSON: true})
+            //         .post("http://bfbad689.ngrok.io/addMessage", { name: "匿名用户啊", desc: this.msg.trim() }, {emulateJSON: true})
             //         // .post("http://las007.xiaomy.net/addMessage", { name: "匿名用户啊", desc: this.msg.trim() }, {emulateJSON: true})
             //         .then(result => {
             //             // console.log(result);
@@ -204,7 +204,7 @@
                         // console.log(action);
                         if (action === "confirm") {
                             // console.log(123);
-                            this.$router.push("/member");
+                            this.$router.push("/home/newpage");
                         }else {
                             this.msg = "";
                         }
@@ -218,7 +218,7 @@
                 // 参数2： 提交给服务器的数据对象 { content: this.msg }
                 // 参数3： 定义提交时候，表单中数据的格式  { emulateJSON:true }
                 this.$http
-                    .post("http://localhost:3000/addMessage/" + this.id, cmt, { emulateJSON:true })
+                    .post("http://bfbad689.ngrok.io/addMessage/" + this.id, cmt, { emulateJSON:true })
                     .then(result => {
                         // console.log(result);
 
@@ -251,6 +251,7 @@
 
 <style lang="scss" scoped>
 .cmt-container {
+
     h3 {
         font-size: 18px;
     }

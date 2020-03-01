@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="photo-container">
 
         <header id="header" class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -70,7 +70,7 @@
                 //获取新闻列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/category.json")
-                    .get("http://localhost:3000/getCategory")
+                    .get("http://bfbad689.ngrok.io/getCategory")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -87,7 +87,7 @@
                 //根据分类 Id，获取图片列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
-                    .get("http://localhost:3000/getPhotos")
+                    .get("http://bfbad689.ngrok.io/getPhotos")
                     .then(result => {
                         // console.log(result);
                         // console.log(cateId);
@@ -109,7 +109,9 @@
 .photo-list {
     list-style: none;
     margin: 0;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 60px;
     li {
         background-color: #ccc;
         text-align: center;
@@ -148,7 +150,8 @@
 }
 
     .mui-slider {
-        margin-top: 50px;
+        /*margin-top: 50px;*/
+        padding-top: 50px;
     }
 
 </style>

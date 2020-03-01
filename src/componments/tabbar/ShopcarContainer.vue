@@ -3,6 +3,11 @@
 
         <div class="goods-list">
 
+            <header id="header" class="mui-bar mui-bar-nav">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 class="mui-title">导航栏</h1>
+            </header>
+
             <!-- 商品列表项区域 -->
             <div class="mui-card" v-for="(item, i) in goodslist" :key="item.id">
                 <div class="mui-card-content">
@@ -13,7 +18,7 @@
                                 @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"></mt-switch>
                         <img :src="item.thumb_path">
                         <div class="info">
-                            <h1>{{ item.title }}</h1>
+                            <h4 class="info-title">{{ item.title }}</h4>
                             <p>
                                 <span class="price">￥{{ item.sell_price }}</span>
                                 <numbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></numbox>
@@ -45,6 +50,23 @@
 
         <p>{{ $store.getters.getGoodsSelected }}</p>
 
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell mui-media" v-for="item in msg" :key="item.img">
+                <router-link :to="'/home/goodsinfo/' + item.id">          <!--//此处路径 = 字符串 + 表达式-->
+                    <img class="mui-media-object mui-pull-left" :src="item.img_url" alt="404error..">
+                    <div class="mui-media-body">
+                        <h4>{{ item.title }}</h4>
+                        <div class="mui-card-content-inner">
+                            <p>
+                                市场价: <del>￥{{ item.market_price }}</del>&nbsp;&nbsp;<span class="now_price">${{ item.sell_price }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </router-link>
+                <mt-button type="danger" class="mui-pull-right" @click="btnDelete(item.id)"><span class="delete-btn">-</span>删除</mt-button>
+            </li>
+        </ul>
+
     </div>
 </template>
 
@@ -54,11 +76,14 @@
     export default {
         data() {
             return {
-                goodslist: [] // 购物车中所有商品的数据
+                goodslist: [], // 购物车中所有商品的数据
+                msg: [],
+                cmts: []
             };
         },
         created() {
-            this.getGoodsList();
+            // this.getGoodsList();
+            this.getShopCarList();
         },
         methods: {
             getGoodsList() {
@@ -78,6 +103,44 @@
                         }
                     });
             },
+            getShopCarList() {
+
+                // 获取购物车商品列表
+                this.$http
+                    .get("http://bfbad689.ngrok.io/getShopCar")
+                    .then(result => {
+
+                        if (result.status === 200) {
+                            // console.log(result.data);
+                            this.msg = result.data;
+
+                            for (var i = 0; i < result.data.length; i++) {
+                                // console.log(result.data[i].id);
+                                this.cmts = result.data[i].id;
+
+                                let com = [];
+                                com.push(this.cmts);
+                                // console.log(com);
+                            }
+                            console.log(this.getRepeatNum(this.cmts));
+                        }
+                    });
+
+                // this.getRepeatNum(arr);
+            },
+            btnDelete(deleteId) {
+              this.$http
+                  .get("http://bfbad689.ngrok.io/btnDelete/" + deleteId)
+                  .then(result => {
+                      console.log(result);
+                      if (result.status === 200) {
+                          if (result.data.flag === 1) {
+                              this.getShopCarList();
+                              this.$toast('删除成功！');
+                          }
+                      }
+                  });
+            },
             remove(id, index) {
                 // 点击删除，把商品从 store 中根据 传递的 Id 删除，同时，把 当前组件中的 goodslist 中，对应要删除的那个商品，使用 index 来删除
                 this.goodslist.splice(index, 1);
@@ -87,6 +150,17 @@
                 // 每当点击开关，把最新的 快关状态，同步到 store 中
                 // console.log(id + " --- " + val);
                 this.$store.commit("updateGoodsSelected", { id, selected: val });
+            },
+
+            //统计一个数组中有多少个不重复的单词：
+            // 不用reduce时：
+            getRepeatNum(arr){
+                var obj = {};
+                for(var i= 0, l = arr.length; i< l; i++){
+                    var item = arr[i];
+                    obj[item] = (obj[item] +1 ) || 1;
+                }
+                return obj;
             }
         },
         components: {
@@ -99,6 +173,59 @@
     .shopcar-container {
         background-color: #eee;
         overflow: hidden;
+
+        h4 {
+            width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .mui-pull-right {
+            /* float: right; */
+            position: absolute;
+            right: 10px;
+        }
+
+        .mui-table-view-cell {
+            display: flex;
+            text-align: center;
+        }
+
+        .mui-media  {
+            width: 98%;
+            border: 1px solid #5e5e5e;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+
+        .mui-table-view {
+            margin-bottom: 70px;
+        }
+        /*照片 max-height*/
+        .mui-table-view .mui-media-object {
+            height: 70px;
+        }
+        .mui-table-view .mui-media-body {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 80%;
+        }
+
+        .mui-card-content {
+            margin-top: 40px;
+            border: 2px solid #eeeeee;
+        }
+
+        .now_price {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .mui-card-content-inner {
+            padding: 10px;
+        }
+
         .goods-list {
             .mui-card-content-inner {
                 display: flex;
@@ -114,6 +241,8 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+
+
                 .price {
                     color: red;
                     font-weight: bold;
@@ -131,4 +260,6 @@
             }
         }
     }
+
+
 </style>

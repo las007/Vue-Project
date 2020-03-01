@@ -21,7 +21,6 @@
                     </div>
                 </router-link>
             </li>
-
         </ul>
 
 
@@ -53,7 +52,7 @@
                 //获取新闻列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://localhost:3000/getNewsList")
+                    .get("http://bfbad689.ngrok.io/getNewsList")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -75,7 +74,7 @@
 
 <style lang="scss" scoped>
     .mui-table-view {
-        margin-top: 55px;
+        padding-top: 55px;
         li {
             h1 {font-size: 14px;}
             .mui-ellipsis {

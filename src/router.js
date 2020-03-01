@@ -2,8 +2,11 @@ import VueRouter from 'vue-router'
 
 //导入对应的路由组件
 import Login from './componments/login/Login.vue'
+import LoginPage from './componments/login/LoginPage.vue'
+import NewPage from './componments/login/NewPage.vue'
 import Register from './componments/login/Register.vue'
 import Setting from './componments/login/Setting.vue'
+import Search from './componments/search/SeacheList.vue'
 import HomeContainer from './componments/tabbar/HomeContainer.vue'
 import MemberContainer from './componments/tabbar/MemberContainer.vue'
 import ShopcarContainer from './componments/tabbar/ShopcarContainer.vue'
@@ -25,8 +28,11 @@ var router = new VueRouter({
   routes: [     //配置路由规则的
     { path: '/', redirect: '/home' },
     { path: '/login', component: Login },
+    { path: '/home/loginpage', component: LoginPage },
+    { path: '/home/newpage', component: NewPage },
     { path: '/register', component: Register },
     { path: '/setting', component: Setting },
+    { path: '/searchlist', component: Search },
     // { path: '/app', component: App },
     { path: '/home', component: HomeContainer },
     { path: '/member', component: MemberContainer },
