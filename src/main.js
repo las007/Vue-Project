@@ -2,18 +2,16 @@
 // console.log('ok');
 
 import Vue from 'vue';
-
 //导入 App 根组件
 import app from './App.vue';
 import login from './componments/login/Login.vue'
 
-
 // 注册 vuex
 import Vuex from 'vuex'
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 // 每次刚进入 网站，肯定会 调用 main.js 在刚调用的时候，先从本地存储中，把 购物车的数据读出来，放到 store 中
-var car = JSON.parse(localStorage.getItem('car') || '[]')
+var car = JSON.parse(localStorage.getItem('car') || '[]');
 
 var store = new Vuex.Store({
     state: { // this.$store.state.***
@@ -28,18 +26,18 @@ var store = new Vuex.Store({
             // 2. 如果没有，则直接把 商品数据，push 到 car 中即可
 
             // 假设 在购物车中，没有找到对应的商品
-            var flag = false
+            var flag = false;
 
-            state.car.some(item => {
+            state.car.some(item => {            //对数组进行遍历，并将相同id， push到数组car中去
                 if (item.id == goodsinfo.id) {
-                    item.count += parseInt(goodsinfo.count)
-                    flag = true
+                    item.count += parseInt(goodsinfo.count);
+                    flag = true;
                     return true
                 }
             });
 
             // 如果最终，循环完毕，得到的 flag 还是 false，则把商品数据直接 push 到 购物车中
-            if (!flag) {
+            if (!flag) {    //flag === false
                 state.car.push(goodsinfo)
             }
 
@@ -51,7 +49,7 @@ var store = new Vuex.Store({
             // 分析：
             state.car.some(item => {
                 if (item.id == goodsinfo.id) {
-                    item.count = parseInt(goodsinfo.count)
+                    item.count = parseInt(goodsinfo.count);
                     return true
                 }
             });
@@ -89,37 +87,34 @@ var store = new Vuex.Store({
             return c
         },
         getGoodsCount(state) {
-            var o = {}
+            var o = {};
             state.car.forEach(item => {
                 o[item.id] = item.count
-            })
+            });
             return o
         },
         getGoodsSelected(state) {
-            var o = {}
+            var o = {};
             state.car.forEach(item => {
                 o[item.id] = item.selected
-            })
+            });
             return o
         },
         getGoodsCountAndAmount(state) {
             var o = {
                 count: 0, // 勾选的数量
                 amount: 0 // 勾选的总价
-            }
+            };
             state.car.forEach(item => {
                 if (item.selected) {
-                    o.count += item.count
+                    o.count += item.count;
                     o.amount += item.price * item.count
                 }
-            })
+            });
             return o
         }
     }
-})
-
-
-
+});
 
 //按需导入 Mint-UI 中的组件
 import { Header, Swipe, SwipeItem, Toast, Button, Lazyload  } from 'mint-ui';
@@ -166,6 +161,9 @@ Vue.filter('dataFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview);
 
+//infiniteScroll 滚动加载
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll);
 
 var vm = new Vue({
     el: '#app',

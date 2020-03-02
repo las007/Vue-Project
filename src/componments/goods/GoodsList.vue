@@ -43,6 +43,13 @@
 
         <mt-button type="danger" size="large" @click="getMore">加载更多..</mt-button>
 
+
+    <div class="good-item" v-for="item in goodsList" :key="item.id"  @click="goDetail(item.id)"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30">
+        <img :src="item.img_url" alt="">
+        </div>
+
+        <div class="gotop" v-show="fixed" @click="toTop">Top</div>
+
     </div>
 
 </template>
@@ -54,12 +61,20 @@
             return {
                 goodsList: [],       //图片列表的数据
                 // artId: 0,             //分页的页数
-                pageIndex: 0
+                pageIndex: 0,
+                count: 0,
+                data: [],
+                busy: false,
+                goTop: true,
+                fixed: false,
             }
         },
         created() {
             //默认进入页面，就主动请求 所有图片列表的数据
             this.getGoodsList();
+        },
+        mounted() {
+            window.addEventListener('scroll', this.fixedActiveBtn);
         },
         methods: {
             getGoodsList() {
@@ -67,13 +82,14 @@
                 this.$http
                     .get("http://localhost:3000/getGoodsList")
                     .then(result => {
-                        // console.log(result);
+                        console.log(result);
                         if (result.status === 200) {
                             // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
 
                             // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
                             // console.log(this.goodsList);
                             this.goodsList = result.data;
+                            console.log(this.goodsList.length);
                         }
                     });
             },
@@ -105,7 +121,49 @@
                 // this.$router.push({ path: "/home/goodsinfo/" + id });
                 // 3. 传递命名的路由
                 this.$router.push({ name: "goodsinfo", params: { id } });
-            }
+            },
+            /*loadMore: function() {
+                this.busy = false;
+
+                var com = {
+                    id: this.goodsList.length + 2,
+                    title: this.goodsList.title,
+                    add_time: this.goodsList.add_time,
+                    zhaiyao: this.goodsList.zhaiyao,
+                    click: this.goodsList.click,
+                    img_url: this.goodsList.img_url,
+                    sell_price: this.goodsList.sell_price,
+                    market_price: this.goodsList.market_price,
+                    stock_quantity: this.goodsList.stock_quantity
+                };
+                console.log(com + '====');
+
+                setTimeout(() => {
+                    for (var i = 0, j = 10; i < j; i++) {
+                        this.count++;
+                        this.goodsList.push(com);
+                    }
+                    console.log(this.data);
+                    this.busy = false
+                }, 1000)
+            }*/
+
+            fixedActiveBtn() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                scrollTop >=112 ? this.fixed = true : this.fixed = false;
+                // console.log(scrollTop);
+                // console.log(this.fixed)
+            },
+            toTop() {
+                // console.log('ok');
+                let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                const timeTop = setInterval(() => {
+                    document.documentElement.scrollTop = document.body.scrollTop = top -= 50;
+                    if (top <= 0) {
+                        clearInterval(timeTop);
+                    }
+                }, 10);
+            },
 
         },
 
@@ -126,6 +184,19 @@
     .mint-button--large {
         margin-top: 40px;
         margin-bottom: 80px;
+    }
+
+    .gotop {
+        text-align: center;
+        position: fixed;
+        right: 30px;
+        bottom: 60px;
+        padding: 10px;
+        width: 50px;
+        border-radius: 50%;
+        border: 2px solid #5e5e5e;
+        background-color: #fff;
+        color: #000;
     }
 
     .good-item {

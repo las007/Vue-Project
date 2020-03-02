@@ -16,14 +16,16 @@
                         <mt-switch
                                 v-model="$store.getters.getGoodsSelected[item.id]"
                                 @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"></mt-switch>
-                        <img :src="item.thumb_path">
+                        <img :src="item.img_url">
                         <div class="info">
                             <h4 class="info-title">{{ item.title }}</h4>
                             <p>
                                 <span class="price">￥{{ item.sell_price }}</span>
                                 <numbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></numbox>
                                 <!-- 问题：如何从购物车中获取商品的数量呢 -->
-                                <!-- 1. 我们可以先创建一个 空对象，然后循环购物车中所有商品的数据， 把 当前循环这条商品的 Id， 作为 对象 的 属性名，count值作为 对象的 属性值，这样，当把所有的商品循环一遍，就会得到一个对象： { 88: 2, 89: 1, 90: 4 } -->
+                                <!-- 1. 我们可以先创建一个 空对象，然后循环购物车中所有商品的数据，
+                                 把 当前循环这条商品的 Id， 作为 对象 的 属性名，count值作为 对象的 属性值，
+                                 这样，当把所有的商品循环一遍，就会得到一个对象： { 88: 2, 89: 1, 90: 4 } -->x
                                 <a href="#" @click.prevent="remove(item.id, i)">删除</a>
                             </p>
                         </div>
@@ -31,6 +33,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
 
@@ -46,7 +49,6 @@
                 </div>
             </div>
         </div>
-
 
         <p>{{ $store.getters.getGoodsSelected }}</p>
 
@@ -82,8 +84,8 @@
             };
         },
         created() {
-            // this.getGoodsList();
-            this.getShopCarList();
+            this.getGoodsList();
+            // this.getShopCarList();
         },
         methods: {
             getGoodsList() {
@@ -96,10 +98,12 @@
                 }
                 // 获取购物车商品列表
                 this.$http
-                    .get("api/goods/getshopcarlist/" + idArr.join(","))
+                    .get("http://localhost:3000/getShopCarList/" + idArr.join(","))
                     .then(result => {
-                        if (result.body.status === 0) {
-                            this.goodslist = result.body.message;
+                        console.log(result);
+
+                        if (result.status === 200) {
+                            this.goodslist = result.data;
                         }
                     });
             },
@@ -233,6 +237,7 @@
             }
             img {
                 width: 60px;
+                height: 60px;
             }
             h1 {
                 font-size: 13px;
