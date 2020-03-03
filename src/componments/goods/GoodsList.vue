@@ -26,29 +26,33 @@
         <!-- 方式1： 使用 a 标签 的形式叫做 标签跳转  -->
         <!-- 方式2： 使用 window.location.href 的形式，叫做 编程式导航 -->
 
-        <div class="good-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
-            <img :src="item.img_url" alt="">
-            <h1 class="title">{{ item.title }}</h1>
-            <div class="good-info">
-                <p class="price">
-                    <span class="now">￥{{ item.sell_price }}</span>
-                    <span class="old">￥{{ item.market_price }}</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩{{ item.stock_quantity }}件</span>
-                </p>
-            </div>
+        <div class="page-list"
+             v-infinite-scroll="loadMore"
+             infinite-scroll-disabled="busy"
+             infinite-scroll-distance="50">
+            <!--<ul>
+                <li v-for="item in list">{{ item.name }}</li>
+            </ul>-->
+
+            <ul class="good-item" v-for="(item, i) in list" :key="i" @click="goDetail(item.id)" ref="elForm">
+                <li>
+                    <img v-lazy="item.img_url" alt="">
+                    <h1 class="title">{{ item.title }}</h1>
+                    <div class="good-info">
+                        <p class="price">
+                            <span class="now">￥{{ item.sell_price }}</span>
+                            <span class="old">￥{{ item.market_price }}</span>
+                        </p>
+                        <p class="sell">
+                            <span>热卖中</span>
+                            <span>剩{{ item.stock_quantity }}件</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+            <div class="gotop" v-show="!fixed" @click="toTop">Top</div>
+            <p class="loading-tips" v-show="busy">加载中...</p>
         </div>
-
-        <mt-button type="danger" size="large" @click="getMore">加载更多..</mt-button>
-
-
-    <div class="good-item" v-for="item in goodsList" :key="item.id"  @click="goDetail(item.id)"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30">
-        <img :src="item.img_url" alt="">
-        </div>
-
-        <div class="gotop" v-show="fixed" @click="toTop">Top</div>
 
     </div>
 
@@ -67,6 +71,7 @@
                 busy: false,
                 goTop: true,
                 fixed: false,
+                list: []
             }
         },
         created() {
@@ -122,31 +127,29 @@
                 // 3. 传递命名的路由
                 this.$router.push({ name: "goodsinfo", params: { id } });
             },
-            /*loadMore: function() {
-                this.busy = false;
 
-                var com = {
-                    id: this.goodsList.length + 2,
-                    title: this.goodsList.title,
-                    add_time: this.goodsList.add_time,
-                    zhaiyao: this.goodsList.zhaiyao,
-                    click: this.goodsList.click,
-                    img_url: this.goodsList.img_url,
-                    sell_price: this.goodsList.sell_price,
-                    market_price: this.goodsList.market_price,
-                    stock_quantity: this.goodsList.stock_quantity
-                };
-                console.log(com + '====');
+            loadMore: function() {
+                this.busy = true;
 
-                setTimeout(() => {
-                    for (var i = 0, j = 10; i < j; i++) {
-                        this.count++;
-                        this.goodsList.push(com);
-                    }
-                    console.log(this.data);
-                    this.busy = false
-                }, 1000)
-            }*/
+                this.$http
+                    .get("http://localhost:3000/getGoodsList")
+                    .then(result => {
+                        console.log(result);
+                        if (result.status === 200) {
+                            this.goodsList = result.data;
+
+                            setTimeout(() => {
+                                for (var i = 0; i < this.goodsList.length; i++) {
+                                    this.list.push(this.goodsList[i]);
+                                    // this.list[i].id = timeId;
+                                }
+                                console.log(this.list);
+                                // console.log(this.goodsList.title);
+                                this.busy = false;
+                            }, 1000);
+                        }
+                    });
+            },
 
             fixedActiveBtn() {
                 var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
@@ -186,6 +189,16 @@
         margin-bottom: 80px;
     }
 
+    .page-list {
+        height: 500px;
+        overflow-y: auto;
+        margin-top: 40px;
+        /*background-color: #2ac845;*/
+
+        .loading-tips {
+            text-align: center;
+        }
+    }
     .gotop {
         text-align: center;
         position: fixed;
@@ -200,16 +213,16 @@
     }
 
     .good-item {
-        width: 49%;
+        width: 47%;
         border: 1px solid #ccc;
         box-shadow: 0 0 8px #ccc;
-        margin-left: 0;
         padding: 2px;
         min-height: 231px;
-        margin-top: 40px;
+        margin: 10px 1.5%;
+        list-style-type: none;
 
         /*position: relative;*/
-        display: flex;
+        display: inline-block;
         flex-direction: column;
         justify-content: space-between;
 

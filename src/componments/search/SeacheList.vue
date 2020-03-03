@@ -14,11 +14,27 @@
             <!--            <input type="button" value="搜索" @click="postSearchMsg">-->
             <span class="history-item">历史记录..</span>
             <span class="delete-item" @click="Delete">清除记录</span>
-            <ul class="ul-list">
+           <!-- <ul class="ul-list">
                 <li v-for="(item, i) in result" :key="item.id">
                     <a @click="Tap(item.id)">{{ i + 1}}.&nbsp;{{ item.title }}</a>
                 </li>
-            </ul>
+            </ul>-->
+
+            <div class="good-item" v-for="item in result" :key="item.id" @click="Tap(item.id)">
+                <img :src="item.img_url" alt="">
+                <h1 class="title">{{ item.title }}</h1>
+                <div class="good-info">
+                    <p class="price">
+                        <span class="now">￥{{ item.sell_price }}</span>
+                        <span class="old">￥{{ item.market_price }}</span>
+                    </p>
+                    <p class="sell">
+                        <span>热卖中</span>
+                        <span>剩{{ item.stock_quantity }}件</span>
+                    </p>
+                </div>
+            </div>
+
         </div>
 
         <div class="history" v-show="this.historyShow">
@@ -26,6 +42,8 @@
                 <span v-for="item in history">{{ item.title }}</span>
             </ul>
         </div>
+
+        <div class="gotop" v-show="fixed" @click="toTop">Top</div>
 
     </div>
 </template>
@@ -40,11 +58,17 @@
                 name: '',
                 info: [],
                 history: [],
-                historyShow: true
+                historyShow: true,
+                goTop: true,
+                fixed: false,
             }
         },
         created() {
             this.history = JSON.parse(localStorage.getItem('history') || []);
+        },
+
+        mounted() {
+            window.addEventListener('scroll', this.fixedActiveBtn);
         },
         methods: {
             postSearchMsg() {
@@ -55,11 +79,12 @@
                 this.$http
                     .post("http://localhost:3000/postSearchMsg", cmt, { emulateJSON: true })
                     .then(result => {
-                        // console.log(result);
+                        console.log(result);
 
                         if (result.status === 200) {
                             if (result.body.flag === 0) {
-                                this.$toast("站内还没有这一片文章呢，不如就由你来填写吧！");
+                                // this.$toast("站内还没有这一片文章呢，不如就由你来填写吧！");
+                                this.$toast("站内还没有这一商品呢!(￢︿̫̿￢☆)");
                             }else if (result.body.flag === 1) {
                                 // console.log(result.body.msg);
                                 this.result = result.body.msg;
@@ -72,7 +97,6 @@
                         };
                         //获取
                         var com = JSON.parse(localStorage.getItem('history') || '[]');
-
                         com.push(comment);
 
                         //保存
@@ -157,7 +181,7 @@
 
             Tap(artId) {
                 // console.log(id);
-                this.$router.push("/home/newsinfo/" + artId);
+                this.$router.push("/home/goodsinfo/" + artId);
             },
             Delete() {
                 localStorage.removeItem('history');
@@ -165,7 +189,25 @@
             },
             clearBtn() {
                 this.name = "";
-            }
+                window.location.reload();
+            },
+
+            fixedActiveBtn() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                scrollTop >=112 ? this.fixed = true : this.fixed = false;
+                // console.log(scrollTop);
+                // console.log(this.fixed)
+            },
+            toTop() {
+                // console.log('ok');
+                let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                const timeTop = setInterval(() => {
+                    document.documentElement.scrollTop = document.body.scrollTop = top -= 50;
+                    if (top <= 0) {
+                        clearInterval(timeTop);
+                    }
+                }, 10);
+            },
         }
     }
 </script>
@@ -173,6 +215,21 @@
 <style lang="scss" scoped>
 
     .search-container {
+
+
+        .gotop {
+            text-align: center;
+            position: fixed;
+            right: 30px;
+            bottom: 60px;
+            padding: 10px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid #5e5e5e;
+            background-color: #fff;
+            color: #000;
+        }
+
         ul {
             list-style-type: none;
             padding: 0;
@@ -214,6 +271,10 @@
             position: absolute;
             right: 50px;
             top: 70px;
+        }
+
+        .history {
+            margin-top: 50px;
         }
         .history-item, .delete-item {
             background-color: #fff;
@@ -261,6 +322,60 @@
 
         /deep/ .mint-search-list-warp {
             margin-top: 50px;
+        }
+
+
+        .good-item {
+            width: 49%;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 8px #ccc;
+            margin-left: 0;
+            padding: 2px;
+            min-height: 231px;
+            margin-top: 40px;
+
+            /*position: relative;*/
+            display: inline-block;
+            flex-direction: column;
+            justify-content: space-between;
+
+            img {
+                width: 100%;
+                height: 115px;
+            }
+            .title {
+                font-size: 14px;
+            }
+            .good-info {
+                background-color: #eee;
+
+                /*position: absolute;*/
+                /*bottom: 2px;*/
+                /*right: 2px;*/
+                /*width: 100%;*/
+
+                p {
+                    margin: 0;
+                    padding: 5px;
+                }
+                .price {
+                    .now {
+                        color: red;
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
+                    .old {
+                        text-decoration: line-through;
+                        font-size: 12px;
+                        margin-left: 10px;
+                    }
+                }
+                .sell {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 13px;
+                }
+            }
         }
     }
 </style>

@@ -9,18 +9,18 @@
             </header>
 
             <!-- 商品列表项区域 -->
-            <div class="mui-card" v-for="(item, i) in goodslist" :key="item.id">
+            <div class="mui-card" v-for="(item, i) in idArr" :key="item.id">
                 <div class="mui-card-content">
                     <div class="mui-card-content-inner">
 
                         <mt-switch
                                 v-model="$store.getters.getGoodsSelected[item.id]"
                                 @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"></mt-switch>
-                        <img :src="item.img_url">
+                        <img :src="item.img">
                         <div class="info">
                             <h4 class="info-title">{{ item.title }}</h4>
                             <p>
-                                <span class="price">￥{{ item.sell_price }}</span>
+                                <span class="price">￥{{ item.price }}</span>
                                 <numbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></numbox>
                                 <!-- 问题：如何从购物车中获取商品的数量呢 -->
                                 <!-- 1. 我们可以先创建一个 空对象，然后循环购物车中所有商品的数据，
@@ -33,7 +33,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>
 
@@ -50,11 +49,11 @@
             </div>
         </div>
 
-        <p>{{ $store.getters.getGoodsSelected }}</p>
+<!--        <p>{{ $store.getters.getGoodsSelected }}</p>-->
 
-        <ul class="mui-table-view">
+       <!-- <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in msg" :key="item.img">
-                <router-link :to="'/home/goodsinfo/' + item.id">          <!--//此处路径 = 字符串 + 表达式-->
+                <router-link :to="'/home/goodsinfo/' + item.id">          &lt;!&ndash;//此处路径 = 字符串 + 表达式&ndash;&gt;
                     <img class="mui-media-object mui-pull-left" :src="item.img_url" alt="404error..">
                     <div class="mui-media-body">
                         <h4>{{ item.title }}</h4>
@@ -67,7 +66,7 @@
                 </router-link>
                 <mt-button type="danger" class="mui-pull-right" @click="btnDelete(item.id)"><span class="delete-btn">-</span>删除</mt-button>
             </li>
-        </ul>
+        </ul>-->
 
     </div>
 </template>
@@ -80,7 +79,8 @@
             return {
                 goodslist: [], // 购物车中所有商品的数据
                 msg: [],
-                cmts: []
+                cmts: [],
+                idArr: []
             };
         },
         created() {
@@ -90,14 +90,15 @@
         methods: {
             getGoodsList() {
                 // 1. 获取到 store 中所有的商品的Id，然后拼接出一个 用逗号分隔的 字符串
-                var idArr = [];
-                this.$store.state.car.forEach(item => idArr.push(item.id));
+
+                this.$store.state.car.forEach(item => this.idArr.push(item));
                 // 如果 购物车中没有商品，则直接返回，不需要请求数据接口，否则会报错
-                if (idArr.length <= 0) {
+                // console.log(this.idArr);
+                if (this.idArr.length <= 0) {
                     return;
                 }
                 // 获取购物车商品列表
-                this.$http
+             /*   this.$http
                     .get("http://localhost:3000/getShopCarList/" + idArr.join(","))
                     .then(result => {
                         console.log(result);
@@ -105,7 +106,7 @@
                         if (result.status === 200) {
                             this.goodslist = result.data;
                         }
-                    });
+                    });*/
             },
             getShopCarList() {
 
@@ -149,6 +150,7 @@
                 // 点击删除，把商品从 store 中根据 传递的 Id 删除，同时，把 当前组件中的 goodslist 中，对应要删除的那个商品，使用 index 来删除
                 this.goodslist.splice(index, 1);
                 this.$store.commit("removeFormCar", id);
+                window.location.reload();
             },
             selectedChanged(id, val) {
                 // 每当点击开关，把最新的 快关状态，同步到 store 中
@@ -179,10 +181,11 @@
         overflow: hidden;
 
         h4 {
-            width: 90%;
+            width: 85%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-size: 16px;
         }
 
         .mui-pull-right {
@@ -217,7 +220,7 @@
         }
 
         .mui-card-content {
-            margin-top: 40px;
+            /*margin-top: 40px;*/
             border: 2px solid #eeeeee;
         }
 
@@ -227,17 +230,20 @@
             font-weight: bold;
         }
         .mui-card-content-inner {
-            padding: 10px;
+            padding: 10px 5px;
         }
 
         .goods-list {
+            margin-top: 55px;
+
             .mui-card-content-inner {
                 display: flex;
                 align-items: center;
             }
             img {
-                width: 60px;
+                width: 15%;
                 height: 60px;
+                margin: auto 5px;
             }
             h1 {
                 font-size: 13px;

@@ -22,6 +22,13 @@
 <!--                <h1 class="mui-title">侧面选项卡-div模式</h1>-->
 <!--            </header>-->
 
+        </div>
+
+        <div class="page-list"
+             v-infinite-scroll="loadMore"
+             infinite-scroll-disabled="busy"
+             infinite-scroll-distance="50">
+
             <mt-swipe :auto="4000">
                 <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
                     <router-link :to="'/home/photoinfo/' + i">
@@ -69,32 +76,37 @@
                     </router-link>
                 </li>
             </ul>
-        </div>
 
-        <div class="good-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)" v-infinite-scroll="loadMore" infinite-scroll-throttle-delay="500" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-            <img :src="item.img_url" alt="">
-            <h1 class="title">{{ item.title }}</h1>
-            <div class="good-info">
-                <p class="price">
-                    <span class="now">￥{{ item.sell_price }}</span>
-                    <span class="old">￥{{ item.market_price }}</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩{{ item.stock_quantity }}件</span>
-                </p>
-            </div>
+            <ul class="good-item" v-for="(item, i) in list" :key="i" @click="goDetail(item.id)" ref="elForm">
+                <li>
+                    <img v-lazy="item.img_url" alt="">
+                    <h1 class="title">{{ item.title }}</h1>
+                    <div class="good-info">
+                        <p class="price">
+                            <span class="now">￥{{ item.sell_price }}</span>
+                            <span class="old">￥{{ item.market_price }}</span>
+                        </p>
+                        <p class="sell">
+                            <span>热卖中</span>
+                            <span>剩{{ item.stock_quantity }}件</span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+            <div class="gotop" v-show="!fixed" @click="toTop">Top</div>
         </div>
-
-        <div class="gotop" v-show="fixed" @click="toTop">Top</div>
 
     </div>
 </template>
 
 <script>
 
+    import Vue from 'vue';
     import { Toast } from 'mint-ui'
     import swiper from '../subcomponent/swiper.vue'
+    import { Lazyload } from 'mint-ui';
+
+    Vue.use(Lazyload);
 
     import infiniteScroll from 'vue-infinite-scroll'
 
@@ -112,12 +124,13 @@
                 busy: false,
                 goTop: true,
                 fixed: false,
+                list: []
             }
         },
         created() {
             this.getBanner();
             // this.Timer();
-            this.getGoodsList();
+            // this.getGoodsList();
         },
 
         mounted() {
@@ -170,14 +183,24 @@
                     });
             },
             loadMore: function() {
-                this.busy = true
-                setTimeout(() => {
-                    for (var i = 0, j = 10; i < j; i++) {
-                        this.data.push({name: this.count++ })
-                    }
-                    console.log(this.data)
-                    this.busy = false
-                }, 1000)
+                this.busy = true;
+
+                this.$http
+                    .get("http://localhost:3000/getGoodsList")
+                    .then(result => {
+                        console.log(result);
+                        if (result.status === 200) {
+                            this.goodsList = result.data;
+
+                            setTimeout(() => {
+                                for (var i = 0; i < this.goodsList.length; i++) {
+                                    this.list.push(this.goodsList[i]);
+                                }
+
+                                this.busy = false;
+                            }, 1000);
+                        }
+                    });
             },
             goDetail(id) {
 
@@ -272,6 +295,12 @@
             width: 100%;
         }
 
+        img[lazy="loading"] {
+            width: 40px;
+            height: 300px;
+            margin: auto;
+        }
+
         .gotop {
             text-align: center;
             position: fixed;
@@ -284,15 +313,24 @@
             background-color: #fff;
             color: #000;
         }
-
-
     }
 
+    .page-list {
+        height: 600px;
+        overflow-y: auto;
+        /*margin-top: 40px;*/
+        /*background-color: #2ac845;*/
+        padding-bottom: 100px;
+
+        .loading-tips {
+            text-align: center;
+        }
+    }
     .good-item {
         width: 49%;
         border: 1px solid #ccc;
         box-shadow: 0 0 8px #ccc;
-        margin: 20px auto;
+        margin: 15px auto;
         padding: 2px;
         min-height: 231px;
 

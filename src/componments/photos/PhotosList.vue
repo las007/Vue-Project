@@ -42,9 +42,6 @@
     import mui from '../../lib/mui/js/mui.min.js'
 
 
-
-
-
     export default {
         data() {
             return {
@@ -93,7 +90,7 @@
                         // console.log(cateId);
                         if (result.status === 200) {
                             this.list = result.body.list[cateId];
-                            // console.log(this.list);
+                            console.log(this.list);
                         }
                 });
             }

@@ -70,7 +70,7 @@
                 </div>
                 <div id="content3" class="mui-control-content">
                     <div class="good-item" v-for="item in goodsList" :key="item.id" @click="goDetail(item.id)">
-                        <img :src="item.img_url" alt="">
+                        <img v-lazy="item.img_url" alt="">
                         <h1 class="title">{{ item.title }}</h1>
                         <div class="good-info">
                             <p class="price">
@@ -527,6 +527,12 @@
         img {
             width: 100%;
             height: 115px;
+        }
+
+        image[lazy=loading] {
+            width: 40px;
+            height: 300px;
+            margin: auto;
         }
         .title {
             font-size: 14px;

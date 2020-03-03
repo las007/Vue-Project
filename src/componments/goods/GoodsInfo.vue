@@ -130,7 +130,9 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                     id: this.id,
                     count: this.selectedCount,
                     price: this.goodsInfo.sell_price,
-                    selected: true
+                    selected: true,
+                    title: this.goodsInfo.title,
+                    img: this.goodsInfo.img_url
                 };
                 // 调用 store 中的 mutations 来将商品加入购物车
                 this.$store.commit("addToCar", goodsinfo);
