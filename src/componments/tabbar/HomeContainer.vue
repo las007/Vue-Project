@@ -27,7 +27,7 @@
         <div class="page-list"
              v-infinite-scroll="loadMore"
              infinite-scroll-disabled="busy"
-             infinite-scroll-distance="50">
+             infinite-scroll-distance="30">
 
             <mt-swipe :auto="4000">
                 <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
@@ -38,7 +38,7 @@
             </mt-swipe>
 
             <!--        九宫格样式布局-->
-            <ul class="mui-table-view mui-grid-view mui-grid-9">
+            <ul class="mui-table-view mui-grid-view mui-grid-9" ref="elForm">
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <router-link to="/home/newslist">
                         <img src="../../images/menu1.png" alt="404error..">
@@ -47,7 +47,7 @@
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <router-link to="/home/photoslist">
-                        <img src="../../images/menu2.png" alt="404error..">
+                        <img src="../../images/menu2.png" alt="404error.." id="content1">
                         <div class="mui-media-body">图片分享</div>
                     </router-link>
                 </li>
@@ -58,13 +58,13 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/home/loginpage">
+                    <router-link to="/home/comment">
                         <img src="../../images/menu4.png" alt="404error..">
                         <div class="mui-media-body">留言反馈</div>
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <router-link to="/home/otherpages">
+                    <router-link to="/member">
                         <img src="../../images/menu5.png" alt="404error..">
                         <div class="mui-media-body">发现</div>
                     </router-link>
@@ -77,7 +77,7 @@
                 </li>
             </ul>
 
-            <ul class="good-item" v-for="(item, i) in list" :key="i" @click="goDetail(item.id)" ref="elForm">
+            <ul class="good-item" id="testPaper" v-for="(item, i) in list" :key="i" @click="goDetail(item.id)">
                 <li>
                     <img v-lazy="item.img_url" alt="">
                     <h1 class="title">{{ item.title }}</h1>
@@ -93,8 +93,10 @@
                     </div>
                 </li>
             </ul>
-            <div class="gotop" v-show="!fixed" @click="toTop">Top</div>
-        </div>
+            <p class="loading-tips" v-show="content">加载中...</p>
+            <p class="loading-tips" v-show="!content">所有数据已加载。</p>
+            <div class="gotop" v-show="fixed" @click="toTop" :href="href">Top</div>
+    </div>
 
     </div>
 </template>
@@ -123,18 +125,28 @@
                 data: [],
                 busy: false,
                 goTop: true,
-                fixed: false,
-                list: []
+                fixed: true,
+                list: [],
+                scrollTop: '',
+                content: true,
+                clientHeight:'',
+                href: ''
             }
         },
         created() {
             this.getBanner();
             // this.Timer();
             // this.getGoodsList();
+
+            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            // console.log(this.scrollTop);
         },
 
         mounted() {
             window.addEventListener('scroll', this.fixedActiveBtn);
+        },
+        destroyed () {
+            window.removeEventListener('scroll', this.fixedActiveBtn)
         },
         methods: {
             getBanner() {
@@ -160,7 +172,7 @@
                     if (result.status === 200) {
                         // console.log(result.body);
                         //成功了
-                        this.bannerList = result.body.list;
+                        this.bannerList = result.data;
                     }else {
                         //失败了
                         Toast('加载轮播图失败...');
@@ -188,17 +200,25 @@
                 this.$http
                     .get("http://localhost:3000/getGoodsList")
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
                         if (result.status === 200) {
                             this.goodsList = result.data;
+                         /*   this.clientHeight = `${document.documentElement.clientHeight}`;//获取浏览器可视区域高度
+                            console.log(this.clientHeight);*/
 
-                            setTimeout(() => {
-                                for (var i = 0; i < this.goodsList.length; i++) {
-                                    this.list.push(this.goodsList[i]);
-                                }
 
-                                this.busy = false;
-                            }, 1000);
+                            if (this.list.length <= this.goodsList.length) {
+                                setTimeout(() => {
+                                    for (var i = 0; i < this.goodsList.length; i++) {
+                                        this.list.push(this.goodsList[i]);
+                                    }
+
+                                    this.busy = false;
+                                }, 1000);
+                            }else {
+                                Toast('加载完成！！');
+                                this.content = false;
+                            }
                         }
                     });
             },
@@ -258,9 +278,9 @@
             },
 
             fixedActiveBtn() {
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-                scrollTop >=112 ? this.fixed = true : this.fixed = false;
-                // console.log(scrollTop);
+                this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                // this.scrollTop >=12 ? this.fixed = true : this.fixed = false;
+                // console.log(this.scrollTop);
                 // console.log(this.fixed)
             },
             toTop() {
@@ -272,7 +292,12 @@
                         clearInterval(timeTop);
                     }
                 }, 10);
+                window.location.reload();
+                this.href = '#content1'
             },
+        },
+        watch: {
+
         },
         components: {
             swiper
@@ -287,7 +312,7 @@
 
         .item {
             padding-top: 50px;
-            background-image: url("http://localhost:3000/www/images/21.jpg");
+            background-image: url("http://localhost:3000/www/images/26.jpg");
         }
 
         img {
@@ -316,32 +341,39 @@
     }
 
     .page-list {
-        height: 600px;
+        height: 100vh;
         overflow-y: auto;
         /*margin-top: 40px;*/
         /*background-color: #2ac845;*/
-        padding-bottom: 100px;
+        padding-bottom: 50px;
+        /*margin-bottom: 100px;*/
 
         .loading-tips {
+            font-size: 18px;
+            color: #000;
+            line-height: 50px;
             text-align: center;
         }
     }
     .good-item {
-        width: 49%;
+        width: 96%;
         border: 1px solid #ccc;
         box-shadow: 0 0 8px #ccc;
-        margin: 15px auto;
+        margin: 10px 2%;
         padding: 2px;
         min-height: 231px;
+        list-style-type: none;
 
         /*position: relative;*/
         display: inline-block;
         flex-direction: column;
         justify-content: space-between;
+        border-radius: 30px;
+        overflow: hidden;
 
         img {
             width: 100%;
-            height: 115px;
+            height: 350px;
         }
         .title {
             font-size: 14px;

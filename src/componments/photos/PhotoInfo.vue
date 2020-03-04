@@ -18,7 +18,7 @@
         <div class="content-item">
             <p class="subtitle">
                 <span>发表时间：{{ photoinfo.add_time | dataFormat }}</span>
-                <span>点击：{{ photoinfo.click }}次</span>
+                <span>点击：{{ photoinfo.id }}次</span>
             </p>
 
             <hr>
@@ -30,8 +30,8 @@
                 <!--            <img class="preview-img" v-for="(item, index) in list" :src="item.img" :msrc="item.img" height="100" :key="item.src">-->
             </div>
 
-            <!--        图片内容区域-->
-            <div class="content" v-html="photoinfo.common"></div>
+<!--            &lt;!&ndash;        图片内容区域&ndash;&gt;-->
+<!--            <div class="content" v-html="photoinfo.common"></div>-->
 
             <!--        评论现成的 子组件-->
             <cmt-box :id="this.id"></cmt-box>
@@ -69,11 +69,11 @@
                 //根据分类 Id，获取图片列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://localhost:3000/getNewsList")
+                    .get("http://localhost:3000/getPhotos")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            this.photoinfo = result.body[this.id];
+                            this.photoinfo = result.data.list[this.id][1];
                             // console.log(this.id);
                             // console.log(result.body.message[this.id]);
                         }
@@ -87,13 +87,13 @@
                     .then(result => {
                         if (result.status === 200) {
                             // console.log(result);
-                            var item = result.body;
+                            var item = result.data;
                             // 循环每个图片数据，补全图片的宽和高
                             // for (var i = 0; i < item.length; i++) {
                             //     item.w = 600;
                             //     item.h = 400;
                             // }
-                            result.body.list.forEach(item => {
+                            result.data.forEach(item => {
                                 item.w = 380;
                                 item.h = 400;
                                 item.title = 'pics_1';
@@ -101,7 +101,7 @@
                                 item.msrc = item.img;
                             });
                             // 把完整的数据保存到 list 中
-                            this.list = result.body.list;
+                            this.list = result.data;
                         }
                     });
             },

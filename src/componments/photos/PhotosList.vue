@@ -90,7 +90,7 @@
                         // console.log(cateId);
                         if (result.status === 200) {
                             this.list = result.body.list[cateId];
-                            console.log(this.list);
+                            // console.log(this.list);
                         }
                 });
             }

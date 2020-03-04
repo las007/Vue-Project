@@ -21,7 +21,7 @@
         <div class="more-side">
             <ul>
                 <li class="img-item">
-                    <img src="http://localhost:3000/www/images/4.jpg" alt="404error..">
+                    <img src="http://localhost:3000/www/images/21.jpg" alt="404error..">
                 </li>
             </ul>
             <!--            <span>{{ userInfo.username }}</span>-->

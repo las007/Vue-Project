@@ -6,9 +6,8 @@
             <h1 class="mui-title">SearchContainer</h1>
         </header>
 
-
         <div class="item">
-            <input type="text" class="mintui mintui-search" placeholder="站内搜索.." @keyup.enter="postSearchMsg" v-model="name">
+            <input type="text" class="mintui mintui-search" placeholder="站内搜索.." @keyup.enter="postSearchMsg" v-model="name" v-focus>
             <span class="mui-icon mui-icon-search" @click="postSearchMsg"></span>
 <!--            <input type="button" value="搜索" @click="postSearchMsg">-->
             <ul>
@@ -22,7 +21,13 @@
 </template>
 
 <script>
+    import Vue from 'vue'
 
+    Vue.directive('focus', {
+        inserted: function (el) {
+            el.focus();
+        }
+    });
     export default {
         data() {
             return {

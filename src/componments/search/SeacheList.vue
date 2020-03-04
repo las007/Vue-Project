@@ -79,7 +79,7 @@
                 this.$http
                     .post("http://localhost:3000/postSearchMsg", cmt, { emulateJSON: true })
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
 
                         if (result.status === 200) {
                             if (result.body.flag === 0) {
@@ -215,7 +215,7 @@
 <style lang="scss" scoped>
 
     .search-container {
-
+        padding-bottom: 65px;
 
         .gotop {
             text-align: center;

@@ -26,7 +26,7 @@
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell mui-media">
                                             <router-link class="mui-navigate-right" to="/home/newpage">
-                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://localhost:3000/www/images/4.jpg">
+                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://localhost:3000/www/images/21.jpg">
 
                                                 <div class="mui-media-body" v-if="showname">
                                                     Hello MUI
@@ -42,23 +42,23 @@
                                     </ul>
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell">
-                                            <a href="#account" class="mui-navigate-right">账号与安全</a>
+                                            <a href="javascript:;" class="mui-navigate-right">账号与安全</a>
                                         </li>
                                     </ul>
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell">
-                                            <a href="#notifications" class="mui-navigate-right">新消息通知</a>
+                                            <a href="javascript:;" class="mui-navigate-right">新消息通知</a>
                                         </li>
                                         <li class="mui-table-view-cell">
-                                            <a href="#privacy" class="mui-navigate-right">隐私</a>
+                                            <a href="javascript:;" class="mui-navigate-right">隐私</a>
                                         </li>
                                         <li class="mui-table-view-cell">
-                                            <a href="#general" class="mui-navigate-right">通用</a>
+                                            <a href="javascript:;" class="mui-navigate-right">通用</a>
                                         </li>
                                     </ul>
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell">
-                                            <a href="#about" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V3.1.0</i></a>
+                                            <a href="javascript:;" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V3.1.0</i></a>
                                         </li>
                                     </ul>
                                     <ul class="mui-table-view" v-if="showname">

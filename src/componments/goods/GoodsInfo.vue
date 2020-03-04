@@ -26,7 +26,7 @@
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <p>
-                        市场价: <del>￥{{ goodsInfo.market_price }}</del>&nbsp;&nbsp;<span class="now_price">${{ goodsInfo.sell_price }}</span>
+                        市场价: <del>￥{{ goodsInfo.market_price }}</del>&nbsp;&nbsp;<span class="now_price">￥{{ goodsInfo.sell_price }}</span>
                     </p>
                     <p>
                         购买数量: <numbox @getcount="getSelectedCount" :max="goodsInfo.stock_quantity"></numbox>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="mui-card-footer">
-                <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>
+<!--                <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>-->
                 <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
             </div>
         </div>
@@ -79,21 +79,21 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
         },
         created() {
             //默认进入页面，就主动请求 所有图片列表的数据
-            this.getGoodsBanner();
+            this.getGoodsBanner(this.id);
             this.getGoodsInfo(this.id);
         },
         methods: {
-            getGoodsBanner() {
+            getGoodsBanner(id) {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getMessages")
+                    .get("http://localhost:3000/getGoodsImg/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
                             // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
 
-                            this.lunbotu = result.body.list;
-                            // console.log(this.goodsList);
+                            this.lunbotu = result.data;
+                            // console.log(this.lunbotu);
                         }
                     });
             },
@@ -102,7 +102,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                 this.$http
                     .get("http://localhost:3000/getGoodsInfo/" + id)
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
                         if (result.status === 200) {
                             // this.goodsInfo = result.body.list[0][1][this.id];
                             // console.log(this.goodsInfo);
@@ -213,6 +213,19 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
 .goodsinfo-container {
     background-color: #eee;
     overflow: hidden;
+
+    .mint-swipe{
+        height: 200px;
+        text-align: center;
+
+        .mint-swipe-item {
+
+            img {
+                /*width: 100%;*/
+                height: 100%;
+            }
+        }
+    }
 
     .mui-card-content {
         margin-top: 35px;

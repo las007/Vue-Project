@@ -7,9 +7,9 @@
 
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
-                <router-link :to="'/home/photoinfo/' + i">
+<!--                <router-link :to="'/home/photoinfo/' + i">-->
                     <img :src="item.img" alt="error404..." :class="{ 'full': isfull }">
-                </router-link>
+<!--                </router-link>-->
             </mt-swipe-item>
         </mt-swipe>
     </div>

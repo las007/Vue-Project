@@ -25,8 +25,8 @@
                                 <!-- 问题：如何从购物车中获取商品的数量呢 -->
                                 <!-- 1. 我们可以先创建一个 空对象，然后循环购物车中所有商品的数据，
                                  把 当前循环这条商品的 Id， 作为 对象 的 属性名，count值作为 对象的 属性值，
-                                 这样，当把所有的商品循环一遍，就会得到一个对象： { 88: 2, 89: 1, 90: 4 } -->x
-                                <a href="#" @click.prevent="remove(item.id, i)">删除</a>
+                                 这样，当把所有的商品循环一遍，就会得到一个对象： { 88: 2, 89: 1, 90: 4 } -->
+                                <a class="delete" href="#" @click.prevent="remove(item.id, i)">删除</a>
                             </p>
                         </div>
 
@@ -180,6 +180,10 @@
         background-color: #eee;
         overflow: hidden;
 
+        .delete {
+            position: fixed;
+            right: 20px;
+        }
         h4 {
             width: 85%;
             overflow: hidden;

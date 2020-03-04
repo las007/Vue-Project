@@ -2,6 +2,11 @@
 
     <div class="cmt-container">
 
+        <header id="header" class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">导航栏</h1>
+        </header>
+
         <h3>发表评论</h3>
         <hr>
         <textarea placeholder="请输入要评论的内容..（最多允许120字）" maxlength="120" v-model="msg" v-focus></textarea>
@@ -251,6 +256,9 @@
 
 <style lang="scss" scoped>
 .cmt-container {
+    padding-bottom: 65px;
+    padding-top: 50px;
+    margin: auto 5px;
 
     h3 {
         font-size: 18px;

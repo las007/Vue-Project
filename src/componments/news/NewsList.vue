@@ -1,12 +1,26 @@
 <template>
 
-    <div>
+    <div class="news-container">
 
 
         <header id="header" class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
             <h1 class="mui-title">新闻资讯页面</h1>
+            <span class="mui-icon mui-icon-search mui-pull-right" @click="searchMore"></span>
         </header>
+
+        <div class="search-content" v-show="this.searchBox">
+            <p>本地搜索</p>
+            <input type="text" @keyup.enter="postSearchMsg" v-model="name" v-focus>
+            <div class="line"></div>
+            <span @click="searchEsc">×</span>
+
+            <ul>
+                <li v-for="(item, i) in searchList" :key="item.id" @click="Tap(item.id)">
+                    {{ i + 1}}.&nbsp;{{ item.title }}
+                </li>
+            </ul>
+        </div>
 
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in msg" :key="item.img">
@@ -65,7 +79,10 @@
                 num_2: "",
                 pageId: 1,
                 list: [],
-                msg: []
+                msg: [],
+                searchBox: false,
+                name: '',
+                searchList: []
             }
         },
         created() {
@@ -92,7 +109,7 @@
                         }, 1500);
 
                         this.newList = result.body;
-                        console.log(this.msg);
+                        // console.log(this.msg);
                         this.num = parseInt(this.newList.length/8) + 1;
 
                         if (this.num <= 3) {
@@ -105,7 +122,6 @@
                         //获取失败
                         Toast('获取数据失败..');
                     }
-
 
                 });
             },
@@ -139,21 +155,95 @@
                 this.$http
                     .get("http://localhost:3000/toPage/" + pageId)
                     .then(result => {
-                        console.log(result);
 
                         if (result.status === 200) {
-                            this.msg = result.body
+                            this.msg = result.body;
+                            // console.log(this.msg);
                         }
                     });
+            },
 
-                // this.getHome(pageId);
+            searchMore() {
+                // console.log('ok');
+                this.searchBox = true;
+            },
+            searchEsc() {
+                this.searchBox = false;
+            },
+            postSearchMsg() {
+                var cmt = {
+                    title: this.name,
+                };
 
-            }
+                this.$http
+                    .post("http://localhost:3000/postSearchNews", cmt, { emulateJSON: true })
+                    .then(result => {
+                        // console.log(result);
+
+                        if (result.status === 200) {
+                            if (result.body.flag === 0) {
+                                this.$toast("站内还没有这一片文章呢，不如就由你来填写吧！");
+                            }else if (result.body.flag === 1) {
+                                this.searchList = result.body.msg;
+                            }
+                        }
+                    });
+            },
+            Tap(artId) {
+                // console.log(id);
+                this.$router.push("/home/newsinfo/" + artId);
+            },
         }
     }
 </script>
 
 <style lang="scss" scoped>
+
+
+    .search-content {
+        width: 80%;
+        /*height: 150px;*/
+        background: #eee;
+        margin: 60px 10%;
+        position: fixed;
+        padding-bottom: 15px;
+        z-index: 999;
+        border: 2px solid #eeeeee;
+        border-radius: 10px;
+
+        p {
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+        input {
+            width: 90%;
+            display: block;
+            margin: 10px auto;
+        }
+        span {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        ul {
+            list-style-type: none;
+            /*height: 50px;*/
+            li {
+                margin: 5px auto;
+            }
+        }
+        .line {
+            border-bottom: 2px dotted #66997d;
+        }
+    }
+    .news-container {
+        padding-bottom: 65px;
+    }
+    .mint-button--large {
+        display: block;
+        width: 95%;
+        margin: 1px auto;
+    }
     .mui-table-view {
         padding-top: 55px;
         li {

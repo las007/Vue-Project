@@ -87,14 +87,14 @@
                 this.$http
                     .get("http://localhost:3000/getGoodsList")
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
                         if (result.status === 200) {
                             // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
 
                             // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
                             // console.log(this.goodsList);
                             this.goodsList = result.data;
-                            console.log(this.goodsList.length);
+                            // console.log(this.goodsList.length);
                         }
                     });
             },
@@ -134,7 +134,7 @@
                 this.$http
                     .get("http://localhost:3000/getGoodsList")
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
                         if (result.status === 200) {
                             this.goodsList = result.data;
 
@@ -143,7 +143,7 @@
                                     this.list.push(this.goodsList[i]);
                                     // this.list[i].id = timeId;
                                 }
-                                console.log(this.list);
+                                // console.log(this.list);
                                 // console.log(this.goodsList.title);
                                 this.busy = false;
                             }, 1000);
@@ -166,6 +166,7 @@
                         clearInterval(timeTop);
                     }
                 }, 10);
+                window.location.reload();
             },
 
         },
@@ -190,9 +191,10 @@
     }
 
     .page-list {
-        height: 500px;
+        height: 100vh;
         overflow-y: auto;
-        margin-top: 40px;
+        padding-top: 45px;
+        padding-bottom: 50px;
         /*background-color: #2ac845;*/
 
         .loading-tips {
@@ -232,6 +234,9 @@
         }
         .title {
             font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .good-info {
             background-color: #eee;
