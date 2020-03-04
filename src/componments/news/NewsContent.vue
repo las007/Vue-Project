@@ -105,7 +105,7 @@
                 }
 
                 this.$http
-                    .post("http://localhost:3000/addNewsList", com, { emulateJSON: true })
+                    .post("addNewsList", com, { emulateJSON: true })
                     .then(result => {
                         if (result.status === 200) {
                             this.titleMsg = this.contentMsg = "";

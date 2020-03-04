@@ -97,7 +97,7 @@
                 //获取新闻列表
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://localhost:3000/getNewsList")
+                    .get("getNewsList")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -153,7 +153,7 @@
                 // }
 
                 this.$http
-                    .get("http://localhost:3000/toPage/" + pageId)
+                    .get("toPage/" + pageId)
                     .then(result => {
 
                         if (result.status === 200) {
@@ -176,7 +176,7 @@
                 };
 
                 this.$http
-                    .post("http://localhost:3000/postSearchNews", cmt, { emulateJSON: true })
+                    .post("postSearchNews", cmt, { emulateJSON: true })
                     .then(result => {
                         // console.log(result);
 

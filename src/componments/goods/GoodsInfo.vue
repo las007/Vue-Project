@@ -86,7 +86,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             getGoodsBanner(id) {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getGoodsImg/" + id)
+                    .get("getGoodsImg/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -100,7 +100,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             getGoodsInfo(id) {
                 //获取商品消息
                 this.$http
-                    .get("http://localhost:3000/getGoodsInfo/" + id)
+                    .get("getGoodsInfo/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -149,7 +149,7 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
                     stock_quantity: this.goodsInfo.stock_quantity
                 };
                 this.$http
-                    .post("http://localhost:3000/toShopCar", this.goodsInfo, { emulateJSON: true })
+                    .post("toShopCar", this.goodsInfo, { emulateJSON: true })
                     .then(result => {
                         // console.log(result.data.flag);
 

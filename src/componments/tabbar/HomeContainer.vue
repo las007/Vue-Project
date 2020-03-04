@@ -166,7 +166,7 @@
 
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("http://localhost:3000/getMessages")
+                    .get("getMessages")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
@@ -182,7 +182,7 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -198,7 +198,7 @@
                 this.busy = true;
 
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -226,7 +226,7 @@
 
                 // console.log(id);
                 this.$http
-                    .get("http://localhost:3000/getGoodsInfo/" + id)
+                    .get("getGoodsInfo/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -312,7 +312,8 @@
 
         .item {
             padding-top: 50px;
-            background-image: url("http://localhost:3000/www/images/26.jpg");
+            /*background-image: url("http://localhost:3000/www/images/26.jpg");*/
+            background-image: url("http://bznyw5.natappfree.cc/www/images/26.jpg");
         }
 
         img {

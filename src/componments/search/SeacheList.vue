@@ -77,7 +77,7 @@
                 };
 
                 this.$http
-                    .post("http://localhost:3000/postSearchMsg", cmt, { emulateJSON: true })
+                    .post("postSearchMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         // console.log(result);
 

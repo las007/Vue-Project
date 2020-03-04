@@ -64,7 +64,7 @@
             getNewsInfo() {     //获取新闻详情咨询
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
-                    .get("http://localhost:3000/getNewsInfo/" + this.id)
+                    .get("getNewsInfo/" + this.id)
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {

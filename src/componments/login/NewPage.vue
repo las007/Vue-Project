@@ -152,7 +152,7 @@
 
             getLoginMsg(info) {
                 this.$http
-                    .get("http://localhosts:3000/getLoginMsg")
+                    .get("getLoginMsg")
                     .then(result => {
                         console.log(result);
 

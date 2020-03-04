@@ -145,7 +145,7 @@
                 // console.log(this.form_1.sex.male.value);
 
                 this.$http
-                    .post("http://localhost:3000/postRegisterMsg_1", cmt, { emulateJSON: true })
+                    .post("postRegisterMsg_1", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 
@@ -161,7 +161,7 @@
 
             postComment(cmt) {
                 this.$http
-                    .post("http://localhost:3000/postRegisterMsg", cmt, { emulateJSON: true })
+                    .post("postRegisterMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 

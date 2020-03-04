@@ -99,7 +99,7 @@
                 }
                 // 获取购物车商品列表
              /*   this.$http
-                    .get("http://localhost:3000/getShopCarList/" + idArr.join(","))
+                    .get("getShopCarList/" + idArr.join(","))
                     .then(result => {
                         console.log(result);
 
@@ -112,7 +112,7 @@
 
                 // 获取购物车商品列表
                 this.$http
-                    .get("http://localhost:3000/getShopCar")
+                    .get("getShopCar")
                     .then(result => {
 
                         if (result.status === 200) {
@@ -135,7 +135,7 @@
             },
             btnDelete(deleteId) {
               this.$http
-                  .get("http://localhost:3000/btnDelete/" + deleteId)
+                  .get("btnDelete/" + deleteId)
                   .then(result => {
                       console.log(result);
                       if (result.status === 200) {

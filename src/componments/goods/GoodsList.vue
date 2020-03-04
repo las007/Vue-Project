@@ -85,7 +85,7 @@
             getGoodsList() {
                 //根据分类 Id，获取图片列表
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -107,7 +107,7 @@
 
                 // console.log(id);
                 this.$http
-                    .get("http://localhost:3000/getGoodsInfo/" + id)
+                    .get("getGoodsInfo/" + id)
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
@@ -132,7 +132,7 @@
                 this.busy = true;
 
                 this.$http
-                    .get("http://localhost:3000/getGoodsList")
+                    .get("getGoodsList")
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {

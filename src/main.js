@@ -147,6 +147,11 @@ import router from './router.js';
 import VueResource from 'vue-resource'
 //2.2 安装 vue-resource
 Vue.use(VueResource);
+// 设置请求的根路径
+// Vue.http.options.root = 'http://vue.studyit.io';
+Vue.http.options.root = 'http://bznyw5.natappfree.cc/';
+// 全局设置 post 时候表单数据格式组织形式   application/x-www-form-urlencoded
+Vue.http.options.emulateJSON = true;
 
 //没有添加被动事件监听器来阻止'touchstart'事件，请考虑添加事件管理者'passive'，以使页面更加流畅
 import 'default-passive-events'
