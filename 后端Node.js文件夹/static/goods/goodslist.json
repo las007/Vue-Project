@@ -1,0 +1,131 @@
+[
+  {
+    "1": [
+      {
+        "id": 1,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/6.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 2,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/17.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 3,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/8.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 4,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/4.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 5,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/12.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 6,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/4.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      }
+    ]
+  },
+  {
+    "2": [
+      {
+        "id": 7,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/12.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 8,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/6.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 9,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 10,
+        "img_url": "http://localhost:3000/www/images/17.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 10,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/8.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      },
+      {
+        "id": 11,
+        "title": "华为(HUAWEI)荣耀6Plus 16G双4G版",
+        "add_time": "2015-11-19 15:34:27",
+        "zhaiyao": "荣耀6Plus,该机型分为两矿型号,分别为PE-1..",
+        "click": 12,
+        "img_url": "http://localhost:3000/www/images/6.jpg",
+        "sell_price": 2195,
+        "market_price": 2499,
+        "stock_quantity": 60
+      }
+    ]
+  }
+]

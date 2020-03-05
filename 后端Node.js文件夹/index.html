@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/www/css/style.css">
+    <script type="text/javascript" src="/www/js/jquery.js"></script>
+    <script type="text/javascript" src="/www/js/jquery.js"></script>
+    <script type="text/javascript" src="/www/js/template-web.js"></script>
+    <script type="text/javascript" src="/www/js/dialog.js"></script>
+    <script type="text/javascript" src="/www/js/index.js"></script>
+    <script type="text/template" id="indexTpl">
+        {{each list}}
+        <tr>
+            <td>{{$value.id}}</td>
+            <td>{{$value.name}}</td>
+            <td>{{$value.author}}</td>
+            <td>{{$value.category}}</td>
+            <td>{{$value.description}}</td>
+            <td><a href="javascript:;">修改</a>|<a href="javascript:;">删除</a></td>
+        </tr>
+        {{/each}}
+    </script>
+    <script type="text/template" id="weatherTpl">
+        <ul>
+            <li>城市：{{city}}</li>
+            <li>风向：{{WD}}</li>
+            <li>级别：{{WS}}</li>
+            <li>温度：{{temp}}</li>
+            <li>时间：{{time}}</li>
+        </ul>
+    </script>
+
+    <script type="text/template" id="msgTpl">
+        {{ each list }}
+        <ul>
+            <li>{{ $value.id }}<span>楼·</span></li>
+            <li>昵称·: {{ $value.user }}</li>
+            <li>{{ $value.msg }}</li>
+            <li><a href="javascript:;">回复</a></li>
+        </ul>
+        {{ /each }}
+    </script>
+
+    <style>
+        #msgList {
+            background-color: lightsalmon;
+        }
+        .box ul {
+            list-style-type: none;
+            border-bottom: 1px solid antiquewhite;
+            width: 95%;
+            margin: 15px auto;
+        }
+        .box {
+            background-color: lightblue;
+            margin-top: 15px;
+        }
+        .box li {
+            position: relative;
+        }
+        .box li > a {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: block;
+            width: 50px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            border-radius: 8px;
+            background-color: #fff;
+            border: 1px solid rgba(59,156,102,0.8);
+            color: rgba(59,156,102,0.8);
+            text-decoration: none;
+        }
+        .box form {
+            /*display: block;*/
+            background-color: #4cae4c;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin-bottom: 15px;
+        }
+        .box form > .uname,
+        .box form > .say {
+            height: 25px;
+        }
+        .uname {
+            width: 50px;
+        }
+        .say {
+            width: 30%;
+        }
+        .sub {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">图书管理系统<a id="addBookId" href="javascript:;">添加图书</a>
+    <select>
+        <option value="101010100">北京</option>
+        <option value="101020100">上海</option>
+        <option value="101280101">广州</option>
+        <option value="101280601">深圳</option>
+    </select>
+    <input type="button" value="查询" id="weather">
+    </div>
+
+    <div class="content">
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>作者</th>
+                    <th>分类</th>
+                    <th>描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="dataList">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <form class="form" id="addBookForm">
+<!--        <input type="hidden" name="id"><br>-->
+        名称：<input type="text" name="name"><br>
+        作者：<input type="text" name="author"><br>
+        分类：<input type="text" name="category"><br>
+        描述：<input type="text" name="description"><br>
+        <input type="button" value="提交">
+    </form>
+
+    <div class="box">
+
+        <form class="msg" id="addMsgForm">
+<!--            <input type="hidden" name="id">-->
+            <input type="text" placeholder="昵称" name="user" class="uname">
+            <input type="text" placeholder="saySomething.." name="msg" class="say">
+            <input type="button" value="发布" class="sub">
+        </form>
+
+        <div id="msgList">
+
+        </div>
+
+    </div>
+</body>
+</html>

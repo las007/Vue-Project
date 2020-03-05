@@ -1,0 +1,44 @@
+    .title {
+        text-align: center;
+        background-color: lightgreen;
+        /*height: 50px;*/
+        line-height: 50px;
+        font-size: 24px;
+    }
+    .title span {
+        float: left;
+        margin-left: 15px;
+    }
+    .content {
+        background-color: lightblue;
+    }
+    .content table {
+        width: 100%;
+        text-align: center;
+        border-right: 1px solid orange;
+        border-bottom: 1px solid orange;
+    }
+    .content td,th {
+        border-left: 1px solid orange;
+        border-top: 1px solid orange;
+        height: 40px;
+        line-height: 40px;
+    }
+    .login .form {
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        margin-left: -110px;
+    }
+    .searchBox {
+        height: 280px;
+        background-color: #e92322;
+    }
+    .list_title {
+        text-align: center;
+    }
+    .list_box {
+        padding-bottom: 15px;
+        font-style: initial;
+    }
