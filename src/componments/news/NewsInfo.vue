@@ -23,7 +23,7 @@
             <hr>
 
             <div class="adImg">
-                <img src="../../../static/images/AD.jpg" alt="error..">
+                <img src="http://fjkqdn.natappfree.cc/www/images/AD_2.jpg" alt="error..">
             </div>
 
         </div>
