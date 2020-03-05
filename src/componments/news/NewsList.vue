@@ -2,9 +2,8 @@
 
     <div class="news-container">
 
-
         <header id="header" class="mui-bar mui-bar-nav">
-            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <router-link class="mui-icon mui-icon-left-nav mui-pull-left" to="/home"></router-link>
             <h1 class="mui-title">新闻资讯页面</h1>
             <span class="mui-icon mui-icon-search mui-pull-right" @click="searchMore"></span>
         </header>
@@ -25,7 +24,7 @@
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media" v-for="item in msg" :key="item.img">
                 <router-link :to="'/home/newsinfo/' + item.id">          <!--//此处路径 = 字符串 + 表达式-->
-                    <img class="mui-media-object mui-pull-left" :src="item.img_url" alt="404error..">
+                    <img class="mui-media-object mui-pull-left" :src="item.img_url" alt="404">
                     <div class="mui-media-body">
                         <h1>{{ item.title }}</h1>
                         <p class='mui-ellipsis'>

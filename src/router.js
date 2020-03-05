@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 
 //导入对应的路由组件
 import Login from './componments/login/Login.vue'
-import Comment from './componments/subcomponent/comment.vue'
+import Comment from './componments/others/Commit.vue'
 import NewPage from './componments/login/NewPage.vue'
 import Register from './componments/login/Register.vue'
 import Setting from './componments/login/Setting.vue'

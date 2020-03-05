@@ -2,30 +2,15 @@
 
     <div class="newsinfo-container">
 
-<!--        <mt-header :title="newsInfo.title">-->
-<!--            <router-link to="/home/newslist" slot="left">-->
-<!--                <mt-button icon="back">返回</mt-button>-->
-<!--            </router-link>-->
-<!--            <mt-button icon="more" slot="right"></mt-button>-->
-<!--        </mt-header>-->
-
-        <header id="header" class="mui-bar mui-bar-nav">
-            <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" to="/home/newslist">
-
+        <mt-header :title="newsInfo.title">
+            <router-link to="/home/newslist" slot="left">
+                <mt-button icon="back">back</mt-button>
             </router-link>
-            <h1 class="mui-title">{{ newsInfo.title }}</h1>
-        </header>
-
-<!--        <header id="header" class="mui-bar mui-bar-transparent">-->
-<!--            <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" to="/home/newslist"></router-link>-->
-<!--            <h1 class="mui-title">{{ newsInfo.title }}</h1>-->
-<!--        </header>-->
-
+            <mt-button slot="right"></mt-button>
+        </mt-header>
         <div class="content-item">
             <!--        <h3>新闻资讯详情页面 {{ $route.params.id }}</h3>-->
 
-
-            <h3 class="title"></h3>
             <p class="subtitle">
                 <span>发表时间：{{ newsInfo.add_time | dataFormat}}</span>
                 <span>作者：{{ newsInfo.author }}</span>
@@ -35,11 +20,15 @@
             <hr>
 
             <div class="content" v-html="newsInfo.common"></div>
-
             <hr>
 
-            <comment-box :id="this.id"></comment-box>
+            <div class="adImg">
+                <img src="../../../static/images/AD.jpg" alt="error..">
+            </div>
+
         </div>
+
+        <comment-box :id="this.id"></comment-box>
     </div>
 
 </template>
@@ -83,11 +72,19 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .newsinfo-container {
+    .adImg {
+        img {
+            width: 100%;
+            margin-top: 10px;
+           /* margin-bottom: -30px;*/
+        }
+    }
 
-    mt-header {
-        width: 100%;
+
+    hr {
+        margin: auto 5px;
     }
 
     .tips {
@@ -96,7 +93,7 @@
     }
 
     .content-item {
-        padding: 50px 4px;
+        padding: 5px 4px;
     }
     .content p {
         color: #000;

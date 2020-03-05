@@ -104,9 +104,8 @@
 <script>
 
     import Vue from 'vue';
-    import { Toast } from 'mint-ui'
+    import { Toast, Indicator, Lazyload } from 'mint-ui'
     import swiper from '../subcomponent/swiper.vue'
-    import { Lazyload } from 'mint-ui';
 
     Vue.use(Lazyload);
 
@@ -206,6 +205,11 @@
                          /*   this.clientHeight = `${document.documentElement.clientHeight}`;//获取浏览器可视区域高度
                             console.log(this.clientHeight);*/
 
+                            Indicator.open({ spinnerType: 'fading-circle' });
+                            this.newList = result.body;
+                            setTimeout(function () {
+                                Indicator.close();
+                            }, 1500);
 
                             if (this.list.length <= this.goodsList.length*3) {
                                 setTimeout(() => {
@@ -331,7 +335,7 @@
             text-align: center;
             position: fixed;
             right: 30px;
-            bottom: 160px;
+            bottom: 130px;
             padding: 10px;
             width: 50px;
             border-radius: 50%;

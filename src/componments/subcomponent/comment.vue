@@ -1,15 +1,21 @@
 <template>
 
     <div class="cmt-container">
-
+<!--
         <header id="header" class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
             <h1 class="mui-title">导航栏</h1>
-        </header>
+        </header>-->
+<!--        <mt-header title="导航栏">-->
+<!--            <router-link to="/home/newslist" slot="left">-->
+<!--                <mt-button icon="back">back</mt-button>-->
+<!--            </router-link>-->
+<!--            <mt-button slot="right"></mt-button>-->
+<!--        </mt-header>-->
 
         <h3>发表评论</h3>
         <hr>
-        <textarea placeholder="请输入要评论的内容..（最多允许120字）" maxlength="120" v-model="msg" v-focus></textarea>
+        <textarea placeholder="请输入要评论的内容..（最多允许120字）" maxlength="120" v-model="msg"></textarea>
 
         <mt-button type="primary" size="large" @click="postComment" @keyup.ent="postComment">发表评论</mt-button>
 
@@ -257,8 +263,12 @@
 <style lang="scss" scoped>
 .cmt-container {
     padding-bottom: 65px;
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     margin: auto 5px;
+
+    .mint-header {
+        margin: 5px auto;
+    }
 
     h3 {
         font-size: 18px;

@@ -205,7 +205,7 @@
         text-align: center;
         position: fixed;
         right: 30px;
-        bottom: 60px;
+        bottom: 130px;
         padding: 10px;
         width: 50px;
         border-radius: 50%;

@@ -150,7 +150,8 @@ Vue.use(VueResource);
 // 设置请求的根路径
 // Vue.http.options.root = 'http://vue.studyit.io';
 // Vue.http.options.root = 'http://localhost:3000/';
-Vue.http.options.root = 'http://las007.natapp1.cc/';
+// Vue.http.options.root = 'http://las007.natapp1.cc/';
+Vue.http.options.root = 'http://fjkqdn.natappfree.cc';
 // 全局设置 post 时候表单数据格式组织形式   application/x-www-form-urlencoded
 Vue.http.options.emulateJSON = true;
 
