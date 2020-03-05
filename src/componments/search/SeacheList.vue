@@ -326,22 +326,23 @@
 
 
         .good-item {
-            width: 49%;
-            border: 1px solid #ccc;
+            width: 98%;
+            /*border: 2px solid #e3e4e5;*/
             box-shadow: 0 0 8px #ccc;
-            margin-left: 0;
             padding: 2px;
             min-height: 231px;
-            margin-top: 40px;
+            margin: 20px 1%;
 
             /*position: relative;*/
             display: inline-block;
             flex-direction: column;
             justify-content: space-between;
+            border-radius: 20px;
+            overflow: hidden;
 
             img {
                 width: 100%;
-                height: 115px;
+                height: 315px;
             }
             .title {
                 font-size: 14px;

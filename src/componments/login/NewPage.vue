@@ -21,7 +21,7 @@
         <div class="more-side">
             <ul>
                 <li class="img-item">
-                    <img src="http://localhost:3000/www/images/21.jpg" alt="404error..">
+                    <img src="http://las007.natapp1.cc/www/images/21.jpg" alt="404error..">
                 </li>
             </ul>
             <!--            <span>{{ userInfo.username }}</span>-->
@@ -175,9 +175,9 @@
                 }
 
                 this.$http
-                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
+                    .post("postLoginMsg", cmt, { emulateJSON: true })
                     .then(result => {
-                        // console.log(result);
+                        console.log(result);
 
                         if (result.status === 200) {
 
@@ -258,7 +258,7 @@
                 };
 
                 this.$http
-                    .post("http://localhost:3000/postLoginMsg", cmt, { emulateJSON: true })
+                    .post("postLoginMsg", cmt, { emulateJSON: true })
                     .then(result => {
                         console.log(result);
 

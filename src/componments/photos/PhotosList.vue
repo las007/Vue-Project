@@ -86,7 +86,7 @@
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/comments/" + cateId + "/pageImg.json")
                     .get("getPhotos")
                     .then(result => {
-                        // console.log(result);
+                        console.log(result);
                         // console.log(cateId);
                         if (result.status === 200) {
                             this.list = result.body.list[cateId];

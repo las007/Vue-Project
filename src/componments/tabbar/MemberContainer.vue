@@ -29,24 +29,24 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://localhost:3000/www/images/4.jpg">
-                                <div class="mui-media-body">幸福就是可以一起睡觉</div>
+                                <img class="mui-media-object" src="http://las007.natapp1.cc/www/images/4.jpg">
+                                <div class="mui-media-body">数码相机</div>
                             </a>
                         </li>
                     </ul>
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://localhost:3000/www/images/6.jpg">
-                                <div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+                                <img class="mui-media-object" src="../../../static/images/6.jpg">
+                                <div class="mui-media-body">数学大通关，智力开发max...</div>
                             </a>
                         </li>
                     </ul>
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://localhost:3000/www/images/7.jpg">
-                                <div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+                                <img class="mui-media-object" src="../../../static/images/7.jpg">
+                                <div class="mui-media-body">时尚女装，需要你的加入</div>
                             </a>
                         </li>
                     </ul>
@@ -55,7 +55,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://localhost:3000/www/images/8.jpg">
+                                <img class="mui-media-object" src="../../../static/images/23.jpg">
                                 <div class="mui-media-body">Color of SIP CBD</div>
                             </a>
                         </li>
@@ -63,7 +63,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://localhost:3000/www/images/12.jpg">
+                                <img class="mui-media-object" src="../../../static/images/22.jpg">
                                 <div class="mui-media-body">静静看这世界</div>
                             </a>
                         </li>

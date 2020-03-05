@@ -207,7 +207,7 @@
                             console.log(this.clientHeight);*/
 
 
-                            if (this.list.length <= this.goodsList.length) {
+                            if (this.list.length <= this.goodsList.length*3) {
                                 setTimeout(() => {
                                     for (var i = 0; i < this.goodsList.length; i++) {
                                         this.list.push(this.goodsList[i]);
@@ -313,7 +313,7 @@
         .item {
             padding-top: 50px;
             /*background-image: url("http://localhost:3000/www/images/26.jpg");*/
-            background-image: url("http://bznyw5.natappfree.cc/www/images/26.jpg");
+            background-image: url("../../../static/images/26.jpg");
         }
 
         img {
@@ -331,7 +331,7 @@
             text-align: center;
             position: fixed;
             right: 30px;
-            bottom: 60px;
+            bottom: 160px;
             padding: 10px;
             width: 50px;
             border-radius: 50%;
