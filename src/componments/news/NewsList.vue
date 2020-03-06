@@ -52,11 +52,11 @@
             </ul>
         </div>
 
-        <router-link to="/home/newslist/content">
-            <mt-button type="primary" size="large">
-                发布文章
-            </mt-button>
-        </router-link>
+<!--        <router-link to="/home/newslist/content">-->
+<!--            <mt-button type="primary" size="large">-->
+<!--                发布文章-->
+<!--            </mt-button>-->
+<!--        </router-link>-->
 
     </div>
 

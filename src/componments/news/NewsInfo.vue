@@ -22,9 +22,9 @@
             <div class="content" v-html="newsInfo.common"></div>
             <hr>
 
-            <div class="adImg">
-                <img src="http://kvnice.natappfree.cc/www/images/AD_2.jpg" alt="error..">
-            </div>
+<!--            <div class="adImg">-->
+<!--                <img src="http://kvnice.natappfree.cc/www/images/AD_2.jpg" alt="error..">-->
+<!--            </div>-->
 
         </div>
 

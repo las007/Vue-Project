@@ -4,10 +4,9 @@
 
 
         <header id="header" class="mui-bar mui-bar-nav">
-            <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" to="/home/photoslist">
-
-            </router-link>
-            <h1 class="mui-title">{{ photoinfo.title }}</h1>
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title">{{ title }}</h1>
+<!--            <h1 class="mui-title">导航栏</h1>-->
         </header>
 
 <!--        <header id="header" class="mui-bar mui-bar-nav">-->
@@ -56,7 +55,7 @@
                 id: this.$route.params.id,          //从路由获取到图片的 id
                 photoinfo: [],       //图片列表的数据
                 list: [],            //缩略图的数组
-
+                title: ""
             }
         },
         created() {
@@ -73,7 +72,7 @@
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            this.photoinfo = result.data.list[this.id][1];
+                            this.photoinfo = result.data.list[this.id-1][1];
                             // console.log(this.id);
                             // console.log(result.body.message[this.id]);
                         }
@@ -83,7 +82,7 @@
                 // 获取图片的详情
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("getMessages")
+                    .get("getMessages/" + this.id)
                     .then(result => {
                         if (result.status === 200) {
                             // console.log(result);
@@ -96,12 +95,13 @@
                             result.data.forEach(item => {
                                 item.w = 380;
                                 item.h = 400;
-                                item.title = 'pics_1';
+                                item.title = item.title_1;
                                 item.src = item.img;
                                 item.msrc = item.img;
                             });
                             // 把完整的数据保存到 list 中
                             this.list = result.data;
+                            this.title = this.list[0].title_1;
                         }
                     });
             },

@@ -72,7 +72,7 @@
                     // console.log(result);
                     if (result.status === 200) {
                         //获取数据成功，获取到的数据应该保存到 data 上
-                        result.body.list.message.unshift({ title: "全部", id: 0 });
+                        result.body.list.message.unshift({ title: "推荐", id: 0 });
                         this.cates = result.body.list.message;
                     }else {
                         //获取失败

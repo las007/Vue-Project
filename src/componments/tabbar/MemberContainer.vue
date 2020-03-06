@@ -4,13 +4,13 @@
 
         <header class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-            <h1 class="mui-title">侧面选项卡-div模式</h1>
+            <h1 class="mui-title">发现·多彩生活</h1>
         </header>
         <div class="mui-content mui-row mui-fullscreen">
             <div class="mui-col-xs-3">
                 <div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
-                    <a class="mui-control-item mui-active" href="#content1">家居生活</a>
-                    <a class="mui-control-item" href="#content2">电商品牌</a>
+                    <a class="mui-control-item mui-active" href="#content1">今日推荐</a>
+                    <a class="mui-control-item" href="#content2">数码产品</a>
                     <a class="mui-control-item" href="#content3">网络推荐</a>
                     <a class="mui-control-item" href="#content4">智能设备</a>
                     <a class="mui-control-item" href="#content5">服装</a>
@@ -21,51 +21,50 @@
                     <a class="mui-control-item" href="#content10">出行必备</a>
                     <a class="mui-control-item" href="#content11">选项11</a>
                     <a class="mui-control-item" href="#content12">选项12</a>
-                    <a class="mui-control-item" href="#content13">选项13</a>
                 </div>
             </div>
             <div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
                 <div id="content1" class="mui-control-content mui-active">
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
-                            <a href="#">
-                                <img class="mui-media-object" src="../../../static/images/4.jpg">
+                            <router-link to="home/goodsinfo/4">
+                                <img class="mui-media-object" src="../../../static/images/51.jpg">
                                 <div class="mui-media-body">数码相机</div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
-                            <a href="#">
+                            <router-link to="home/goodsinfo/6">
                                 <img class="mui-media-object" src="../../../static/images/6.jpg">
                                 <div class="mui-media-body">数学大通关，智力开发max...</div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
-                            <a href="#">
+                            <router-link to="home/goodsinfo/7">
                                 <img class="mui-media-object" src="../../../static/images/7.jpg">
                                 <div class="mui-media-body">时尚女装，需要你的加入</div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </div>
                 <div id="content2" class="mui-control-content">
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
-                            <a href="#">
-                                <img class="mui-media-object" src="../../../static/images/23.jpg">
+                            <router-link to="/home/photoinfo/4">
+                                <img class="mui-media-object" src="../../../static/images/35.jpg">
                                 <div class="mui-media-body">Color of SIP CBD</div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
-                            <a href="#">
-                                <img class="mui-media-object" src="../../../static/images/22.jpg">
+                            <router-link to="/home/photoinfo/1">
+                                <img class="mui-media-object" src="../../../static/images/33.jpg">
                                 <div class="mui-media-body">静静看这世界</div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -300,30 +299,6 @@
                         <li class="mui-table-view-cell">第12个选项卡子项-18</li>
                         <li class="mui-table-view-cell">第12个选项卡子项-19</li>
                         <li class="mui-table-view-cell">第12个选项卡子项-20</li>
-                    </ul>
-                </div>
-                <div id="content13" class="mui-control-content">
-                    <ul class="mui-table-view">
-                        <li class="mui-table-view-cell">第13个选项卡子项-1</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-2</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-3</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-4</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-5</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-6</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-7</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-8</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-9</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-10</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-11</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-12</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-13</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-14</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-15</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-16</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-17</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-18</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-19</li>
-                        <li class="mui-table-view-cell">第13个选项卡子项-20</li>
                     </ul>
                 </div>
             </div>

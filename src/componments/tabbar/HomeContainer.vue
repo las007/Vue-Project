@@ -30,8 +30,8 @@
              infinite-scroll-distance="30">
 
             <mt-swipe :auto="4000">
-                <mt-swipe-item v-for="(item, i) in bannerList" v-bind:key="item.url">
-                    <router-link :to="'/home/photoinfo/' + i">
+                <mt-swipe-item v-for="item in bannerList" v-bind:key="item.url">
+                    <router-link :to="'/home/photoinfo/' + item.id">
                         <img :src="item.img" alt="error404...">
                     </router-link>
                 </mt-swipe-item>
@@ -48,7 +48,7 @@
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <router-link to="/home/photoslist">
                         <img src="../../images/menu2.png" alt="404error.." id="content1">
-                        <div class="mui-media-body">图片分享</div>
+                        <div class="mui-media-body">商品分类</div>
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -169,7 +169,7 @@
 
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("getMessages")
+                    .get("getBanner")
                     .then(result => {
                     // console.log(result);
                     if (result.status === 200) {
