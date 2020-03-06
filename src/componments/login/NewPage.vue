@@ -260,7 +260,7 @@
                 this.$http
                     .post("postLoginMsg", cmt, { emulateJSON: true })
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
 
                         if (result.status === 200) {
 
@@ -322,7 +322,7 @@
                 this.$router.push("/register");
             },
             Forget() {
-                this.$toast("懒！！！还没开始着手完善此模块");
+                this.$toast("敬请期待·！");
             }
         }
     }

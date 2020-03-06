@@ -24,7 +24,6 @@
 
             <!--        缩略图区域-->
             <div class="thumbs">
-
                 <vue-preview :slides="list" @close="handleClose" class="preview"></vue-preview>
                 <!--            <img class="preview-img" v-for="(item, index) in list" :src="item.img" :msrc="item.img" height="100" :key="item.src">-->
             </div>
@@ -173,28 +172,27 @@
                 }
             }
         }
-
     }
 
-    /*.thumbs {*/
-    /*    /deep/ .preview {*/
-    /*        display: flex;*/
-    /*        flex-wrap: wrap;*/
-    /*        !*height: 100%;*!*/
+/*    .thumbs {
+        /deep/ .preview {
+            display: flex;
+            flex-wrap: wrap;
+            !*height: 100%;*!
 
-    /*        figure {*/
-    /*            float: left;*/
-    /*            width: 30%;*/
-    /*            !*height: 100%;*!*/
-    /*            margin: 5px;*/
-    /*        }*/
+            figure {
+                float: left;
+                width: 30%;
+                !*height: 100%;*!
+                margin: 5px;
+            }
 
-    /*        img {*/
-    /*            width: 100%;*/
-    /*            height: 100%;*/
-    /*            margin: 0;*/
-    /*        }*/
-    /*    }*/
-    /*}*/
+            img {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        }
+    }*/
 
 </style>

@@ -112,9 +112,8 @@
         justify-content: space-between;
     }
     .content {
-
         img {
-            width: 100%;
+
         }
     }
 }

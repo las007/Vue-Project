@@ -106,7 +106,7 @@
                 // console.log("=======================");
             }else {
                 this.showname = !this.msg[0].show;
-                console.log(this.showname);
+                // console.log(this.showname);
             }
 
         },

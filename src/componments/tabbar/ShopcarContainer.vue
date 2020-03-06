@@ -9,7 +9,7 @@
             </header>
 
             <!-- 商品列表项区域 -->
-            <div class="mui-card" v-for="(item, i) in idArr" :key="item.id">
+            <div class="mui-card" v-for="(item, i) in idArr" :key="item.id" v-show="flag">
                 <div class="mui-card-content">
                     <div class="mui-card-content-inner">
 
@@ -32,7 +32,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div >
 
         </div>
 
@@ -75,12 +75,14 @@
     import numbox from "../subcomponent/shopcar_numbox.vue";
 
     export default {
+        inject: ['reload'],     //注入 reload() 方法
         data() {
             return {
                 goodslist: [], // 购物车中所有商品的数据
                 msg: [],
                 cmts: [],
-                idArr: []
+                idArr: [],
+                flag: true
             };
         },
         created() {
@@ -89,14 +91,41 @@
         },
         methods: {
             getGoodsList() {
-                // 1. 获取到 store 中所有的商品的Id，然后拼接出一个 用逗号分隔的 字符串
 
-                this.$store.state.car.forEach(item => this.idArr.push(item));
-                // 如果 购物车中没有商品，则直接返回，不需要请求数据接口，否则会报错
-                // console.log(this.idArr);
-                if (this.idArr.length <= 0) {
-                    return;
+                var userName = JSON.parse(localStorage.getItem('cmts' || []));
+                // console.log(userName[0].username);
+                // console.log(userName.length);
+
+                if (userName.length !== 0) {
+                    // 1. 获取到 store 中所有的商品的Id，然后拼接出一个 用逗号分隔的 字符串
+
+                    this.$store.state.car.forEach(item => this.idArr.push(item));
+
+                    // 如果 购物车中没有商品，则直接返回，不需要请求数据接口，否则会报错
+                    // console.log(this.idArr);
+                    if (this.idArr.length <= 0) {
+                        return;
+                    }
+                }else {
+                    this.flag = false;
+                    this.$store.getters.getGoodsCountAndAmount.count = 0;
+                    this.$store.getters.getGoodsCountAndAmount.amount = 0;
+                    // this.$store.state.car.forEach(item => {
+                    //     // item.selected = false;
+                    //     console.log(item.selected);
+                    // });
+
+                    var box = JSON.parse(localStorage.getItem('car') || '[]');
+
+                    var com = [];
+                    box.forEach(item => {
+                        item.selected = false;
+                    });
+                    com = box;
+
+                    localStorage.setItem('car', JSON.stringify(com));
                 }
+
                 // 获取购物车商品列表
              /*   this.$http
                     .get("getShopCarList/" + idArr.join(","))

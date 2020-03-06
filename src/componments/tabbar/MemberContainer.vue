@@ -28,7 +28,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <router-link to="home/goodsinfo/4">
-                                <img class="mui-media-object" src="../../../static/images/51.jpg">
+                                <img class="mui-media-object" src="../../../static/images/photosList/51.jpg">
                                 <div class="mui-media-body">数码相机</div>
                             </router-link>
                         </li>
@@ -36,7 +36,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <router-link to="home/goodsinfo/6">
-                                <img class="mui-media-object" src="../../../static/images/6.jpg">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/6.jpg">
                                 <div class="mui-media-body">数学大通关，智力开发max...</div>
                             </router-link>
                         </li>
@@ -44,7 +44,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <router-link to="home/goodsinfo/7">
-                                <img class="mui-media-object" src="../../../static/images/7.jpg">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/7.jpg">
                                 <div class="mui-media-body">时尚女装，需要你的加入</div>
                             </router-link>
                         </li>
@@ -54,7 +54,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <router-link to="/home/photoinfo/4">
-                                <img class="mui-media-object" src="../../../static/images/35.jpg">
+                                <img class="mui-media-object" src="../../../static/images/photosList/35.jpg">
                                 <div class="mui-media-body">Color of SIP CBD</div>
                             </router-link>
                         </li>
@@ -62,7 +62,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <router-link to="/home/photoinfo/1">
-                                <img class="mui-media-object" src="../../../static/images/33.jpg">
+                                <img class="mui-media-object" src="../../../static/images/photosList/33.jpg">
                                 <div class="mui-media-body">静静看这世界</div>
                             </router-link>
                         </li>

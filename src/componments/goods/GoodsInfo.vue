@@ -65,6 +65,7 @@
 import swiper from '../subcomponent/swiper.vue'
 // 导入 数字选择框 组件
 import numbox from '../subcomponent/goodsinfo_numbox.vue'
+import { MessageBox } from 'mint-ui';
 
     export default {
         data() {
@@ -81,6 +82,8 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             //默认进入页面，就主动请求 所有图片列表的数据
             this.getGoodsBanner(this.id);
             this.getGoodsInfo(this.id);
+
+            localStorage.setItem('user', JSON.stringify([]));
         },
         methods: {
             getGoodsBanner(id) {
@@ -122,20 +125,41 @@ import numbox from '../subcomponent/goodsinfo_numbox.vue'
             },
 
             addToShopCar() {
-                this.ballFalse = !this.ballFalse;
 
-                // { id:商品的id, count: 要购买的数量, price: 商品的单价，selected: false  }
-                // 拼接出一个，要保存到 store 中 car 数组里的 商品信息对象
-                var goodsinfo = {
-                    id: this.id,
-                    count: this.selectedCount,
-                    price: this.goodsInfo.sell_price,
-                    selected: true,
-                    title: this.goodsInfo.title,
-                    img: this.goodsInfo.img_url
-                };
-                // 调用 store 中的 mutations 来将商品加入购物车
-                this.$store.commit("addToCar", goodsinfo);
+                var userName = JSON.parse(localStorage.getItem('cmts' || []));
+                // console.log(userName[0].username);
+                // console.log(userName.length);
+
+                if (userName.length !== 0) {
+                    this.ballFalse = !this.ballFalse;
+
+                    // { id:商品的id, count: 要购买的数量, price: 商品的单价，selected: false  }
+                    // 拼接出一个，要保存到 store 中 car 数组里的 商品信息对象
+                    var goodsinfo = {
+                        id: this.id,
+                        count: this.selectedCount,
+                        price: this.goodsInfo.sell_price,
+                        selected: true,
+                        title: this.goodsInfo.title,
+                        img: this.goodsInfo.img_url
+                    };
+                    // 调用 store 中的 mutations 来将商品加入购物车
+                    this.$store.commit("addToCar", goodsinfo);
+                }else {
+                    // MessageBox('提示', '操作成功');
+                    MessageBox.confirm('未登录！请先登录过后再添加.', '提示').then(action => {
+                        // ...
+                        // console.log(action);
+                        if (action === "confirm") {
+                            // console.log(123);
+                            this.$router.push("/home/newpage");
+                        }else {
+                            this.msg = "";
+                        }
+                    });
+
+                }
+
 
               /*  let com = {
                     id: this.goodsInfo.id,
