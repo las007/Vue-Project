@@ -26,7 +26,7 @@
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell mui-media">
                                             <router-link class="mui-navigate-right" to="/home/newpage">
-                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="http://las007.natapp1.cc/www/images/21.jpg">
+                                                <img class="mui-media-object mui-pull-left head-img" id="head-img" src="../../../static/images/21.jpg">
 
                                                 <div class="mui-media-body" v-if="showname">
                                                     Hello MUI

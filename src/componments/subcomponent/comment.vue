@@ -62,6 +62,8 @@
         created() {
             this.getComment();
             // this.postComment();
+            //进入页面，创建本地存储
+            localStorage.setItem('cmts', JSON.stringify([]));
         },
         methods: {
             getComment() {      //获取评论信息

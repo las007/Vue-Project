@@ -5,9 +5,11 @@
 <!--        <mt-header fixed title="顶部状态栏"></mt-header>-->
 
         <!--    中间的 路由 router-view 区域-->
-        <transition>
-            <router-view></router-view>
-        </transition>
+        <div id="app_1">
+            <transition>
+                <router-view v-if="isRouterAlive"></router-view>
+            </transition>
+        </div>
 
         <!--    底部 Tab-bar 区域-->
         <nav class="mui-bar mui-bar-tab">
@@ -34,7 +36,27 @@
 </template>
 
 <script>
-
+    export default {
+        name: 'app_1',
+        provide () {
+            return {
+                reload: this.reload
+            }
+        },
+        data () {
+            return {
+                isRouterAlive: true
+            }
+        },
+        methods: {
+            reload () {
+                this.isRouterAlive = false;
+                this.$nextTick(function () {
+                    this.isRouterAlive = true;
+                });
+            }
+        }
+    }
 </script>
 
 <style lang="scss" scoped>

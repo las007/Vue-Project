@@ -189,7 +189,7 @@
             },
             clearBtn() {
                 this.name = "";
-                window.location.reload();
+                // window.location.reload();
             },
 
             fixedActiveBtn() {

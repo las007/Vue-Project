@@ -185,7 +185,7 @@
             right: 20px;
         }
         h4 {
-            width: 85%;
+            width: 60%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;

@@ -15,7 +15,7 @@
             <span @click="searchEsc">×</span>
 
             <ul>
-                <li v-for="(item, i) in searchList" :key="item.id" @click="Tap(item.id)">
+                <li class="res-li" v-for="(item, i) in searchList" :key="item.id" @click="Tap(item.id)">
                     {{ i + 1}}.&nbsp;{{ item.title }}
                 </li>
             </ul>
@@ -198,7 +198,10 @@
 
 <style lang="scss" scoped>
 
-
+    .res-li {
+        border-bottom: 1px solid #e3e4e5;
+        padding-top: 10px;
+    }
     .search-content {
         width: 80%;
         /*height: 150px;*/

@@ -95,7 +95,9 @@
             </ul>
             <p class="loading-tips" v-show="content">加载中...</p>
             <p class="loading-tips" v-show="!content">所有数据已加载。</p>
-            <div class="gotop" v-show="fixed" @click="toTop" :href="href">Top</div>
+            <div class="gotop" v-show="fixed" @click="toTop" :href="href">
+                <span class="mui-icon mui-icon-arrowup"></span>
+            </div>
     </div>
 
     </div>
@@ -113,6 +115,8 @@
 
     export default {
         directives: { infiniteScroll },
+
+        inject: ['reload'],     //注入 reload() 方法
 
         data() {
             return {
@@ -296,7 +300,12 @@
                         clearInterval(timeTop);
                     }
                 }, 10);
-                window.location.reload();
+                // window.location.reload();
+                //刷新当前页，而不加载数据
+                // this.$router.replace('/refresh');
+
+                //直接调用
+                this.reload();
                 this.href = '#content1'
             },
         },

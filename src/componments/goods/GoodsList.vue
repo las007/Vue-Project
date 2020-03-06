@@ -50,7 +50,9 @@
                     </div>
                 </li>
             </ul>
-            <div class="gotop" v-show="!fixed" @click="toTop">Top</div>
+            <div class="gotop" v-show="!fixed" @click="toTop">
+                <span class="mui-icon mui-icon-arrowthinup"></span>
+            </div>
             <p class="loading-tips" v-show="busy">加载中...</p>
         </div>
 
@@ -61,6 +63,8 @@
 <script>
 
     export default {
+        inject: ['reload'],     //注入 reload() 方法
+
         data() {
             return {
                 goodsList: [],       //图片列表的数据
@@ -166,7 +170,8 @@
                         clearInterval(timeTop);
                     }
                 }, 10);
-                window.location.reload();
+                // window.location.reload();
+                this.reload();
             },
 
         },

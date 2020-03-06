@@ -29,7 +29,7 @@
                     <ul class="mui-table-view mui-grid-view">
                         <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
                             <a href="#">
-                                <img class="mui-media-object" src="http://las007.natapp1.cc/www/images/4.jpg">
+                                <img class="mui-media-object" src="../../../static/images/4.jpg">
                                 <div class="mui-media-body">数码相机</div>
                             </a>
                         </li>

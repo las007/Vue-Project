@@ -9,6 +9,12 @@
 
         <div class="mui-content">
             <form id='login-form' class="mui-input-group">
+                <div class="page-datetime-wrapper">
+                    <label>选择出生日期：</label>
+                    <mt-button @click="open('picker')" size="large" class="btn">
+                        <span v-if="showname">选择时间段..▼</span> <label>{{ timer }}</label>
+                    </mt-button>
+                </div>
                 <div class="mui-input-row">
                     <label>账号：</label>
                     <input id='account' type="text" class="mui-input-clear mui-input" maxlength="15" placeholder="请输入账号" v-model="form_1.username" v-focus>
@@ -40,12 +46,7 @@
                         </select>
                         <span class="item">▽</span>
                     </div>
-                    <div class="page-datetime-wrapper">
-                        <label>选择出生日期：</label>
-                        <mt-button @click.native="open('picker')" size="large" class="btn">
-                            <span v-if="showname">选择时间段..▼</span> <label>{{ timer }}</label>
-                        </mt-button>
-                    </div>
+
                     <mt-datetime-picker
                             ref="picker"
                             type="date"
@@ -89,6 +90,7 @@
     });
 
     export default {
+        inject: ['reload'],
         data() {
             return {
                 msg: '',
@@ -182,6 +184,7 @@
 
             open(picker) {
                 this.$refs[picker].open();
+                // this.reload();
             },
 
             handleChange(value) {
@@ -235,6 +238,11 @@
     }
     .mui-bar-nav[data-v-1e4edd6a] {
         top: 0;
+    }
+
+    .page-datetime-wrapper {
+        border-bottom: 1px solid #8f8f94;
+        padding-top: 10px;
     }
 
     .mui-bar-nav.mui-bar .mui-icon {
