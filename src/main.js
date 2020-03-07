@@ -4,7 +4,6 @@
 import Vue from 'vue';
 //导入 App 根组件
 import app from './App.vue';
-import login from './componments/login/Login.vue'
 
 // 注册 vuex
 import Vuex from 'vuex'
@@ -119,13 +118,6 @@ var store = new Vuex.Store({
 });
 
 //按需导入 Mint-UI 中的组件
-import { Header, Swipe, SwipeItem, Toast, Button, Lazyload  } from 'mint-ui';
-// Vue.component(Header.name, Header);
-// Vue.component(Swipe.name, Swipe);
-// Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Toast.name, Toast);
-// Vue.component(Button.name, Button);
-// Vue.use(Lazyload);
 import MintUI from 'mint-ui'
 Vue.use(MintUI);
 import 'mint-ui/lib/style.css'

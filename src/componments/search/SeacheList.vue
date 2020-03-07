@@ -14,11 +14,6 @@
             <!--            <input type="button" value="搜索" @click="postSearchMsg">-->
             <span class="history-item">历史记录..</span>
             <span class="delete-item" @click="Delete">清除记录</span>
-           <!-- <ul class="ul-list">
-                <li v-for="(item, i) in result" :key="item.id">
-                    <a @click="Tap(item.id)">{{ i + 1}}.&nbsp;{{ item.title }}</a>
-                </li>
-            </ul>-->
 
             <div class="good-item" v-for="item in result" :key="item.id" @click="Tap(item.id)">
                 <img :src="item.img_url" alt="">
@@ -105,78 +100,6 @@
                         this.history = com;
                         this.historyShow = false;
                     });
-            },
-
-            log() {
-                // console.log(this.info);
-                // console.log(this.name);
-                // if (this.name === this.item) {
-                //     this.value = result.body.list.title;
-                //     this.getPhotoInfo();
-                // }
-
-                // var cmt = this.info;
-                //
-                // for (var i = 0;i <= cmt.length;i++) {
-                //
-                //     // console.log(cmt[i].indexOf(this.name));
-                //
-                //     if(cmt[i].indexOf(this.name) > -1){
-                //         console.log(cmt[i]);
-                //         console.log('ok');
-                //         // this.result = this.item;
-                //         // console.log(this.result);
-                //     }else {
-                //         console.log(false);
-                //         this.$toast("暂时还没有这一篇文章哦·！不如就由你来添加吧");
-                //     }
-                // }
-
-
-                // console.log(this.name[key]);
-                //
-                // if (cmt[i].indexOf(this.name)) {
-                //     console.log(cmt[i]);
-                // }
-                // console.log(cmt);
-
-                // if(cmt[i].indexOf(this.name) > -1){
-                //     console.log(cmt[i]);
-                //     console.log('ok');
-                //     // this.result = this.item;
-                //     // console.log(this.result);
-                // }else {
-                //     console.log(false);
-                //     this.$toast("暂时还没有这一篇文章哦·！不如就由你来添加吧");
-                // }
-
-                // function isStr(str, val) {
-                //     if (str.indexOf(val) !== -1) {
-                //         return true
-                //     } else {
-                //         return false
-                //     }
-                // }
-                //
-                // console.log(isStr(cmt[0], this.name));
-                //
-                // function isObj(obj, val) {
-                //     var a;
-                //     obj.forEach(item => {
-                //         if (item instanceof Object) {
-                //             for (var i in item) {
-                //                 if (item[i].includes(val)) {
-                //                     a = item[i].includes(val)
-                //                     return
-                //                 }
-                //             }
-                //         }
-                //     });
-                //     return a
-                // }
-                //
-                // console.log(isObj(cmt[0], this.name));
-
             },
 
             Tap(artId) {

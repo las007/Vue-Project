@@ -3,25 +3,11 @@
 <!--        轮播图区域-->
         <img src="http://localhost:3000/www/images/21.jpg" alt="404error.." v-if="!showname" @click="tap">
 
-<!--        <div class="box">-->
-<!--            <h2 id="myh2" ref="myMsg">剩余时间：<span class="clock">{{ msg }}</span>秒</h2>-->
-<!--        </div>-->
-
         <div class="item"  v-if="showname">
-<!--                    <swiper :bannerList="bannerList" :isfull="true"></swiper>-->
-<!--            <mt-header fixed title="顶部状态栏"></mt-header>-->
             <header id="header" class="mui-bar mui-bar-transparent">
-<!--                <a class="mui-pull-left"></a>-->
-<!--                <h1 class="mui-title">导航栏</h1>-->
                 <input type="text" class="mintui mintui-search" placeholder="站内搜索.." @click="Click">
                 <span class="mui-icon mui-icon-search" @click="Click"></span>
             </header>
-
-<!--            <header class="mui-bar mui-bar-nav">-->
-<!--                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
-<!--                <h1 class="mui-title">侧面选项卡-div模式</h1>-->
-<!--            </header>-->
-
         </div>
 
         <div class="page-list"
@@ -95,11 +81,10 @@
             </ul>
             <p class="loading-tips" v-show="content">加载中...</p>
             <p class="loading-tips" v-show="!content">所有数据已加载。</p>
-            <div class="gotop" v-show="fixed" @click="toTop" :href="href">
+            <div class="gotop" v-show="fixed" @click="toTop">
                 <span class="mui-icon mui-icon-arrowup"></span>
             </div>
-    </div>
-
+        </div>
     </div>
 </template>
 
@@ -131,15 +116,11 @@
                 fixed: true,
                 list: [],
                 scrollTop: '',
-                content: true,
-                clientHeight:'',
-                href: ''
+                content: true
             }
         },
         created() {
             this.getBanner();
-            // this.Timer();
-            // this.getGoodsList();
 
             this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             // console.log(this.scrollTop);
@@ -189,10 +170,6 @@
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
-
-                            // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
-                            // console.log(this.goodsList);
                             this.goodsList = result.data;
                         }
                     });
@@ -206,8 +183,6 @@
                         // console.log(result);
                         if (result.status === 200) {
                             this.goodsList = result.data;
-                         /*   this.clientHeight = `${document.documentElement.clientHeight}`;//获取浏览器可视区域高度
-                            console.log(this.clientHeight);*/
 
                             Indicator.open({ spinnerType: 'fading-circle' });
                             this.newList = result.body;
@@ -258,28 +233,6 @@
                 this.showname = true;
             },
 
-            /*Timer() {
-                var number = 5;
-
-                //原生js，操作DOM元素
-                // console.log(document.getElementById('#myh2').innerText);
-
-                // console.log(this.$refs.myMsg.innerText);
-
-                var timer = setInterval(function () {
-                     number--;
-
-                     //
-                     localStorage.setItem('timer', JSON.stringify(number));
-                     if (number === 0) {
-                         clearInterval(timer);
-                     }
-
-                 }, 1000);
-                this.msg = JSON.parse(localStorage.getItem('timer' || []));
-                console.log(this.msg);
-            }*/
-
             Click() {
                 // console.log(1);
                 this.$router.push('/searchlist');
@@ -306,11 +259,7 @@
 
                 //直接调用
                 this.reload();
-                this.href = '#content1'
             },
-        },
-        watch: {
-
         },
         components: {
             swiper
@@ -394,11 +343,6 @@
         }
         .good-info {
             background-color: #eee;
-
-            /*position: absolute;*/
-            /*bottom: 2px;*/
-            /*right: 2px;*/
-            /*width: 100%;*/
 
             p {
                 margin: 0;

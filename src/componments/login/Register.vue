@@ -149,7 +149,7 @@
                 this.$http
                     .post("postRegisterMsg_1", cmt, { emulateJSON: true })
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
 
                         if (result.status === 200) {
                             if (result.body.flag === 1) {
@@ -165,7 +165,7 @@
                 this.$http
                     .post("postRegisterMsg", cmt, { emulateJSON: true })
                     .then(result => {
-                        console.log(result);
+                        // console.log(result);
 
                         if (result.status === 200) {
                             if (result.body.flag === 0) {
@@ -173,7 +173,7 @@
                             }else if (result.body.flag === 3) {
 
                                 MessageBox.alert('信息录入成功，赶紧去登录吧!').then(action => {
-                                    this.$router.push("/login");
+                                    this.$router.push("/home/newpage");
                                 });
 
                                 // this.form_1.username = this.form_1.password = this.form_1.number = this.form_1.email = "";

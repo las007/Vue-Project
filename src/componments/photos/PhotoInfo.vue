@@ -1,18 +1,11 @@
 <template>
 
     <div class="photoinfo-container">
-
-
         <header id="header" class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
             <h1 class="mui-title">{{ title }}</h1>
 <!--            <h1 class="mui-title">导航栏</h1>-->
         </header>
-
-<!--        <header id="header" class="mui-bar mui-bar-nav">-->
-<!--            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
-<!--            <h3>{{ photoinfo.title }}</h3>-->
-<!--        </header>-->
 
         <div class="content-item">
             <p class="subtitle">
@@ -173,26 +166,5 @@
             }
         }
     }
-
-/*    .thumbs {
-        /deep/ .preview {
-            display: flex;
-            flex-wrap: wrap;
-            !*height: 100%;*!
-
-            figure {
-                float: left;
-                width: 30%;
-                !*height: 100%;*!
-                margin: 5px;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-            }
-        }
-    }*/
 
 </style>

@@ -1,11 +1,10 @@
 <template>
     <div>
-        <!--        <h3>ShopcarContainer</h3>-->
-
         <header class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
             <h1 class="mui-title">发现·多彩生活</h1>
         </header>
+
         <div class="mui-content mui-row mui-fullscreen">
             <div class="mui-col-xs-3">
                 <div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
@@ -126,6 +125,14 @@
                             <router-link to="home/goodsinfo/6">
                                 <img class="mui-media-object" src="../../../static/images/shopCarList/6.jpg">
                                 <div class="mui-media-body">数学大通关，智力开发max...</div>
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="home/goodsinfo/14">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/14.jpg">
+                                <div class="mui-media-body">Kindle电子书阅读器墨水屏经典版</div>
                             </router-link>
                         </li>
                     </ul>
@@ -284,7 +291,6 @@
 
     import mui from '../../lib/mui/js/mui.min.js'
 
-
     export default {
         data() {
             return {
@@ -294,7 +300,6 @@
         created() {
             this.getMsg();
             this.getGoodsList();
-
         },
 
         methods: {
@@ -347,10 +352,6 @@
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
-
-                            // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
-                            // console.log(this.goodsList);
                             this.goodsList = result.data;
                         }
                     });
@@ -448,11 +449,6 @@
         }
         .good-info {
             background-color: #eee;
-
-            /*position: absolute;*/
-            /*bottom: 2px;*/
-            /*right: 2px;*/
-            /*width: 100%;*/
 
             p {
                 margin: 0;

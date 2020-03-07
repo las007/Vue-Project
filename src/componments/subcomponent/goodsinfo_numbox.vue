@@ -8,8 +8,6 @@
     <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
   </div>
 
-  <!-- 分析： 子组件什么时候把 数据传递给父组件 -->
-  <!--  -->
 </template>
 
 <script>

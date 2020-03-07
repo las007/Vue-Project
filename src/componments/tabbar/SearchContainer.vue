@@ -58,78 +58,6 @@
                             }
                         }
                     });
-            },
-
-            log() {
-                // console.log(this.info);
-                // console.log(this.name);
-                // if (this.name === this.item) {
-                //     this.value = result.body.list.title;
-                //     this.getPhotoInfo();
-                // }
-
-                // var cmt = this.info;
-                //
-                // for (var i = 0;i <= cmt.length;i++) {
-                //
-                //     // console.log(cmt[i].indexOf(this.name));
-                //
-                //     if(cmt[i].indexOf(this.name) > -1){
-                //         console.log(cmt[i]);
-                //         console.log('ok');
-                //         // this.result = this.item;
-                //         // console.log(this.result);
-                //     }else {
-                //         console.log(false);
-                //         this.$toast("暂时还没有这一篇文章哦·！不如就由你来添加吧");
-                //     }
-                // }
-
-
-                // console.log(this.name[key]);
-                //
-                // if (cmt[i].indexOf(this.name)) {
-                //     console.log(cmt[i]);
-                // }
-                // console.log(cmt);
-
-                // if(cmt[i].indexOf(this.name) > -1){
-                //     console.log(cmt[i]);
-                //     console.log('ok');
-                //     // this.result = this.item;
-                //     // console.log(this.result);
-                // }else {
-                //     console.log(false);
-                //     this.$toast("暂时还没有这一篇文章哦·！不如就由你来添加吧");
-                // }
-
-                // function isStr(str, val) {
-                //     if (str.indexOf(val) !== -1) {
-                //         return true
-                //     } else {
-                //         return false
-                //     }
-                // }
-                //
-                // console.log(isStr(cmt[0], this.name));
-                //
-                // function isObj(obj, val) {
-                //     var a;
-                //     obj.forEach(item => {
-                //         if (item instanceof Object) {
-                //             for (var i in item) {
-                //                 if (item[i].includes(val)) {
-                //                     a = item[i].includes(val)
-                //                     return
-                //                 }
-                //             }
-                //         }
-                //     });
-                //     return a
-                // }
-                //
-                // console.log(isObj(cmt[0], this.name));
-
             }
         }
     }
@@ -157,12 +85,6 @@
             width: 89%;
             border-radius: 5px;
         }
-        /*input[type=button] {*/
-        /*    margin-top: 10px;*/
-        /*    width: 21%;*/
-        /*    border: 5px;*/
-        /*    background-color: #00a4ff;*/
-        /*}*/
 
         .item {
             /*height: 44px;*/

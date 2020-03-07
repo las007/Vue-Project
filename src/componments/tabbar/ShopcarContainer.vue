@@ -2,7 +2,6 @@
     <div class="shopcar-container">
 
         <div class="goods-list">
-
             <header id="header" class="mui-bar mui-bar-nav">
                 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
                 <h1 class="mui-title">导航栏</h1>
@@ -51,23 +50,6 @@
 
 <!--        <p>{{ $store.getters.getGoodsSelected }}</p>-->
 
-       <!-- <ul class="mui-table-view">
-            <li class="mui-table-view-cell mui-media" v-for="item in msg" :key="item.img">
-                <router-link :to="'/home/goodsinfo/' + item.id">          &lt;!&ndash;//此处路径 = 字符串 + 表达式&ndash;&gt;
-                    <img class="mui-media-object mui-pull-left" :src="item.img_url" alt="404error..">
-                    <div class="mui-media-body">
-                        <h4>{{ item.title }}</h4>
-                        <div class="mui-card-content-inner">
-                            <p>
-                                市场价: <del>￥{{ item.market_price }}</del>&nbsp;&nbsp;<span class="now_price">${{ item.sell_price }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </router-link>
-                <mt-button type="danger" class="mui-pull-right" @click="btnDelete(item.id)"><span class="delete-btn">-</span>删除</mt-button>
-            </li>
-        </ul>-->
-
     </div>
 </template>
 
@@ -82,7 +64,7 @@
                 msg: [],
                 cmts: [],
                 idArr: [],
-                flag: true
+                flag: true,
             };
         },
         created() {
@@ -91,15 +73,16 @@
         },
         methods: {
             getGoodsList() {
-
                 var userName = JSON.parse(localStorage.getItem('cmts' || []));
                 // console.log(userName[0].username);
                 // console.log(userName.length);
 
                 if (userName.length !== 0) {
                     // 1. 获取到 store 中所有的商品的Id，然后拼接出一个 用逗号分隔的 字符串
-
-                    this.$store.state.car.forEach(item => this.idArr.push(item));
+                    this.$store.state.car.forEach(item => {
+                        this.idArr.push(item);
+                        this.$store.commit("updateGoodsSelected", { item, selected: true });
+                    });
 
                     // 如果 购物车中没有商品，则直接返回，不需要请求数据接口，否则会报错
                     // console.log(this.idArr);
@@ -122,20 +105,8 @@
                         item.selected = false;
                     });
                     com = box;
-
                     localStorage.setItem('car', JSON.stringify(com));
                 }
-
-                // 获取购物车商品列表
-             /*   this.$http
-                    .get("getShopCarList/" + idArr.join(","))
-                    .then(result => {
-                        console.log(result);
-
-                        if (result.status === 200) {
-                            this.goodslist = result.data;
-                        }
-                    });*/
             },
             getShopCarList() {
 
@@ -179,7 +150,8 @@
                 // 点击删除，把商品从 store 中根据 传递的 Id 删除，同时，把 当前组件中的 goodslist 中，对应要删除的那个商品，使用 index 来删除
                 this.goodslist.splice(index, 1);
                 this.$store.commit("removeFormCar", id);
-                window.location.reload();
+                // window.location.reload();
+                this.reload();
             },
             selectedChanged(id, val) {
                 // 每当点击开关，把最新的 快关状态，同步到 store 中
@@ -304,6 +276,4 @@
             }
         }
     }
-
-
 </style>

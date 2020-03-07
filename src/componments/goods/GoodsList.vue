@@ -1,22 +1,6 @@
 <template>
 
     <div class="goods-container">
-
-        <!--<router-link class="good-item" v-for="item in goodsList" :key="item.id" :to="'/home/goodsinfo/' + item.id" tag="div">
-            <img :src="item.img_url" alt="">
-            <h1 class="title">{{ item.title }}</h1>
-            <div class="good-info">
-                <p class="price">
-                    <span class="now">￥{{ item.sell_price }}</span>
-                    <span class="old">￥{{ item.market_price }}</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩{{ item.stock_quantity }}件</span>
-                </p>
-            </div>
-        </router-link>-->
-
         <header id="header" class="mui-bar mui-bar-nav">
             <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
             <h1 class="mui-title">导航栏</h1>
@@ -30,9 +14,6 @@
              v-infinite-scroll="loadMore"
              infinite-scroll-disabled="busy"
              infinite-scroll-distance="50">
-            <!--<ul>
-                <li v-for="item in list">{{ item.name }}</li>
-            </ul>-->
 
             <ul class="good-item" v-for="(item, i) in list" :key="i" @click="goDetail(item.id)" ref="elForm">
                 <li>
@@ -93,10 +74,6 @@
                     .then(result => {
                         // console.log(result);
                         if (result.status === 200) {
-                            // this.goodsList = result.body[this.pageIndex][this.pageIndex + 1];
-
-                            // this.goodsList = this.goodsList.concat(result.body.list[this.pageIndex][this.pageIndex + 1]);
-                            // console.log(this.goodsList);
                             this.goodsList = result.data;
                             // console.log(this.goodsList.length);
                         }
@@ -105,10 +82,8 @@
             getMore() {
                 this.pageIndex++;
                 this.getGoodsList();
-                // console.log('ok');
             },
             goDetail(id) {
-
                 // console.log(id);
                 this.$http
                     .get("getGoodsInfo/" + id)

@@ -1,18 +1,5 @@
 <template>
     <div class="member-container">
-        <!--        <div class="member-item" v-for="item in memberList" :key="item.id">-->
-        <!--            <h3 class="title">{{ item.name }}</h3>-->
-        <!--            <div class="member-info">{{ item.desc }}</div>-->
-        <!--            <hr>-->
-        <!--        </div>-->
-
-        <!--        <mt-button type="danger" size="large" plain @click="getMore">加载更多..</mt-button>-->
-        <!--        添加数据区域-->
-        <!--        <textarea placeholder="请输入要BB的内容（做多吐槽120字）" maxlength="120" v-model="msg"></textarea>-->
-
-        <!--        <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>-->
-
-
         <header class="mui-bar mui-bar-nav">
             <span class="mui-icon mui-icon-left-nav item-back" @click="$router.go(-1)">返回</span>
             <h1 class="mui-title">登录</h1>
@@ -59,7 +46,7 @@
             <form class="mui-input-group">
                 <ul class="mui-table-view mui-table-view-chevron">
                     <li class="mui-table-view-cell">
-                        自动登录
+                        <span>自动登录</span>
                         <div id="autoLogin" class="mui-switch">
                             <div class="mui-switch-handle" @click="toLog"></div>
                         </div>
@@ -162,70 +149,6 @@
                     });
             },
 
-            Login() {
-
-                var cmt = {
-                    username: this.form2.username,
-                    password: this.form2.password
-                };
-
-                //判断文本框是否为空
-                if (this.form2.username.length === 0 || this.form2.password.length === 0) {
-                    return this.$toast('用户名或密码不能为空！');
-                }
-
-                this.$http
-                    .post("postLoginMsg", cmt, { emulateJSON: true })
-                    .then(result => {
-                        console.log(result);
-
-                        if (result.status === 200) {
-
-                            if (result.body.flag === 0) {
-                                this.$toast("账号或者密码不对！");
-                            }else if (result.body.flag === 1) {
-
-                                this.router = '/login';
-                                this.$toast("登录成功！");
-
-                                var comment = {
-                                    show: this.showname,
-                                    username: this.form2.username,
-                                    password: this.form2.password
-                                };
-
-                                //把登陆成功的数据存放到localStorage中
-                                var com = [];
-                                com.push(comment);
-
-                                localStorage.setItem('cmts', JSON.stringify(com));
-                                this.msg = JSON.parse(localStorage.getItem('cmts') || []);
-
-                                // this.showname = !this.this.msg.show;
-                                this.showname = !this.msg[0].show;
-
-                                this.form2.username = this.form2.password = "";
-                                // console.log(com);
-
-                                // this.getInfo(com);
-                            }
-                        }
-                    });
-            },
-
-            // getInfo(info) {
-            //     // console.log(info);
-            //     if (info !== undefined) {
-            //
-            //         // this.showname = true;
-            //         this.form2.username = this.form2.password = "";
-            //         // console.log(this.msg[0].username);
-            //     }else {
-            //         console.log('not ok++++++++++++++++++');
-            //     }
-            //
-            // },
-
             //用于推出登录，删除 localhostStorage 中的信息
             storageCancel() {
                 var list = JSON.parse(localStorage.getItem('cmts' || []));
@@ -240,10 +163,6 @@
                 //         list.splice(i, 1);
                 //     }
                 // }
-            },
-            toLog() {
-                console.log(11);
-                this.router = '/login';
             },
 
             postComment() {
@@ -263,7 +182,6 @@
                         // console.log(result);
 
                         if (result.status === 200) {
-
                             if (result.body.flag === 0) {
                                 this.$toast("账号或者密码不对！");
                             }else if (result.body.flag === 1) {
@@ -281,7 +199,6 @@
                                 // localStorage.setItem('userMsg', JSON.stringify(com));
                                 // //把数据从 ... 中取出来，并渲染到页面上...
 
-
                                 var comment = {
                                     show: this.showname,
                                     username: this.form_1.username,
@@ -293,14 +210,12 @@
                                 com.push(comment);
 
                                 localStorage.setItem('cmts', JSON.stringify(com));
+                                localStorage.setItem('userMsg', JSON.stringify(com));
 
                                 this.msg = JSON.parse(localStorage.getItem('cmts') || []);
-
                                 // this.showname = !this.this.msg.show;
                                 this.showname = !this.msg[0].show;
-
                                 this.form_1.username = this.form_1.password = "";
-
                             }
                         }
                     });

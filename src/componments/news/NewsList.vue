@@ -52,12 +52,6 @@
             </ul>
         </div>
 
-<!--        <router-link to="/home/newslist/content">-->
-<!--            <mt-button type="primary" size="large">-->
-<!--                发布文章-->
-<!--            </mt-button>-->
-<!--        </router-link>-->
-
     </div>
 
 </template>
@@ -142,14 +136,6 @@
                 }, 10);
             },
             toPage(pageId) {
-
-                // for (var i=0; i<= this.msg.length;i++) {
-                //     console.log(this.msg[i].id);
-                //     if (this.msg[i].id/pageId <= 8) {
-                //         console.log('ok');
-                //         // this.msg =
-                //     }
-                // }
 
                 this.$http
                     .get("toPage/" + pageId)
