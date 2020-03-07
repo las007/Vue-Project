@@ -4,7 +4,7 @@
 
         <header id="header" class="mui-bar mui-bar-nav">
             <router-link class="mui-icon mui-icon-left-nav mui-pull-left" to="/home"></router-link>
-            <h1 class="mui-title">新闻资讯页面</h1>
+            <h1 class="mui-title">资讯页面</h1>
             <span class="mui-icon mui-icon-search mui-pull-right" @click="searchMore"></span>
         </header>
 

@@ -19,7 +19,7 @@
 
             <hr>
 
-            <div class="content" v-html="newsInfo.common"></div>
+            <div class="mui-card" v-html="newsInfo.common"></div>
             <hr>
 
 <!--            <div class="adImg">-->
@@ -115,6 +115,12 @@
         img {
 
         }
+    }
+
+    .mui-card {
+        margin: auto 5px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
 </style>
