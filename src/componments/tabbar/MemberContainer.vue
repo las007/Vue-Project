@@ -83,78 +83,51 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
                 <div id="content4" class="mui-control-content">
-                    <ul class="mui-table-view">
-                        <li class="mui-table-view-cell">第4个选项卡子项-1</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-2</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-3</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-4</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-5</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-6</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-7</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-8</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-9</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-10</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-11</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-12</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-13</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-14</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-15</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-16</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-17</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-18</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-19</li>
-                        <li class="mui-table-view-cell">第4个选项卡子项-20</li>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="/home/goodsinfo/11">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/11.jpg">
+                                <div class="mui-media-body">智能，戴在在手上，智能手表，运动手表</div>
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="/home/goodsinfo/13">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/13.jpg">
+                                <div class="mui-media-body">响应！！震动反馈，便携迷你低音炮</div>
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
                 <div id="content5" class="mui-control-content">
-                    <ul class="mui-table-view">
-                        <li class="mui-table-view-cell">第5个选项卡子项-1</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-2</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-3</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-4</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-5</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-6</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-7</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-8</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-9</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-10</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-11</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-12</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-13</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-14</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-15</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-16</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-17</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-18</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-19</li>
-                        <li class="mui-table-view-cell">第5个选项卡子项-20</li>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="/home/goodsinfo/9">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/9.jpg">
+                                <div class="mui-media-body">海澜之家POLO衫简约舒适长袖卫衣</div>
+                            </router-link>
+                        </li>
+                    </ul>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="/home/goodsinfo/7">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/7.jpg">
+                                <div class="mui-media-body">时尚女装，需要你的加入</div>
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
                 <div id="content6" class="mui-control-content">
-                    <ul class="mui-table-view">
-                        <li class="mui-table-view-cell">第6个选项卡子项-1</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-2</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-3</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-4</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-5</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-6</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-7</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-8</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-9</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-10</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-11</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-12</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-13</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-14</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-15</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-16</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-17</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-18</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-19</li>
-                        <li class="mui-table-view-cell">第6个选项卡子项-20</li>
+                    <ul class="mui-table-view mui-grid-view">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-6">
+                            <router-link to="home/goodsinfo/6">
+                                <img class="mui-media-object" src="../../../static/images/shopCarList/6.jpg">
+                                <div class="mui-media-body">数学大通关，智力开发max...</div>
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
                 <div id="content7" class="mui-control-content">
