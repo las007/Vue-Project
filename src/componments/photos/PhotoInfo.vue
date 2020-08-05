@@ -62,10 +62,10 @@
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
                     .get("getPhotos")
                     .then(result => {
-                        // console.log(result);
+                        console.log(result);
                         if (result.status === 200) {
                             this.photoinfo = result.data.list[this.id-1][1];
-                            // console.log(this.id);
+                            console.log(this.id);
                             // console.log(result.body.message[this.id]);
                         }
                     });
@@ -74,7 +74,7 @@
                 // 获取图片的详情
                 this.$http
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
-                    .get("getMessages/" + this.id)
+                        .get("getMessages/" + this.id)
                     .then(result => {
                         if (result.status === 200) {
                             // console.log(result);

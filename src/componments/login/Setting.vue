@@ -1,10 +1,9 @@
 <template>
     <div class="content-container">
 
-<!--        <h3>SettingContainer</h3>-->
+        <!--        <h3>SettingContainer</h3>-->
 
         <!--页面主结构开始-->
-        <div id="app" class="mui-views" data-view="1">
             <div class="mui-view">
                 <div class="mui-navbar">
                     <div class="mui-navbar-inner mui-bar mui-bar-nav mui-navbar-center">
@@ -22,7 +21,7 @@
                         <!--页面主内容区开始-->
                         <div class="mui-page-content">
                             <div class="mui-scroll-wrapper" data-scroll="2">
-                                <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+                                <div class="mui-scroll">
                                     <ul class="mui-table-view mui-table-view-chevron">
                                         <li class="mui-table-view-cell mui-media">
                                             <router-link class="mui-navigate-right" to="/home/newpage">
@@ -72,16 +71,16 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="mui-scrollbar mui-scrollbar-vertical"><div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: none; height: 617px; transform: translate3d(0px, 0px, 0px) translateZ(0px);"></div></div></div>
+                            </div>
                         </div>
                         <!--页面主内容区结束-->
                     </div>
                 </div>
             </div>
             <mt-button type="danger" size="large" plain @click="storageCancel" v-if="!showname">退出登录</mt-button>
-        </div>
         <!--页面主结构结束-->
 
+        <div class="btnClick" @click="btn">点击</div>
 
     </div>
 </template>
@@ -125,6 +124,11 @@
                 //         list.splice(i, 1);
                 //     }
                 // }
+            },
+            btn() {
+                this.$axios.get('http://localhost:3010/list').then(res => {
+                    console.log(res);
+                });
             }
         }
     }
@@ -132,14 +136,14 @@
 
 <style lang="scss" scoped>
     .content-container {
-        margin-top: 40px;
+        /*margin-top: 40px;*/
         background-color: #efeff4;
 
         .mui-scroll {
             background-color: #efeff4;
         }
         .mui-scroll-wrapper {
-            top: 45px;
+            padding-top: 45px;
         }
 
         .mui-table-view-chevron .mui-table-view-cell {
@@ -155,7 +159,7 @@
         }
         .mui-table-view .mui-media-object {
             line-height: 50px;
-             max-width: 50px;
+            max-width: 50px;
             height: 50px;
         }
         img {

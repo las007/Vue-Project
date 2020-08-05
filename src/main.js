@@ -9,6 +9,14 @@ import app from './App.vue';
 import Vuex from 'vuex'
 Vue.use(Vuex);
 
+//导入 Element-UI 中的组件
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
+
+import axios from 'axios'
+Vue.prototype.$axios =axios;
+
 // 每次刚进入 网站，肯定会 调用 main.js 在刚调用的时候，先从本地存储中，把 购物车的数据读出来，放到 store 中
 var car = JSON.parse(localStorage.getItem('car') || '[]');
 

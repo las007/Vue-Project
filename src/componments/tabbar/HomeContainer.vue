@@ -152,7 +152,7 @@
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/message.json")
                     .get("getBanner")
                     .then(result => {
-                    // console.log(result);
+                    console.log(result);
                     if (result.status === 200) {
                         // console.log(result.body);
                         //成功了

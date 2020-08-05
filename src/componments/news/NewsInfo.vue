@@ -55,7 +55,7 @@
                     // .get("https://raw.githubusercontent.com/las007/Vue-Project/master/src/newList.json")
                     .get("getNewsInfo/" + this.id)
                     .then(result => {
-                    // console.log(result);
+                    console.log(result);
                     if (result.status === 200) {
                         //获取成功，
                         this.newsInfo = result.body[0];

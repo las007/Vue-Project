@@ -52,7 +52,10 @@
             this.getComment();
             // this.postComment();
             //进入页面，创建本地存储
-            localStorage.setItem('cmts', JSON.stringify([]));
+            if (localStorage.getItem('cmts')) {
+                let page = localStorage.getItem('cmts');
+                localStorage.setItem('cmts', page);
+            }
         },
         methods: {
             getComment() {      //获取评论信息
