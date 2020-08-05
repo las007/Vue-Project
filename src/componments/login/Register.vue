@@ -30,7 +30,7 @@
                 </div>
                 <div class="mui-input-row">
                     <label>号码：</label>
-                    <input id='number' type="number" class="mui-input-clear mui-input" maxlength="11" placeholder="您的电话号码（选填）" v-model="form_1.number">
+                    <input id='number' type="number" class="mui-input-clear mui-input" maxlength="11" placeholder="您的11位电话号码（选填）" v-model="form_1.number">
                 </div>
                 <div class="mui-input-row">
                     <label>邮箱：</label>
